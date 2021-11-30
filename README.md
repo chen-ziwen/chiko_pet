@@ -1,5 +1,8 @@
 # petsystem
 
+
+#才写了几天，完成度不是很，但会慢慢更新的
+
 ## Project setup
 ```
 npm install
