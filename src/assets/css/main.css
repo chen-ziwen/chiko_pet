@@ -1,0 +1,35 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'PingFang SC', "Helvetica Neue", Helvetica, "microsoft yahei", arial, STHeiTi, sans-serif;
+}
+
+a {
+    text-decoration: none
+}
+
+
+li {
+    list-style: none;
+}
+
+.pet {
+    margin: 0 auto;
+    width: 1200px;
+    height: 80vh;
+    /* height: 500px; */
+    background-color: rgba(135, 206, 235, 0.7);   
+}
+
+.pit {
+    background: no-repeat url(../../assets/cute.jpg);
+    background-size: 100% 100%;
+    background-position: 0 80px;
+}
+
+/* .Apptotal {
+    height: 100vh;
+} */

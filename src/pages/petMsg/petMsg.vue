@@ -1,0 +1,168 @@
+<template>
+  <div class="pet">
+    <PmsgHeader />
+
+    <article class="pmsgart">
+      <div class="pmsbasic">
+        <h2>基本信息栏</h2>
+
+        <ul class="ul1">
+          <li><span>种类:</span>{{Tnewslist.name}}</li>
+          <li><span>寿命:</span>{{Tnewslist.life}}</li>
+          <li><span>价格:</span>{{Tnewslist.price}}</li>
+        </ul>
+
+        <ul class="ul2">
+          <li><span>英文名:</span>{{Tnewslist.engName}}</li>
+          <li><span>祖籍:</span>{{Tnewslist.nation}}</li>
+          <li><span>性格:</span>{{Tnewslist.characters}}</li>
+        </ul>
+
+        <img :src="Tnewslist.coverURL" alt="图片加载失败" id="pitshow">
+
+      </div>
+
+      <div class="pmsintroduce">
+        <h2>特征介绍</h2>
+        <div class="ps">
+          <p>{{Tnewslist.feature}}</p>
+          <p>{{Tnewslist.characterFeature}}</p>
+          <p>{{Tnewslist.careKnowledge}}</p>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</template>
+
+<script>
+  import PmsgHeader from '@/components/petMsgTotal/PmsgHeader.vue'
+
+  export default {
+    name: 'petMsg',
+    data() {
+      return {
+        show: '我是宠物信息',
+        Msgs: '',
+        Tnewslist: {
+          name: '哈士奇',
+          characters : '聪明机灵、极度热情、神经质',
+          coverURL: "http://img.boqiicdn.com/Data/BK/P/imagick14371435571930.png", //需要用到require引入
+          careKnowledge: '　　哈士奇虽然看着一副冷漠无情的样子，事实上，哈士奇对人很友好、温柔、热情的。喜欢与人交往是哈士奇的典型性格。通常不表现出护卫犬强烈的领地占有欲，不对陌生人过多的怀疑，也不会攻击其他犬类。因此有很多人喜欢哈士奇。他对主人非常忠诚，一条忠诚的小狗有一个健康的身体是非常重要的。',
+          engName: 'Siberian Huskiy',
+          life: '9-15年',
+          price: '2000-4000元',
+          nation: '俄罗斯',
+          characterFeature: '　　哈士奇的外表英俊潇洒，精致的五官和丰富的肢体语言充满了奇特的表现，无需复杂的交谈，就能轻易了解他的喜怒哀乐。哈士奇时常会有点神经质。',
+          feature : '　　西伯利亚雪橇犬是一种原始的古老犬种，因它的独特嘶哑的叫声被称之为当今的哈士奇。'
+        }
+      }
+    },
+
+    components: {
+      PmsgHeader,
+    },
+    mounted() {
+      this.$bus.$on('sendMsgs', (msg) => {
+        // let resnew = response.data.newslist[0]
+        let resnew = msg[0];
+        let Tlt = this.Tnewslist;
+        //遍历对象，如果对象中对应的值为空，则把空改为不详
+        Object.keys(resnew).forEach(function (key) {
+          if(resnew[key]=='') {
+            resnew[key] = '不详'
+          }
+        });  
+        Tlt.coverURL = resnew.coverURL //图片
+        Tlt.careKnowledge = resnew.careKnowledge //百科
+        Tlt.characterFeature = resnew.characterFeature
+        Tlt.engName = resnew.engName //英文名
+        Tlt.life = resnew.life //寿命
+        Tlt.name = resnew.name //名称
+        Tlt.price = resnew.price //价格
+        Tlt.nation = resnew.nation //国家
+        Tlt.characters = resnew.characters //性格
+        Tlt.feature = resnew.feature
+      })
+    },
+    beforeDestroy() {
+      this.$bus.$off('sendMsgs')
+      console.log('sendMsgs被销毁了')
+    }
+
+  }
+</script>
+
+<style scoped>
+  /* .petMsg {
+    width: 800px;
+    height: 500px;
+    } */
+
+
+  .pmsgart {
+    height: 550px;
+    background-color: whitesmoke;
+    overflow: scroll;
+  }
+
+  .pmsgart .pmsbasic {
+    height: 290px;
+    background-color: rgba(193, 210, 240, 0.5);
+  }
+
+  .pmsgart .pmsbasic ul li {
+    font: normal 400 20px "微软雅黑";
+    color: rgba(100, 100, 100, 1);
+    width: 300px;
+    margin-bottom: 30px;
+  }
+
+  .pmsgart .pmsbasic ul li span {
+    
+    font: normal 700 25px "黑体";
+    color: black;
+  }
+
+  h2 {
+    text-align: center;
+    margin-bottom: 15px;
+    color: mediumblue;
+    padding-top: 8px;
+
+  }
+
+  .pmsgart .pmsbasic .ul1 {
+    float: left;
+    margin-left: 120px;
+    margin-right: 80px;
+  }
+
+  .pmsgart .pmsbasic .ul2 {
+    float: left;
+  }
+
+  #pitshow {
+    float: left;
+    width: 270px;
+    height: 180px;
+    margin-left: 50px;
+    transform: translate(0, -20px);
+  }
+
+  #pitshow::after {
+    content: '';
+    display: block;
+    height: 0px;
+    visibility: hidden;
+    clear: both;
+  }
+
+  .ps p {
+    padding: 25px;
+    line-height: 35px;
+    color: rgba(100, 100, 100, 1);
+    text-align: start;
+    margin-left: 50px;
+  }
+</style>
