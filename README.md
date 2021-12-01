@@ -1,5 +1,5 @@
 # petsystem
-
+这个系统从我打算写到现在大概写了四天，功能很多也是还没实现，未来会渐渐完善的
 ## Project setup
 ```
 npm install

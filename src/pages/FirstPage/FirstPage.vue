@@ -57,7 +57,7 @@ export default {
        float: left;
        width: 900px;
        height: 80vh;
-       background-color:rgba(255,192,203,0.6); 
+       background-color:rgba(255,192,203,0.5); 
        overflow: auto; 
     }
     .poistion::after {

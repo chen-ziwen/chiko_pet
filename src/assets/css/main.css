@@ -21,7 +21,8 @@ li {
     width: 1200px;
     height: 80vh;
     /* height: 500px; */
-    background-color: rgba(135, 206, 235, 0.7);   
+    /* background-color: rgba(135, 206, 235, 0.7);  */
+    background-color: rgb(179,215,239,0.7);     
 }
 
 .pit {

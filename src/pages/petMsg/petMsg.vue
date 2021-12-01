@@ -1,6 +1,6 @@
 <template>
-  <div class="pet">
-    <PmsgHeader />
+  <div class="pet hello">
+    <PmsgHeader/>
 
     <article class="pmsgart">
       <div class="pmsbasic">
@@ -98,17 +98,16 @@
     width: 800px;
     height: 500px;
     } */
-
-
+    
   .pmsgart {
-    height: 550px;
+    height: 540px;
     background-color: whitesmoke;
     overflow: scroll;
   }
 
   .pmsgart .pmsbasic {
     height: 290px;
-    background-color: rgba(193, 210, 240, 0.5);
+    background-color: rgb(179,215,239,0.5);
   }
 
   .pmsgart .pmsbasic ul li {
