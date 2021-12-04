@@ -2,8 +2,8 @@
   <header id="head">
     <h1>宠物查询</h1>
     <div class="hbox">
+     <input type="text" placeholder="请输入宠物的全名"  v-model="Msgs"  @keydown.enter="search">
      <button @click="search">搜索</button>
-     <input type="text" placeholder="请输入宠物的全名"  v-model="Msgs">
      </div>
   </header>
 </template>
@@ -30,8 +30,7 @@ export default {
 						// this.$bus.$emit('updateListData',{isLoading:false,errMsg:'',users:response.data.items})
 					},
 					error => {
-      
-            console.log('请求失败了',error.message)
+            console.log('请求失败了',error.response)
             alert('没找到')
 						//请求后更新List的数据
 						// this.$bus.$emit('updateListData',{isLoading:false,errMsg:error.message,users:[]})
@@ -48,21 +47,22 @@ export default {
       /* 高等于70px */
       background-color: cornflowerblue;
     }
+    button {
+      display: block;
+      float: left;
+      height: 40px;
+      width: 90px;
+    }
 
     input {
       display: block;
-      float: right;
+      float: left;
       padding-left: 10px;
       height: 36px;
       width: 200px;
       outline: none;
     }
-    button {
-      display: block;
-      float: right;
-      height: 40px;
-      width: 90px;
-    }
+    
     h1 {
       display: inline-block;
       line-height: 70px;

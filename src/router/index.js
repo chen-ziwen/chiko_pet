@@ -22,25 +22,27 @@ const pet4 = () => import('../pages/FirstPage/petStyle/pet4')
 Vue.use(VueRouter)
 
 export default new VueRouter({
-
+    linkActiveClass : 'active',  //当路由被选中时，标签的样式
     routes: [ 
         {
             path: '/',
+            // redirect: '/FirstPage/pet1'
             redirect: '/login'
-            // redirect: '/login'
            
         }, //设置默认跳转到home首页
 
-         {
+         {  
+             name : 'index',
              path : '/index',
              component : ()=> import('../view/index.vue'),
              children: [
-                {
+                {   name : 'FirstPage',
                     path: '/FirstPage',
                     component: FirstPage,
                     children: [
         
                         {
+                        name : 'pet1',
                         path: 'pet1',
                         component: pet1,
                        },
@@ -53,34 +55,41 @@ export default new VueRouter({
                        },
         
                        {
+                           name : 'pet3',
                         path: 'pet3',
                         component: pet3,
                        },
                        {
+                           name : 'pet4',
                         path : 'pet4',
                         component : pet4,
                        }
                 ]
                 },
                     
-                {
+                {  
+                    name : 'petMsg',
                     path: '/petMsg',
                     component: petMsg,
                     // children: [path:'/petMsg/pet1',component]
                 },
-                {
+                {   
+                    name : 'petBeaty',
                     path: '/petBeaty',
                     component: petBeaty
                 },
-                {
+                {   
+                    name : 'petTreatment',
                     path: '/petTreatment',
                     component: petTreatment
                 },
-                {
+                {   
+                    name : 'petRecord',
                     path: '/petRecord',
                     component: petRecord
                 },
-                {
+                {   
+                    name : 'petTools',
                     path: '/petTools',
                     component: petTools
                 },
@@ -88,63 +97,22 @@ export default new VueRouter({
 
          },
 
-         
-         
          {   
              name : 'login',
              path: '/login' ,
-             component: () => import('../pages/login/login.vue')
+             component: () => import('../pages/login/login.vue'),
+        //      beforeEnter : (to, from, next)=> {
+
+                
+        //         if (to.name == 'login') {
+          
+        //             next({path: 'FirstPage/pet1'})
+        //         }
+        //         // console.log('我是to',to,'我是from',from,'我是next',next)
+                
+        //        next()
+        //   }
          },
         ]
-        //  {
-        //     path: '/FirstPage',
-        //     component: FirstPage,
-        //     children: [
-
-        //         {
-        //         path: 'pet1',
-        //         component: pet1,
-        //        },
-
-        //        {
-        //        //取个名字可以直接跳转
-        //         name : 'pet2',
-        //         path: 'pet2/:id/:title',
-        //         component: pet2,
-        //        },
-
-        //        {
-        //         path: 'pet3',
-        //         component: pet3,
-        //        },
-        //        {
-        //         path : 'pet4',
-        //         component : pet4,
-        //        }
-        // ]
-        // }, //首页
-       
-        // {
-        //     path: '/petMsg',
-        //     component: petMsg,
-        //     // children: [path:'/petMsg/pet1',component]
-        // },
-        // {
-        //     path: '/petBeaty',
-        //     component: petBeaty
-        // },
-        // {
-        //     path: '/petMeat',
-        //     component: petMeat
-        // },
-        // {
-        //     path: '/petPlay',
-        //     component: petPlay
-        // },
-        // {
-        //     path: '/petTools',
-        //     component: petTools
-        // },
-
     
 })

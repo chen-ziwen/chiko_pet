@@ -1,6 +1,7 @@
 <template>
 
   <el-table :data="petData" style="width: 100%">
+    
     <el-table-column type="expand">
 
       <template slot-scope="props">
@@ -66,7 +67,7 @@
       data.forEach((index) => {
         this.petData.push(index)
         // console.log(index)
-        // console.log(this.$refs.styleT)
+     
       })
     },
     //  console.log(data)

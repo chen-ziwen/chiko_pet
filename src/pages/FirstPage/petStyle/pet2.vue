@@ -20,12 +20,17 @@
 </template>
 
 <script>
+
+
   export default {
     name: 'pet2',
     data() {
       return {
-
+      
       }
+    },
+    mounted () {
+      
     }
 
   }

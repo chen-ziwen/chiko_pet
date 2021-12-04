@@ -39,10 +39,11 @@
             <el-dropdown-item>选择背景</el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
-
       </div>
     </nav>
-    <router-view></router-view>
+
+     <router-view></router-view>
+
   </div>
 </template>
 
@@ -64,6 +65,7 @@
   .el-icon-arrow-down {
     font-size: 12px;
   }
+
   .navF,
   .navT {
     flex-grow: 1;
@@ -78,18 +80,19 @@
 
   .navT {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    padding-bottom: 10px;
   }
 
   .navT a {
-    display: inline-block;
-    width: 100px;
+   display: inline-block;
     font: normal 700 20px "微软雅黑";
     cursor: pointer;
+    text-align: center;
     color: #1E90FF;
-  }
+    width: 120px;
+    padding-bottom: 5px;
+    }
   .navT a:hover {
     color: rgba(255,0,0,0.5);
   }
@@ -101,14 +104,14 @@
   .nav {
     display: flex;
     height: 10vh;
-    /* 屏幕12% */
     justify-content: space-between;
     background-color: #FFFFFF;
+    overflow: hidden;
 
   }
 
   .nav img {
-    width: 10vh;
+    /* width: 10vw; */
     height: 10vh;
     vertical-align: middle;
 
@@ -130,22 +133,19 @@
     margin-right: 40px;
   }
 
-  .navS ul li:nth-of-type(n+2) a {
-    display: inline-block;
-    text-align: center;
-    color: #1E90FF;
-    width: 120px;
-    
-    /* height: 40px; */
-  }
- 
-
+  .navS ul li:nth-of-type(n+2) a, 
   .nav ul li:nth-of-type(1) a {
     display: inline-block;
     text-align: center;
     color: #1E90FF;
+    width: 120px;
+    padding-bottom: 5px
+    }
+    /* height: 40px; */
+ 
+
+  .nav ul li:nth-of-type(1) a {
     width: 80px;
-    padding-bottom: 10px;
   }
 
  .navS ul li a:hover {
@@ -154,7 +154,6 @@
 
   .navF span {
     display: inline-block;
-    height: 10vh;
     color: black;
     font: italic 700 30px "黑体";
     text-shadow: 3px 3px 3px rgba(100, 100, 100, 1);

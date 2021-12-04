@@ -5,17 +5,8 @@
 </template>
 
 <script>
-// import Nav from './components/Nav.vue'
-// import Foots from './components/Foots.vue'
-
 export default {
   name: 'App',
- 
-  components: {
-    //  Nav,
-    //  Foots,
-     
-  },
   mounted () {
    console.log(this) 
   }
@@ -24,5 +15,4 @@ export default {
 
 <style>
   @import "./assets/css/main.css";
-  
 </style>

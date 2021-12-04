@@ -94,7 +94,6 @@
     float: left;
     margin-left: 20px;
     margin-top: 60px;
-    /* color: white; */
     font-weight: 700;
   }
  

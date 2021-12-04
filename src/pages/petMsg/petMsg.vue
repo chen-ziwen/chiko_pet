@@ -100,9 +100,9 @@
     } */
     
   .pmsgart {
-    height: 540px;
-    background-color: whitesmoke;
-    overflow: scroll;
+    height: calc(80vh - 70px);
+    background-color: white;
+    overflow: auto;
   }
 
   .pmsgart .pmsbasic {

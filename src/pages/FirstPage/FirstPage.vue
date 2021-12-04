@@ -31,7 +31,6 @@ export default {
 				]
         }
     }
-   
 }
 </script>
 
@@ -46,6 +45,7 @@ export default {
         padding: 30px ;
     }
     .uls li a {
+        padding: 5px;
         font-size: 20px;
         font-weight: 700;
     }
@@ -67,7 +67,7 @@ export default {
         clear: both;
     }
     .pet .uls li a {
-     color: blue;
+     color: black;
     }
     .pet .uls li a:hover {
      color: rgba(255,0,0,0.7);

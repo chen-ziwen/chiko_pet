@@ -22,16 +22,7 @@ Vue.use(FormItem)
 Vue.use(DropdownItem)
 
 
-// router.beforeEach(function(to, from, next) {
 
-//       // from.path == '/login'
-//       if (to.path == '/login') {
-
-//           return next('/FirstPage/pet1')
-//       }
-      
-//      next()
-// })
 
 new Vue({
   el:'#app',
@@ -40,9 +31,6 @@ new Vue({
   router,
   store,
   axios,
-  // mounted() {
-  //   console.log('我是vm',this)
-  // },
   beforeCreate(){
    Vue.prototype.$bus = this  //设置全局总线
   }

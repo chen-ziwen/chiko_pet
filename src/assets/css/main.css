@@ -26,11 +26,34 @@ li {
 }
 
 .pit {
-    background: no-repeat url(../../assets/cute.jpg);
+    background: no-repeat url(../../assets/gird.jpg);
     background-size: 100% 100%;
     background-position: 0 80px;
 }
-
-/* .Apptotal {
-    height: 100vh;
-} */
+::-webkit-scrollbar {
+    width: 17px;
+    height: 17px;
+  }
+   
+  ::-webkit-scrollbar-track,
+  ::-webkit-scrollbar-thumb {
+    border-radius: 999px;
+    border: 5px solid transparent;
+  }
+   
+  ::-webkit-scrollbar-track {
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4) inset;
+  }
+   
+  ::-webkit-scrollbar-thumb {
+    min-height: 20px;
+    background-clip: border-box;
+    box-shadow: 0 0 0 5px rgba(0,0,139,0.4) inset;
+  }
+   
+  ::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+  .active { 
+    background: rgba(0,0,0,0.15);
+  }
