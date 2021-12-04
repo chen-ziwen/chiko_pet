@@ -4,12 +4,12 @@
             <div class="ms-title">宠物服务管理系统</div>
             <el-form ref="login"  class="ms-content">
                 <el-form-item prop="number">
-                    <el-input placeholder="number" v-model="num">
+                    <el-input placeholder="请输入账号" v-model="num">
                         <el-button slot="prepend" icon="el-icon-user"></el-button>
                     </el-input>
                 </el-form-item>
                 <el-form-item prop="password">
-                    <el-input type="password" placeholder="password" v-model="paw">
+                    <el-input type="password" placeholder="请输入密码" v-model="paw">
                         <el-button slot="prepend" icon="el-icon-view" ></el-button>
                     </el-input>
                 </el-form-item>
