@@ -19,7 +19,7 @@ li {
 .pet {
     margin: 0 auto;
     width: 1200px;
-    height: 80vh;
+    height: 79vh;
     /* height: 500px; */
     /* background-color: rgba(135, 206, 235, 0.7);  */
     background-color: rgb(179,215,239,0.7);     
@@ -55,5 +55,6 @@ li {
     background: transparent;
   }
   .active { 
-    background: rgba(0,0,0,0.15);
+    /* background: rgba(0,0,0,0.2); */
+    background-color: pink;
   }

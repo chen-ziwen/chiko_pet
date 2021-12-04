@@ -1,28 +1,11 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
-import {Table,Row,Button,form, TableColumn, FormItem, Input, Icon, Dropdown, DropdownMenu, DropdownItem} from 'element-ui'
+import './assets/js/element-ui'
 import {store} from './store/store'
 import axios from 'axios'
 
-
-
-
 Vue.config.productionTip = false
-Vue.component(Table.name,Table) //配置全局组件
-Vue.component(Row.name,Row)
-Vue.component(Button.name,Button)
-Vue.component(form.name,form)
-Vue.use(TableColumn)
-Vue.use(DropdownMenu)
-Vue.use(Dropdown)
-Vue.use(Icon)
-Vue.use(Input)
-Vue.use(FormItem)
-Vue.use(DropdownItem)
-
-
-
 
 new Vue({
   el:'#app',

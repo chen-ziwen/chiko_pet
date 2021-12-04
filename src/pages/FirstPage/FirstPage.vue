@@ -56,7 +56,7 @@ export default {
     .poistion {
        float: left;
        width: 900px;
-       height: 80vh;
+       height: 79vh;
        background-color:rgba(255,192,203,0.5); 
        overflow: auto; 
     }

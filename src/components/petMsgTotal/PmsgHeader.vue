@@ -28,6 +28,7 @@ export default {
            //杜宾、贵宾、哈士奇、苏格兰折耳猫、卡斯罗犬、大丹犬、暹罗猫、阿拉斯加雪橇犬、美国可卡犬、金毛犬、布偶猫
 						//请求成功后更新List的数据
 						// this.$bus.$emit('updateListData',{isLoading:false,errMsg:'',users:response.data.items})
+            this.Msgs = ''
 					},
 					error => {
             console.log('请求失败了',error.response)

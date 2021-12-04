@@ -103,7 +103,7 @@
 
   .nav {
     display: flex;
-    height: 10vh;
+    height: 11vh;
     justify-content: space-between;
     background-color: #FFFFFF;
     overflow: hidden;
@@ -111,8 +111,7 @@
   }
 
   .nav img {
-    /* width: 10vw; */
-    height: 10vh;
+    height: 11vh;
     vertical-align: middle;
 
   }
@@ -141,7 +140,7 @@
     width: 120px;
     padding-bottom: 5px
     }
-    /* height: 40px; */
+   
  
 
   .nav ul li:nth-of-type(1) a {
