@@ -43,7 +43,7 @@
 .record,
 .check,
 .share {
-  height: calc(79vh);
+  height: calc(70vh + 5px);
   background-color: wheat;
   overflow: auto;
 }
