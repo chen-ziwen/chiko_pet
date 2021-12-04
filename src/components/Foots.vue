@@ -43,10 +43,10 @@ export default {
 <style scoped>
    .foots {
      text-align: center;
-     height:10vh;
+     height:9vh;
      background-color: whitesmoke;
    }
    .foots h3 {
-     line-height: 10vh;
+     line-height: 9vh;
    }
 </style>

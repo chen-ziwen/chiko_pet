@@ -2,7 +2,7 @@
     <div class="login-wrap">
         <div class="ms-login">
             <div class="ms-title">宠物服务管理系统</div>
-            <el-form ref="login" label-width="0px" class="ms-content">
+            <el-form ref="login"  class="ms-content">
                 <el-form-item prop="number">
                     <el-input placeholder="number" v-model="num">
                         <el-button slot="prepend" icon="el-icon-user"></el-button>
@@ -34,7 +34,7 @@
         },
         methods: {
             enter() {
-                if (this.num == '2452559902' && this.paw == 'czw5702059.') {
+                if (this.num == '123456' && this.paw == 'chenziwen') {
                     alert('登陆成功')
                     this.$router.push('/FirstPage/pet1')
                 } else {

@@ -7,19 +7,23 @@
   <el-tab-pane>
     <span slot="label"><i class="el-icon-circle-plus"></i> 记录你的故事</span>
     <div class="record">
-     
+      <h1>我用来记录故事</h1>
 
     </div>
   </el-tab-pane>
 
   <el-tab-pane> 
     <span slot="label"><i class="el-icon-star-on"></i> 查看你的故事</span>
-     <div class="check"></div>
+     <div class="check">
+       <h1>里面会呈现出好多条故事记录，双击即可打开</h1>
+     </div>
   </el-tab-pane>
 
   <el-tab-pane>
     <span slot="label"><i class="el-icon-s-promotion"></i> 分享你的故事</span>
-    <div class="share"></div>
+    <div class="share">
+      <h1>我可以把故事分享到一些社交平台</h1>
+    </div>
   </el-tab-pane>
 
 </el-tabs>
@@ -39,7 +43,7 @@
 .record,
 .check,
 .share {
-  height: calc(69vh + 5px);
+  height: calc(79vh);
   background-color: wheat;
   overflow: auto;
 }

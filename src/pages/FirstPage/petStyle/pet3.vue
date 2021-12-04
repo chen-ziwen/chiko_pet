@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-carousel :interval="5000" type="card" height="265px">
+    <el-carousel :interval="3500" type="card" trigger="click" height="260px">
     <el-carousel-item v-for="(img,index) in imgList" :key="index">
       <img :src="img.url" alt=" 图片已丢失" class="imglist">
     </el-carousel-item>
