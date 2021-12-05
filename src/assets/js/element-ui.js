@@ -14,13 +14,17 @@ import {
     TabPane,
     Tabs,
     Carousel,
-    CarouselItem
+    CarouselItem,
+    Message,
+    MessageBox
 }  from 'element-ui'
 
 Vue.component(Table.name, Table) //配置全局组件
 Vue.component(Row.name, Row)
 Vue.component(Button.name, Button)
 Vue.component(form.name, form)
+// Vue.component(Message.name,Message)
+
 Vue.use(TableColumn)
 Vue.use(DropdownMenu)
 Vue.use(Dropdown)
@@ -32,3 +36,6 @@ Vue.use(TabPane)
 Vue.use(Tabs)
 Vue.use(Carousel)
 Vue.use(CarouselItem)
+
+Vue.prototype.$message = Message;
+Vue.prototype.$confirm = MessageBox.confirm

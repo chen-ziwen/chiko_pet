@@ -8,7 +8,7 @@
     <span slot="label"><i class="el-icon-circle-plus"></i> 记录你的故事</span>
     <div class="record">
       <h1>我用来记录故事</h1>
-
+      
     </div>
   </el-tab-pane>
 

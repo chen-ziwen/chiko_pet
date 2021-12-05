@@ -1,7 +1,7 @@
 <template>
 
   <el-table :data="petData" style="width: 100%">
-    
+
     <el-table-column type="expand">
 
       <template slot-scope="props">
@@ -67,7 +67,7 @@
       data.forEach((index) => {
         this.petData.push(index)
         // console.log(index)
-     
+
       })
     },
     //  console.log(data)
@@ -80,14 +80,29 @@
         console.log(index, row);
       },
       handleDelete(index) {
-        if (confirm("是否确认删除宠物信息")) {
-          this.petData.splice(index, 1) //index为当前的下表
+        this.$confirm('此操作将永久删除该条记录, 是否继续?', {
+          confirmButtonText: '确定删除',
+          cancelButtonText: '取消删除',
+          type: 'warning'
+        }).then(() => {
+          this.petData.splice(index, 1)
+          //index为当前的下表
           // 删除时，把localStorage中的缓存一起删除
           let arrdata = JSON.parse(localStorage.getItem('data'))
           arrdata.splice(index, 1)
           localStorage.setItem('data', JSON.stringify(arrdata))
-        }
-
+          this.$message({
+            type: 'success',
+            message: '删除成功!',
+            duration: 1500,
+          });
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消删除',
+            duration: 1500,
+          });
+        });
       }
     }
 

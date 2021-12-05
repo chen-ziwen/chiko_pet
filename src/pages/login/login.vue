@@ -2,7 +2,7 @@
     <div class="login-wrap">
         <div class="ms-login">
             <div class="ms-title">宠物服务管理系统</div>
-            <el-form ref="login"  class="ms-content">
+            <el-form ref="login" class="ms-content">
                 <el-form-item prop="number">
                     <el-input placeholder="请输入账号" v-model="num">
                         <el-button slot="prepend" icon="el-icon-user"></el-button>
@@ -10,11 +10,11 @@
                 </el-form-item>
                 <el-form-item prop="password">
                     <el-input type="password" placeholder="请输入密码" v-model="paw">
-                        <el-button slot="prepend" icon="el-icon-view" ></el-button>
+                        <el-button slot="prepend" icon="el-icon-view"></el-button>
                     </el-input>
                 </el-form-item>
                 <div class="login-btn">
-                    <el-button type="primary" @click.native="enter">登录</el-button>
+                    <el-button type="primary" @click="enter">登录</el-button>
                 </div>
             </el-form>
         </div>
@@ -22,28 +22,40 @@
 </template>
 
 <script>
-  
     export default {
         name: 'login',
         data() {
             return {
                 num: '',
                 paw: '',
-                
+
             }
         },
         methods: {
             enter() {
                 if (this.num == '123456' && this.paw == 'chenziwen') {
-                    alert('登陆成功')
+                    // alert('登陆成功')
+                    this.$message({
+                        // showClose: true,
+                        message: '恭喜您，登陆成功',
+                        type: 'success',
+                        duration : 2000,
+                    });
+
                     this.$router.push('/FirstPage/pet1')
+
                 } else {
-                    alert('账号密码出错，请重新输入')
+                    this.$message({
+                        // showClose: true,
+                        message: '账号密码出错，请重新输入',
+                        type: 'error',
+                        duration : 1500,
+                    });
                 }
             },
-           
+
         },
-        
+
     }
 </script>
 
@@ -53,14 +65,15 @@
         justify-content: center;
         align-items: center;
         width: 100%;
-        height: 100vh; 
+        height: 100vh;
         /* vh:表示显示窗口的高度，具体的请百度，这个单位会自适应变化； */
         background-image: url(../../assets/熊猫.jpg);
         /* background-size: 100% 100%; */
-        background-size :cover;
+        background-size: cover;
         /* background-attachment:fixed; */
-       
+
     }
+
     /* .login-wrap::after {
 
             content: "";
@@ -100,7 +113,8 @@
         height: 36px;
         margin-bottom: 10px;
     }
+
     .el-input-group__prepend {
-     border: hotpink 5px solid;
+        border: hotpink 5px solid;
     }
 </style>

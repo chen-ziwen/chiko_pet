@@ -8,7 +8,7 @@
         <li>联系电话：<input type="number" placeholder="请输入联系电话" v-model="shuju.number"> </li>
         <li>家庭住址：<input type="text" placeholder="请输入家庭住址" v-model="shuju.address"> </li>
         <li>宠物描述：<input type="text" placeholder="请添加宠物描述" v-model="shuju.describe"> </li>
-        <button type="button" @click="submit">提 交 宠 物 信 息</button>
+        <button type="button" @click="submit">保 存 宠 物 信 息</button>
         <!-- 在表单form中设置button 要给button标签设置type，不然会默认为submit，会刷新页面 -->
       </ul>
     </form>
@@ -44,9 +44,15 @@
         }
         //没项都填写了信息，就把信息都发送给petX
         else {
+          //弹出提示
+          this.$message({
+          message: '信息保存成功',
+          type: 'success',
+          duration : 1500,
+          });
+           //插入逻辑
           const differ = {...this.shuju} //让每一个送过去的对象地址都不一样，不会被一起修改
           this.$bus.$emit('petTMsg', differ)
-          
            //localStorage中如果想只保存一条data，并且这个data是个数组，不想被覆盖的话就像我下面这么写
            let differTotal = JSON.parse(localStorage.getItem('data')) || []
            differTotal.push(differ)

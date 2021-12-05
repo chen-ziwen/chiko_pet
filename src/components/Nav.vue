@@ -52,9 +52,25 @@
     name: 'Nav',
     methods: {
       exit() {
-        if (confirm("是否确认退出系统？")) {
-          this.$router.push('/login')
-        }
+        this.$confirm('是否退出该系统?',{
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          this.$message({
+            type: 'success',
+            message: '成功退出系统!',
+            duration: 1000,
+          });
+          //跳转路由到login
+           this.$router.push('/login')
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '退出系统已取消',
+            duration: 1000,
+          });
+        });
       }
     }
   }
