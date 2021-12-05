@@ -22,19 +22,32 @@ export default {
       axios.get(`http://api.tianapi.com/pet/index?key=4a3a0af227c894c20d191d30ce67ff22&name=${this.Msgs}`).then(
 					response => {
 						//response.data 拿到接口里的所有内容
-            console.log('请求成功了',response.data.newslist)
+            // console.log('请求成功了',response.data.newslist)
             this.$bus.$emit('sendMsgs',response.data.newslist)
-            // this.Total = response.data.newslist
+            if(response.data.newslist == undefined) {
+             this.$message({
+                        // showClose: true,
+                        message: ' 抱歉，没有找到该宠物的信息。请确认是否输入正确的宠物名称！',
+                        type: 'warning',
+                        duration : 3000,
+                    });
+            }
+            else {
+              this.$message({
+                        // showClose: true,
+                        message: ' 已为您找到如下信息！',
+                        type: 'success',
+                        duration : 2000,
+                    });
+            }
            //杜宾、贵宾、哈士奇、苏格兰折耳猫、卡斯罗犬、大丹犬、暹罗猫、阿拉斯加雪橇犬、美国可卡犬、金毛犬、布偶猫
 						//请求成功后更新List的数据
-						// this.$bus.$emit('updateListData',{isLoading:false,errMsg:'',users:response.data.items})
+						
             this.Msgs = ''
 					},
 					error => {
             console.log('请求失败了',error.response)
-            alert('没找到')
 						//请求后更新List的数据
-						// this.$bus.$emit('updateListData',{isLoading:false,errMsg:error.message,users:[]})
 					}
 				)
     }

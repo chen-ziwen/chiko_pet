@@ -37,7 +37,7 @@
                     // alert('登陆成功')
                     this.$message({
                         // showClose: true,
-                        message: '恭喜您，登陆成功',
+                        message: ' 恭喜您，登陆成功',
                         type: 'success',
                         duration : 2000,
                     });
@@ -47,7 +47,7 @@
                 } else {
                     this.$message({
                         // showClose: true,
-                        message: '账号密码出错，请重新输入',
+                        message: ' 账号密码出错，请重新输入',
                         type: 'error',
                         duration : 1500,
                     });

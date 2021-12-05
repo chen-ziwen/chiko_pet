@@ -93,13 +93,13 @@
           localStorage.setItem('data', JSON.stringify(arrdata))
           this.$message({
             type: 'success',
-            message: '删除成功!',
+            message: ' 删除成功!',
             duration: 1500,
           });
         }).catch(() => {
           this.$message({
             type: 'info',
-            message: '已取消删除',
+            message: ' 已取消删除',
             duration: 1500,
           });
         });

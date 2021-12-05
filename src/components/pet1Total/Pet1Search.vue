@@ -40,13 +40,17 @@
           this.shuju.describe == '' ||
           this.shuju.id == '' ||
           this.shuju.ownerName == '') {
-          alert("请完成每一项信息的输入")
+          this.$message({
+          message: ' 请完成每一项信息的输入',
+          type: 'warning',
+          duration : 1500,
+          });
         }
         //没项都填写了信息，就把信息都发送给petX
         else {
           //弹出提示
           this.$message({
-          message: '信息保存成功',
+          message: ' 信息保存成功',
           type: 'success',
           duration : 1500,
           });
