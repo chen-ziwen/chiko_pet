@@ -14,12 +14,14 @@
          <li><router-link active-class="active" to="/FirstPage/pet3">图片上传</router-link></li>
           <li><router-link active-class="active" to="/FirstPage/pet4">驯养情况</router-link></li>
      </ul>
-      <div class="poistion"><router-view></router-view></div>
+     
+      <div class="poistion"><keep-alive><router-view></router-view></keep-alive></div>
        
   </div>
 </template>
 
 <script>
+
 export default {
     name : 'FirstPage',
     data () {

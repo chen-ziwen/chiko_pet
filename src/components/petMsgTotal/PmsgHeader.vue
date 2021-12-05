@@ -30,6 +30,7 @@ export default {
                         message: ' 抱歉，没有找到该宠物的信息。请确认是否输入正确的宠物名称！',
                         type: 'warning',
                         duration : 3000,
+                        showClose: true,
                     });
             }
             else {
@@ -38,6 +39,7 @@ export default {
                         message: ' 已为您找到如下信息！',
                         type: 'success',
                         duration : 2000,
+                        showClose: true,
                     });
             }
            //杜宾、贵宾、哈士奇、苏格兰折耳猫、卡斯罗犬、大丹犬、暹罗猫、阿拉斯加雪橇犬、美国可卡犬、金毛犬、布偶猫

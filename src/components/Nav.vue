@@ -32,7 +32,7 @@
         <router-link active-class="active" to="/petRecord">后台数据</router-link>
 
         <el-dropdown>
-           <a class="el-icon-arrow-down el-icon--right">设置</a>
+          <a class="el-icon-arrow-down el-icon--right">设置</a>
           <el-dropdown-menu slot="dropdown">
             <el-dropdown-item>更换头像</el-dropdown-item>
             <el-dropdown-item @click.native='exit()'>退出登陆</el-dropdown-item>
@@ -41,8 +41,10 @@
         </el-dropdown>
       </div>
     </nav>
-
-     <router-view></router-view>
+    <!-- 通过keep-alive缓存路由，不让路由被销毁 -->
+    <keep-alive>
+      <router-view></router-view>
+    </keep-alive>
 
   </div>
 </template>
@@ -52,7 +54,7 @@
     name: 'Nav',
     methods: {
       exit() {
-        this.$confirm('是否退出该系统?',{
+        this.$confirm('是否退出该系统?', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
           type: 'warning'
@@ -61,14 +63,16 @@
             type: 'success',
             message: '成功退出系统!',
             duration: 1000,
+            showClose: true,
           });
           //跳转路由到login
-           this.$router.push('/login')
+          this.$router.push('/login')
         }).catch(() => {
           this.$message({
             type: 'info',
             message: '退出系统已取消',
             duration: 1000,
+            showClose: true,
           });
         });
       }
@@ -77,7 +81,6 @@
 </script>
 
 <style scoped>
- 
   .el-icon-arrow-down {
     font-size: 12px;
   }
@@ -101,16 +104,17 @@
   }
 
   .navT a {
-   display: inline-block;
+    display: inline-block;
     font: normal 700 20px "微软雅黑";
     cursor: pointer;
     text-align: center;
     color: #1E90FF;
     width: 120px;
     padding-bottom: 5px;
-    }
+  }
+
   .navT a:hover {
-    color: rgba(255,0,0,0.5);
+    color: rgba(255, 0, 0, 0.5);
   }
 
   .navT a:nth-of-type(2) {
@@ -143,28 +147,28 @@
     border-bottom: 4px solid rgba(100, 100, 100, 0);
     margin-left: 25px;
   }
-  
+
   .navS ul li:nth-of-type(1) {
     margin-right: 40px;
   }
 
-  .navS ul li:nth-of-type(n+2) a, 
+  .navS ul li:nth-of-type(n+2) a,
   .nav ul li:nth-of-type(1) a {
     display: inline-block;
     text-align: center;
     color: #1E90FF;
     width: 120px;
     padding-bottom: 5px
-    }
-   
- 
+  }
+
+
 
   .nav ul li:nth-of-type(1) a {
     width: 80px;
   }
 
- .navS ul li a:hover {
-     color: rgba(255,0,0,0.5);
+  .navS ul li a:hover {
+    color: rgba(255, 0, 0, 0.5);
   }
 
   .navF span {

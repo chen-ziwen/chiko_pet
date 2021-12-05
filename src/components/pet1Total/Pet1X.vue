@@ -83,7 +83,8 @@
         this.$confirm('此操作将永久删除该条记录, 是否继续?', {
           confirmButtonText: '确定删除',
           cancelButtonText: '取消删除',
-          type: 'warning'
+          type: 'warning',
+          showClose: true,
         }).then(() => {
           this.petData.splice(index, 1)
           //index为当前的下表
@@ -95,12 +96,14 @@
             type: 'success',
             message: ' 删除成功!',
             duration: 1500,
+            showClose: true,
           });
         }).catch(() => {
           this.$message({
             type: 'info',
             message: ' 已取消删除',
             duration: 1500,
+            showClose: true,
           });
         });
       }

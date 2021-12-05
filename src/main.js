@@ -5,6 +5,8 @@ import './assets/js/element-ui'
 import {store} from './store/store'
 import axios from 'axios'
 
+
+
 Vue.config.productionTip = false
 
 new Vue({

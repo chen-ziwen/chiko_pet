@@ -44,6 +44,7 @@
           message: ' 请完成每一项信息的输入',
           type: 'warning',
           duration : 1500,
+          showClose: true,
           });
         }
         //没项都填写了信息，就把信息都发送给petX
@@ -53,6 +54,7 @@
           message: ' 信息保存成功',
           type: 'success',
           duration : 1500,
+          showClose: true,
           });
            //插入逻辑
           const differ = {...this.shuju} //让每一个送过去的对象地址都不一样，不会被一起修改

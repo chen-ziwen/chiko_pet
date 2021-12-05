@@ -39,6 +39,7 @@ export default new VueRouter({
                 {   name : 'FirstPage',
                     path: '/FirstPage',
                     component: FirstPage,
+                    meta:{keepAlive:true},
                     children: [
         
                         {
@@ -52,6 +53,7 @@ export default new VueRouter({
                         name : 'pet2',
                         path: 'pet2/:id/:title',
                         component: pet2,
+                        // meta:{keepAlive:true}
                        },
         
                        {

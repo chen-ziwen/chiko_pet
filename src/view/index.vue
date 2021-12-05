@@ -9,7 +9,6 @@
 import Nav from '../components/Nav.vue'
 import Foots from '../components/Foots.vue'
 
-
 export default {
  name : 'index',
  components: {

@@ -40,6 +40,7 @@
                         message: ' 恭喜您，登陆成功',
                         type: 'success',
                         duration : 2000,
+                        showClose: true,
                     });
 
                     this.$router.push('/FirstPage/pet1')
@@ -50,6 +51,7 @@
                         message: ' 账号密码出错，请重新输入',
                         type: 'error',
                         duration : 1500,
+                        showClose: true,
                     });
                 }
             },
