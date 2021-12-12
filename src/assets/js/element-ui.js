@@ -16,7 +16,11 @@ import {
     Carousel,
     CarouselItem,
     Message,
-    MessageBox
+    MessageBox,
+    ColorPicker,
+    Dialog,
+    ButtonGroup,
+    Empty,
 }  from 'element-ui'
 
 Vue.component(Table.name, Table) //配置全局组件
@@ -36,6 +40,11 @@ Vue.use(TabPane)
 Vue.use(Tabs)
 Vue.use(Carousel)
 Vue.use(CarouselItem)
+Vue.use(ColorPicker)
+Vue.use(Dialog)
+Vue.use(ButtonGroup)
+Vue.use(Empty)
 
 Vue.prototype.$message = Message;
 Vue.prototype.$confirm = MessageBox.confirm
+Vue.prototype.$prompt = MessageBox.prompt

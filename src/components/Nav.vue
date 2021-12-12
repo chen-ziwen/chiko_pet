@@ -36,7 +36,7 @@
           <el-dropdown-menu slot="dropdown">
             <el-dropdown-item>更换头像</el-dropdown-item>
             <el-dropdown-item @click.native='exit()'>退出登陆</el-dropdown-item>
-            <el-dropdown-item>选择背景</el-dropdown-item>
+            <el-dropdown-item @click.native='change($event)'>选择背景</el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
       </div>
@@ -75,7 +75,8 @@
             showClose: true,
           });
         });
-      }
+      },
+      change() {}
     }
   }
 </script>
