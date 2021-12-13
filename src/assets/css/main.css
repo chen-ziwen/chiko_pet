@@ -22,31 +22,31 @@ li {
     height: 80vh;
     /* height: 500px; */
     /* background-color: rgba(135, 206, 235, 0.7);  */
-    background-color: rgb(179,215,239,0.7);     
+    background-color: rgb(179,215,239,0.9);     
 }
 
 .pit {
-    background: no-repeat url(../../assets/gird.jpg);
+    background: no-repeat url(../../assets/back.jpg);
     background-size: 100% 100%;
     background-position: 0 80px;
 }
 ::-webkit-scrollbar {
-    width: 17px;
-    height: 17px;
+    width: 10px;
+    height: 10px;
   }
    
   ::-webkit-scrollbar-track,
   ::-webkit-scrollbar-thumb {
     border-radius: 999px;
-    border: 5px solid transparent;
+    border: 2px solid transparent;
   }
    
   ::-webkit-scrollbar-track {
-    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4) inset;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3) inset;
   }
    
   ::-webkit-scrollbar-thumb {
-    min-height: 20px;
+    min-height: 10px;
     background-clip: border-box;
     box-shadow: 0 0 0 5px rgba(0,0,139,0.4) inset;
   }

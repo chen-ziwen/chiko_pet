@@ -30,19 +30,18 @@
           <!-- 如果故事为空的话显示下面的内容 -->
           <el-empty description="还 未 添 加 故 事 , 请 添 加 故 事 后 再 来 查 看 !" v-show="this.petStory == ''" :image-size="300">
           </el-empty>
-
-          <div class="block">
+             
+             <!-- 轮播图 -->
             <!-- <span class="demonstration">Click 指示器触发</span> -->
-            <el-carousel :interval="1800" type="card" trigger="click" height="200px"  indicator-position="none">
+            <el-carousel :interval="2000"  trigger="click" height="200px" v-show="this.petStory!=''">
               <el-carousel-item v-for="(img, index) in imgList" :key="index">
                 <img :src="img.url" alt=" 图片已丢失" class="imglist" />
               </el-carousel-item>
             </el-carousel>
-          </div>
-
+         
           <li class="petshowlis" v-for="(petS, index) in this.petStory" :key="index" @dblclick="showStory(index)">
             {{ value[index] }}
-            <el-button type="danger" icon="el-icon-delete" id="delbtn" @click="delStory(index)"></el-button>
+            <el-button size="small" type="danger" icon="el-icon-delete" id="delbtn" @click="delStory(index)"></el-button>
           </li>
         </ul>
       </div>
@@ -148,23 +147,21 @@
           placeholder: "书 写 您 与 宠 物 的 故 事，保 存 的 故 事 可 点 击 “查看你的故事” 中 查 看",
         },
         imgList: [{
-            url: require("../../../assets/1.jpg")
+            url: require("../../../assets/a.jpg")
           },
           {
-            url: require("../../../assets/2.jpg")
+            url: require("../../../assets/b.jpg")
           },
           {
-            url: require("../../../assets/3.jpg")
+            url: require("../../../assets/c.jpg")
           },
-          {
-            url: require("../../../assets/4.jpg")
+          //  {
+          //   url: require("../../../assets/e.jpg")
+          // },
+           {
+            url: require("../../../assets/f.jpg")
           },
-          {
-            url: require("../../../assets/5.jpg")
-          },
-          {
-            url: require("../../../assets/6.jpg")
-          },
+  
         ],
       };
     },
@@ -329,6 +326,7 @@
 
   /* 固定图片的大小 */
   .petContentSide img {
+    float: left;
     width: 150px;
     height: 95px;
   }
@@ -338,7 +336,7 @@
     background-color: rgba(245, 108, 108, 0.8);
     border-color: #f56c6c;
     float: right;
-    transform: translate(-25px, 4px);
+    transform: translate(-25px, 8px);
     /* 左右，上下 */
   }
 
