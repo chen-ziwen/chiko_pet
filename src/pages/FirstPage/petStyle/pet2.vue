@@ -337,7 +337,7 @@
     font-weight: 700;
     outline: none;
     color: #000;
-    background-color: rgba(245,222,179,0.6);
+    background-color: rgba(245,222,179,0.5);
     border: 1px solid red;
     cursor: pointer;
     transition: all 0.8s;

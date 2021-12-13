@@ -87,7 +87,7 @@
 
 <style scoped>
   .petform {
-    height: 400px;
+    height: 350px;
     border: 2px solid red;
     
   }
@@ -112,12 +112,12 @@
   .petform button {
     margin-left: 70px;
     position: relative;
-    bottom: -50px;
+    bottom: -35px;
     display: block;
     outline: none;
     background: none;
     width: 750px;
-    height: 100px;
+    height: 85px;
     font-size: 30px;
     font-weight: 700;
     outline: none;
