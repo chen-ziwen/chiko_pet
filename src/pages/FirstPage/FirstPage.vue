@@ -2,7 +2,7 @@
   <div class="pet side">
      <ul class="uls">
          <!-- 命名路由非常的简洁，适合多重路由使用  eg.  to="{name:'czw'}"-->
-         <li><router-link active-class="active" to="/FirstPage/pet1">信息记录</router-link></li>
+         <li><router-link active-class="active" to="/FirstPage/pet1">信息登记</router-link></li>
          <li><router-link active-class="active" 
          :to="{
             name:'pet2',
