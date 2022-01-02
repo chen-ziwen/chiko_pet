@@ -301,8 +301,8 @@
 
   .petContentSide {
     background-color: whitesmoke;
-    height: 450px;
-    width: 88%;
+    height: 460px;
+    width: 90%;
     margin: 30px auto;
     /* text-align: center; */
     text-indent: 2em;
