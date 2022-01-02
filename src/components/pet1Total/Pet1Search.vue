@@ -107,6 +107,7 @@
     margin-left: 20px;
     margin-top: 60px;
     font-weight: 700;
+    user-select: none;
   }
  
   .petform button {

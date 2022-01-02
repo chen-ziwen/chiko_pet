@@ -3,26 +3,22 @@
     具名插槽名字叫label 显示的内容在导航栏每个选项的内部 -->
 
   <el-tabs type="border-card">
-    <el-tab-pane>
-      <span slot="label"><i class="el-icon-circle-plus"></i> 记录你的故事</span>
+    <el-tab-pane class="eltab">
+      <span slot="label" class="dontclick"><i class="el-icon-circle-plus"></i> 记录你的故事</span>
       <div class="record">
         <quill-editor class="editor" ref="myQuillEditor" v-model="content.story" :options="editorOption"
           @focus.once="onEditorFocus($event)" />
-
-        <template>
           <el-button type="text" @click="appear($event)" id="tijao">保 存 你 的 故 事</el-button>
-        </template>
       </div>
     </el-tab-pane>
 
     <el-tab-pane>
-      <span slot="label"><i class="el-icon-star-on"></i> 查看你的故事</span>
+      <span slot="label" class="dontclick"><i class="el-icon-star-on"></i> 查看你的故事</span>
 
       <div class="check">
         <div class="petContent" v-if="panduan">
           <el-button size="small" icon="el-icon-arrow-left" @click="prev()">
             返回上一级</el-button>
-          <!-- <button >返回上一级</button> -->
           <div class="petContentSide" ref="petCheck"></div>
         </div>
         <ul class="petshowul" v-else>
@@ -32,7 +28,6 @@
           </el-empty>
              
              <!-- 轮播图 -->
-            <!-- <span class="demonstration">Click 指示器触发</span> -->
             <el-carousel :interval="2000"  trigger="click" height="200px" v-show="this.petStory!=''">
               <el-carousel-item v-for="(img, index) in imgList" :key="index">
                 <img :src="img.url" alt=" 图片已丢失" class="imglist" />
@@ -48,7 +43,7 @@
     </el-tab-pane>
 
     <el-tab-pane>
-      <span slot="label"><i class="el-icon-s-promotion"></i> 分享你的故事</span>
+      <span slot="label" class="dontclick"><i class="el-icon-s-promotion"></i> 分享你的故事</span>
       <div class="share">
         <h1>分享你的故事，好呗</h1>
       </div>
@@ -62,10 +57,6 @@
   import "quill/dist/quill.snow.css"; // for snow theme
   import "quill/dist/quill.bubble.css"; // for bubble theme
   import quillEditor from "vue-quill-editor";
-
-  // const testDB = new GoDB('testDB');
-  // const user = testDB.table('user');
-  // const user = testDB.table('user');
 
   const toolbarOptions = [
     ["bold", "italic", "underline", "strike"], // 加粗 斜体 下划线 删除线 -----['bold', 'italic', 'underline', 'strike']
@@ -155,9 +146,9 @@
           {
             url: require("../../../assets/c.jpg")
           },
-          //  {
-          //   url: require("../../../assets/e.jpg")
-          // },
+           {
+            url: require("../../../assets/e.jpg")
+          },
            {
             url: require("../../../assets/f.jpg")
           },
@@ -165,12 +156,6 @@
         ],
       };
     },
-    // computed: {
-    //   //当前富文本实例
-    //   editor() {
-    //     return this.$refs.myQuillEditor;
-    //   }
-    // },
     methods: {
       //获得焦点
       onEditorFocus(quill) {
@@ -185,20 +170,28 @@
             cancelButtonText: "取消",
           })
           .then(({value}) => {
+            let valuechange = value.replace(/\s+/,'')
+            if(value =='') {
+              this.$message({
+              type: "error",
+              message: "故事名不能为空白!",
+              duration: 2500,
+              showClose: true,
+            })
+            }
+            else {
             this.$message({
               type: "success",
               message: "保存成功!",
               duration: 2500,
               showClose: true,
             });
+            }
 
             let petStory = JSON.parse(localStorage.getItem("petStory") || "[]");
             let petValue = JSON.parse(localStorage.getItem("petValue") || "[]");
-            petValue.push(value);
-            //indexedDB尝试
-            // user.add({value})
-            // user.add({id:this.content.story})
-            //底线----------
+            petValue.push(valuechange);
+            
             petStory.push(this.content.story);
             this.petStory = petStory;
             this.value = petValue;
@@ -216,11 +209,12 @@
             });
           });
       },
-
+        
       showStory(index) {
         //通过refs获取div 同时把local内部的数据渲染到页面
         this.panduan = !this.panduan;
         // 这个方法的意义就是当dom完成更新后，再执行回调函数
+        //当页面加载完，随后往里面插入故事内容
         this.$nextTick(() => {
           this.$refs.petCheck.innerHTML = this.petStory[index];
         });
@@ -267,6 +261,7 @@
           });
         console.log(index);
         console.log(this.petStory);
+        
       },
     },
 
@@ -279,14 +274,14 @@
   };
 </script>
 
-<style>
+<style >
   .record,
-  .check,
-  .share {
+   .check,
+  .share
+  {
     height: calc(70vh + 5px);
     background-color: whitesmoke;
   }
-
   .petshowul {
     width: 100%;
     /* margin: 0 auto; */
@@ -306,9 +301,12 @@
     margin: 30px auto;
     /* text-align: center; */
     text-indent: 2em;
+    text-align: justify;
     overflow: auto;
   }
-
+  span .dontclick {
+    user-select: none;
+  }
   /* 让标题居中显示 */
   .petContentSide h1,
   h2,
@@ -317,12 +315,15 @@
   h5,
   h6:first-of-type {
     text-align: center;
+    padding-right: 50px;
     margin-bottom: 20px;
   }
 
   .petContentSide p {
     padding-bottom: 20px;
-  }
+    padding-right: 50px;
+    
+    }
 
   /* 固定图片的大小 */
   .petContentSide img {
@@ -339,11 +340,16 @@
     transform: translate(-25px, 8px);
     /* 左右，上下 */
   }
-
+  .dontclick {
+    user-select: none;
+  }
+ .eltab {
+   position: relative;
+ }
   #tijao {
     /* margin-left: 70px; */
-    position: relative;
-    bottom: -70px;
+    position: absolute;
+    bottom: -2px;
     outline: none;
     background: none;
     width: 100%;
@@ -359,7 +365,6 @@
   }
 
   #tijao:hover {
-    /* background-color: rgba(100,100,100,0.2); */
     transform: translate(0, -2.5px);
     box-shadow: 8px 8px 10px rgba(100, 100, 100, 0.7);
     color: #c93756;
@@ -375,6 +380,7 @@
     border: 2px solid brown;
     margin: 0px auto 5px auto;
     overflow: auto;
+    user-select: none;
     text-align: center;
     line-height: 50px;
     /* text-indent: 2em; */
@@ -435,7 +441,7 @@
   /* 富文本编辑框样式 */
   .editor {
     line-height: normal !important;
-    height: 405px;
+    height: calc(75vh);
   }
 
   .editor img {

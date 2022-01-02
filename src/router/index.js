@@ -21,6 +21,7 @@ const pet4 = () => import('../pages/FirstPage/petStyle/pet4')
 
 Vue.use(VueRouter)
 
+
 export default new VueRouter({
     linkActiveClass : 'active',  //当路由被选中时，标签的样式
     routes: [ 
@@ -30,7 +31,7 @@ export default new VueRouter({
             redirect: '/login'
            
         }, //设置默认跳转到home首页
-
+        
          {  
              name : 'index',
              path : '/index',
@@ -57,12 +58,12 @@ export default new VueRouter({
                        },
         
                        {
-                           name : 'pet3',
+                        name : 'pet3',
                         path: 'pet3',
                         component: pet3,
                        },
                        {
-                           name : 'pet4',
+                        name : 'pet4',
                         path : 'pet4',
                         component : pet4,
                        }

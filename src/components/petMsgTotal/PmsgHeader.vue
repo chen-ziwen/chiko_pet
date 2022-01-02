@@ -22,7 +22,7 @@ export default {
       axios.get(`http://api.tianapi.com/pet/index?key=4a3a0af227c894c20d191d30ce67ff22&name=${this.Msgs}`).then(
 					response => {
 						//response.data 拿到接口里的所有内容
-            console.log('请求成功了',response.data.newslist)
+            console.log('请求成功了',response)
             this.$bus.$emit('sendMsgs',response.data.newslist)
             if(response.data.newslist == undefined) {
              this.$message({
