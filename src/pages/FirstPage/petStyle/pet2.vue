@@ -441,7 +441,7 @@
   /* 富文本编辑框样式 */
   .editor {
     line-height: normal !important;
-    height: calc(75vh);
+    height: calc(50vh);
   }
 
   .editor img {
