@@ -18,10 +18,8 @@ li {
 
 .pet {
     margin: 0 auto;
-    width: 1200px;
+    width: 1150px;
     height: 80vh;
-    /* height: 500px; */
-    /* background-color: rgba(135, 206, 235, 0.7);  */
     background-color: rgb(179,215,239,0.9);     
 }
 

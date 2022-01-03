@@ -3,6 +3,7 @@
      <ul class="uls">
          <!-- 命名路由非常的简洁，适合多重路由使用  eg.  to="{name:'czw'}"-->
          <li><router-link active-class="active" to="/FirstPage/pet1">信息登记</router-link></li>
+          <!-- 跳转的同时，通过params把信息传到$route中，通过this.$route.params即可拿到 -->
          <li><router-link active-class="active" 
          :to="{
             name:'pet2',
@@ -27,7 +28,7 @@ export default {
     data () {
         return {
             msg:[
-					{id:'001',title:'消息001'},
+					{id:'陈子文',title:'只要知道他很帅就行了，其他的不需要关注'},
 					{id:'002',title:'消息002'},
 					{id:'003',title:'消息003'}
 				]
@@ -44,7 +45,7 @@ export default {
         
     }
     .uls li {
-        padding: 30px ;
+        padding: 45px 30px ;
     }
     .uls li a {
         padding: 5px;
@@ -57,7 +58,7 @@ export default {
     
     .poistion {
        float: left;
-       width: 900px;
+       width: 1000px;
        height: 80vh;
        background-color:rgba(255,192,203,0.55); 
        overflow: auto; 

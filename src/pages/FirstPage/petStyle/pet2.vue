@@ -1,5 +1,5 @@
 <template>
-  <!-- tabs-pane有具名插槽和默认插槽，默认插槽显示的内容在导航栏一下，
+  <!-- tabs-pane有具名插槽和默认插槽，默认插槽显示的内容在导航栏下面，
     具名插槽名字叫label 显示的内容在导航栏每个选项的内部 -->
 
   <el-tabs type="border-card">
@@ -24,7 +24,10 @@
         <ul class="petshowul" v-else>
           <!-- 通过v-for来渲染页面，绑定点击事件，同时把index索引值作为参数传过去 -->
           <!-- 如果故事为空的话显示下面的内容 -->
-          <el-empty description="还 未 添 加 故 事 , 请 添 加 故 事 后 再 来 查 看 !" v-show="this.petStory == ''" :image-size="300">
+          <el-empty 
+          description="还 未 添 加 故 事 , 请 添 加 故 事 后 再 来 查 看 !" 
+          v-show="this.petStory == ''" 
+          :image-size="300">
           </el-empty>
              
              <!-- 轮播图 -->
@@ -34,7 +37,7 @@
               </el-carousel-item>
             </el-carousel>
          
-          <li class="petshowlis" v-for="(petS, index) in this.petStory" :key="index" @dblclick="showStory(index)">
+          <li class="petshowlis" v-for="(petS, index) in this.petStory" :key="index" @click="showStory(index)">
             {{ value[index] }}
             <el-button size="small" type="danger" icon="el-icon-delete" id="delbtn" @click="delStory(index)"></el-button>
           </li>
@@ -46,6 +49,8 @@
       <span slot="label" class="dontclick"><i class="el-icon-s-promotion"></i> 分享你的故事</span>
       <div class="share">
         <h1>分享你的故事，好呗</h1>
+        {{move.id}}
+        {{move.title}}
       </div>
     </el-tab-pane>
   </el-tabs>
@@ -209,7 +214,6 @@
             });
           });
       },
-        
       showStory(index) {
         //通过refs获取div 同时把local内部的数据渲染到页面
         this.panduan = !this.panduan;
@@ -264,9 +268,14 @@
         
       },
     },
-
+    computed: {
+      move() {
+        return this.$route.params
+      }
+    },
     mounted() {
       let petStory = JSON.parse(localStorage.getItem("petStory"));
+      console.log('我是route',this.$route)
       this.petStory = petStory;
       let petValue = JSON.parse(localStorage.getItem("petValue"));
       this.value = petValue;
@@ -297,7 +306,7 @@
   .petContentSide {
     background-color: whitesmoke;
     height: 460px;
-    width: 90%;
+    width: 85%;
     margin: 30px auto;
     /* text-align: center; */
     text-indent: 2em;

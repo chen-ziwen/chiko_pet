@@ -104,17 +104,6 @@ export default new VueRouter({
              name : 'login',
              path: '/login' ,
              component: () => import('../pages/login/login.vue'),
-        //      beforeEnter : (to, from, next)=> {
-
-                
-        //         if (to.name == 'login') {
-          
-        //             next({path: 'FirstPage/pet1'})
-        //         }
-        //         // console.log('我是to',to,'我是from',from,'我是next',next)
-                
-        //        next()
-        //   }
          },
         ]
     

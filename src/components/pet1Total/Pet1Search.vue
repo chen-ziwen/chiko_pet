@@ -87,6 +87,7 @@
 
 <style scoped>
   .petform {
+    position: relative;
     height: 350px;
     border: 2px solid red;
     
@@ -104,20 +105,22 @@
 
   .petform ul li {
     float: left;
-    margin-left: 20px;
+    margin-left: 50px;
     margin-top: 60px;
     font-weight: 700;
     user-select: none;
   }
  
   .petform button {
-    margin-left: 70px;
-    position: relative;
-    bottom: -35px;
-    display: block;
+    position: absolute ;
+    left: 50%;
+    bottom: 18px;
+    transform: translateX(-50%);
+    /* margin-left: 70px;
+    bottom: -35px; */
     outline: none;
     background: none;
-    width: 750px;
+    width: 900px;
     height: 85px;
     font-size: 30px;
     font-weight: 700;
@@ -127,8 +130,6 @@
     transition: all 0.8s;
   }
   .petform button:hover {
-   /* background-color: rgba(100,100,100,0.2); */
-   transform: translate(0,-3px);
    box-shadow: 8px 8px 10px rgba(100,100,100,0.7) ;
    color: #c93756;
    

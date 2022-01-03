@@ -103,11 +103,8 @@
         this.petData.push(data)
       })
       let data = JSON.parse(window.localStorage.getItem('data') || '[]')
-      // console.log(data instanceof Array)
       data.forEach((index) => {
         this.petData.push(index)
-        // console.log(index)
-
       })
     },
     //  console.log(data)
@@ -119,9 +116,9 @@
       handleEdit(index, row) {
         // console.log(index, row);
         this.petindex = index
-        Object.keys(row).forEach((index) => {
-          console.log(row[index])
-        })
+        // Object.keys(row).forEach((index) => {
+        //   console.log(row[index])
+        // })
         this.petObj.address= row.address
         this.petObj.describe= row.describe
         this.petObj.number= row.number
@@ -159,16 +156,11 @@
         });
       },
       petChange() {
-       
-        // console.log("我是哈哈",index,row)
          let localchange = JSON.parse(localStorage.getItem('data'))
-        //  console.log(this.petindex)
          localchange[this.petindex] = {...this.petObj}
         //  console.log('我是对比数据',localchange[index-1],this.petObj)
          localStorage.setItem('data',JSON.stringify(localchange))
-        //  console.log('我是locl数据',localchange)
          this.petData[this.petindex] = {...this.petObj}
-        //  console.log('我是petdata',this.petData)
          this.$message({
                         // showClose: true,
                         message: ' 已成功修改宠物信息',
@@ -194,6 +186,7 @@
 <style >
   .demo-table-expand {
     font-size: 0;
+    margin-left: 50px;
   }
 
   .demo-table-expand label {
@@ -207,5 +200,9 @@
     margin-right: -20px;
     margin-bottom: 20px;
     width: 50%;
+  }
+  .demo-table-expand span {
+    display: inline-block;
+    color: blue;
   }
 </style>
