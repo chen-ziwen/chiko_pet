@@ -53,7 +53,7 @@ li {
   }
 /* Nav自路由 */
 .nav-active {
-  border-bottom: 2px solid blue;
+  border-bottom: 4px solid #1E90FF;
   font-weight: 700 !important;
   font-size: 24px;
 }

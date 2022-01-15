@@ -58,6 +58,7 @@
       </div>
     </el-tab-pane>
   </el-tabs>
+
 </template>
 
 <script>
@@ -291,9 +292,10 @@
    .check,
   .share
   {
-    height: calc(70vh + 5px);
+   height: calc(78vh - 41px);
     background-color: whitesmoke;
   }
+ 
   .petshowul {
     width: 100%;
     /* margin: 0 auto; */
@@ -453,7 +455,7 @@
   /* 富文本编辑框样式 */
   .editor {
     line-height: normal !important;
-    height: calc(50vh);
+    height: 55vh;
   }
 
   .editor img {

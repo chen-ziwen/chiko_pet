@@ -41,10 +41,7 @@
     </el-table-column>
 
     <el-table-column>
-      <template slot-scope="scope">
-
-        <el-button size="mini" @click="handle = true ; handleEdit(scope.$index, scope.row)">编辑</el-button>
-
+      <template slot-scope="scope"> 
         <el-dialog title="信息修改" :visible.sync="handle" width="40%">
           <el-form :inline="true" class="demo-form-inline">
             <el-form-item label="宠物品种">
@@ -72,7 +69,8 @@
           </div>
         </el-dialog>
 
-        <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删 除</el-button>
+        <el-button size="mini" @click="handle = true ; handleEdit(scope.$index, scope.row)" class="movebtn">编辑</el-button>
+        <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)" class="movebtn">删 除</el-button>
       </template>
 
     </el-table-column>
@@ -201,9 +199,13 @@
     margin-right: -20px;
     margin-bottom: 20px;
     width: 50%;
+   
   }
   .demo-table-expand span {
     display: inline-block;
     color: blue;
+  }
+  .movebtn {
+    transform: translateX(80px);
   }
 </style>
