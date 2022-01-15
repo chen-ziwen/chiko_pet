@@ -37,6 +37,9 @@
     <el-table-column label="宠物名称" prop="name">
     </el-table-column>
 
+    <el-table-column label="主人姓名" prop='ownerName'>
+      </el-table-column>
+
     <el-table-column label="宠物描述" prop="describe">
     </el-table-column>
 
@@ -70,8 +73,8 @@
           </div>
         </el-dialog>
 
-        <el-button size="mini" @click="handle = true ; handleEdit(scope.$index, scope.row)" class="movebtn">编辑</el-button>
-        <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)" class="movebtn">删 除</el-button>
+        <el-button size="mini" @click="handle = true ; handleEdit(scope.$index, scope.row)">编辑</el-button>
+        <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删 除</el-button>
       </template>
 
     </el-table-column>
@@ -205,7 +208,4 @@
     /* color: blue; */
   }
   
-  .movebtn {
-    transform: translateX(80px);
-  }
 </style>

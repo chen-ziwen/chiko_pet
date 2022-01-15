@@ -38,7 +38,8 @@
             <el-dropdown-item>更换头像</el-dropdown-item>
             <el-dropdown-item @click.native='exit()'>退出登陆</el-dropdown-item>
             <el-dropdown-item>背景选择
-              <el-color-picker v-model="color" show-alpha :predefine="predefineColors" size='mini' class="color"></el-color-picker>
+           <el-color-picker v-model="color" show-alpha :predefine="predefineColors" size='medium' class="color"
+           ></el-color-picker>
             </el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
@@ -108,6 +109,7 @@
         return this.$store.state.color
       }
     },
+    //当颜色改变时，改变state
     watch: {
         color() {
            this.$store.commit('color',this.color)
@@ -122,7 +124,9 @@
   }
  
   .color {
-    transform: translateY(8px);
+    transform: translateY(10px);
+    /* display: none; */
+    opacity: 0.9;
   }
 
   .navF,
