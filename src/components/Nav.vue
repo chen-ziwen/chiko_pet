@@ -60,7 +60,7 @@
     data() {
       return {
         visible: false,
-        color: 'rgba(255, 69, 0, 0.68)',
+        color: 'rgba(30, 144, 255, 0.59)',
         predefineColors: [
           'rgb(253,84,78)',
           '#ff8c00',

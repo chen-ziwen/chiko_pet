@@ -3,7 +3,7 @@
     <PmsgHeader/>
 
     <article class="pmsgart">
-      <h2 :style="{backgroundColor: changeColor}">基本信息栏</h2>
+      <h2 :style="{border:`3px dotted ${changeColor}`}">基本信息栏</h2>
       <div class="pmsbasic">
         
         <ul class="ul1">
@@ -23,7 +23,7 @@
       </div>
 
       <div class="pmsintroduce">
-        <h2 :style="{backgroundColor: changeColor}">特征介绍</h2>
+        <h2 :style="{border:`3px dotted ${changeColor}`}">特征介绍</h2>
         <div class="ps">
           <p>{{Tnewslist.feature}}</p>
           <p>{{Tnewslist.characterFeature}}</p>
@@ -129,6 +129,7 @@
     text-align: center;
     margin-bottom: 15px;
     color: mediumblue;
+    background-color: whitesmoke;
     padding-top: 8px;
     letter-spacing: 5px;
     line-height: 55px;

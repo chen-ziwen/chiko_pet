@@ -35,7 +35,7 @@
           </el-empty>
              
              <!-- 轮播图 -->
-            <el-carousel :interval="2000"  trigger="click" height="300px" v-show="this.petStory!=''">
+            <el-carousel :interval="2000"  trigger="click" height="280px" v-show="this.petStory!=''">
               <el-carousel-item v-for="(img, index) in imgList" :key="index">
                 <img :src="img.url" alt=" 图片已丢失" class="imglist" />
               </el-carousel-item>

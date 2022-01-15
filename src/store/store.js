@@ -7,7 +7,7 @@ export const store = new Vuex.Store({
         //可以在这里面设置全局的数据
         czwname : 'chenziwen',
         age : +18,
-        color: '#FDCED7',
+        color: 'rgba(30, 144, 255, 0.59)',
         
     },
     actions: {
