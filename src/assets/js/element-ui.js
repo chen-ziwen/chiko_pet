@@ -21,6 +21,7 @@ import {
     Dialog,
     ButtonGroup,
     Empty,
+    
 }  from 'element-ui'
 
 Vue.component(Table.name, Table) //配置全局组件
@@ -44,6 +45,7 @@ Vue.use(ColorPicker)
 Vue.use(Dialog)
 Vue.use(ButtonGroup)
 Vue.use(Empty)
+
 
 Vue.prototype.$message = Message;
 Vue.prototype.$confirm = MessageBox.confirm

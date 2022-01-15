@@ -1,5 +1,5 @@
 <template>
-  <footer class="foots">
+  <footer class="foots" :style="{backgroundColor : changeColor}">
     <h3>在我们生活的这个世界上，最大的不幸就是有些人完全拒绝新奇 {{author}}</h3>
       <!-- <h1>{{$store.state.age}}</h1>
       <button @click='duoone' >点击加1</button>
@@ -48,6 +48,11 @@ export default {
   //  action 行为
   //  mutation 转变
   //  state 状态
+   computed: {
+      changeColor() {
+        return this.$store.state.color
+      }
+    },
    mounted () {
      this.$store.dispatch('jiagon',this.love)
    }
@@ -58,7 +63,7 @@ export default {
    .foots {
      text-align: center;
      height:8vh;
-     background-color: #FDCED7;
+     /* background-color: #FDCED7; */
    }
    .foots h3 {
      line-height: 8vh;

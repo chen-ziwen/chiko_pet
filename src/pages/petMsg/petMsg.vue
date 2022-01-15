@@ -3,7 +3,7 @@
     <PmsgHeader/>
 
     <article class="pmsgart">
-      <h2>基本信息栏</h2>
+      <h2 :style="{backgroundColor: changeColor}">基本信息栏</h2>
       <div class="pmsbasic">
         
         <ul class="ul1">
@@ -23,7 +23,7 @@
       </div>
 
       <div class="pmsintroduce">
-        <h2>特征介绍</h2>
+        <h2 :style="{backgroundColor: changeColor}">特征介绍</h2>
         <div class="ps">
           <p>{{Tnewslist.feature}}</p>
           <p>{{Tnewslist.characterFeature}}</p>
@@ -85,6 +85,11 @@
         Tlt.feature = resnew.feature
       })
     },
+    computed: {
+      changeColor() {
+        return this.$store.state.color
+      }
+    },
     beforeDestroy() {
       this.$bus.$off('sendMsgs')
       console.log('sendMsgs被销毁了')
@@ -116,7 +121,7 @@
   }
 
   .pmsgart .pmsbasic ul li span {
-    font: normal 700 25px "黑体";
+    font: normal 700 22px "黑体";
     color: black;
   }
 
@@ -125,7 +130,6 @@
     margin-bottom: 15px;
     color: mediumblue;
     padding-top: 8px;
-    background-color: white;
     letter-spacing: 5px;
     line-height: 55px;
     margin: 0px;
@@ -149,7 +153,7 @@
     line-height: 35px;
     color: rgba(0, 0, 0);
     text-align: start;
-    font: 700 24px '黑体' ;
+    font:  22px '黑体' ;
     margin-left: 50px;
   }
 </style>

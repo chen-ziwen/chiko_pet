@@ -6,7 +6,8 @@ export const store = new Vuex.Store({
     state: {
         //可以在这里面设置全局的数据
         czwname : 'chenziwen',
-        age : +18
+        age : +18,
+        color: '#FDCED7',
         
     },
     actions: {
@@ -19,6 +20,7 @@ export const store = new Vuex.Store({
             context.commit('duo',value)
         }
         },
+        
         wduo(context,value){
             setTimeout(()=>{
              console.log('延时半秒再加')
@@ -32,6 +34,11 @@ export const store = new Vuex.Store({
         }
     },
     mutations: {
+        color(state,value) {
+            // console.log('stateColor',state.color)
+            state.color = value
+            // console.log(value)
+        },
        duo(state,value) {
         console.log('duo在Mutation中被调用了')
         state.age += value
@@ -47,7 +54,5 @@ export const store = new Vuex.Store({
            console.log('我是改装后的数据',state)
        }
     },
-    getters: {
-        
-    }
+    
 })

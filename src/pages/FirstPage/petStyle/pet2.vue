@@ -12,7 +12,7 @@
       <div class="record">
         <quill-editor class="editor" ref="myQuillEditor" v-model="content.story" :options="editorOption"
           @focus.once="onEditorFocus($event)" />
-          <el-button type="text" @click="appear($event)" id="tijao">保 存 你 的 故 事</el-button>
+          <el-button :style='{borderColor:changeColor}' type="text" @click="appear($event)" id="tijao">保 存 你 与 宠 物 的 故 事</el-button>
       </div>
     </el-tab-pane>
 
@@ -41,9 +41,10 @@
               </el-carousel-item>
             </el-carousel>
          
-          <li class="petshowlis" v-for="(petS, index) in this.petStory" :key="index" @click="showStory(index)">
+          <li class="petshowlis" v-for="(petS, index) in this.petStory" :key="index" @click="showStory(index)"
+          :style="{border:`2px solid ${changeColor}`}">
             {{ value[index] }}
-            <el-button size="small" type="danger" icon="el-icon-delete" id="delbtn" @click.stop="delStory(index)"></el-button>
+            <el-button  size="small" type="danger" icon="el-icon-delete" id="delbtn" @click.stop="delStory(index)"></el-button>
           </li>
         </ul>
       </div>
@@ -144,7 +145,7 @@
             toolbar: toolbarOptions,
           },
           theme: "snow", 
-          placeholder: "书 写 您 与 宠 物 的 故 事，保 存 的 故 事 可 点 击 “查看你的故事” 中 查 看",
+          placeholder: "书 写 您 与 宠 物 的 故 事，保 存 的 故 事 可 在 “查看你的故事” 中 查 看",
         },
         imgList: [{
             url: require("../../../assets/a.jpg")
@@ -174,7 +175,7 @@
 
       //当我点击时保存按钮时
       appear() {
-        this.$prompt("请为您的故事命名!", "故事名", {
+        this.$prompt("请为您的故事命名!", "宠物故事", {
             confirmButtonText: "确定",
             cancelButtonText: "取消",
           })
@@ -275,7 +276,11 @@
     computed: {
       move() {
         return this.$route.params
+      },
+      changeColor() {
+        return this.$store.state.color
       }
+    
     },
     mounted() {
       let petStory = JSON.parse(localStorage.getItem("petStory"));
@@ -349,7 +354,7 @@
   #delbtn {
     color: #fff;
     background-color: rgba(245, 108, 108, 0.8);
-    border-color: #f56c6c;
+    
     float: right;
     transform: translate(-25px, 8px);
     /* 左右，上下 */
@@ -372,8 +377,8 @@
     font-weight: 700;
     outline: none;
     color: #000;
-    background-color: rgba(245, 222, 179, 0.5);
-    border: 1px solid red;
+    /* background-color: rgba(245, 222, 179, 0.5); */
+    border: 3px solid;
     cursor: pointer;
     transition: all 0.8s;
   }

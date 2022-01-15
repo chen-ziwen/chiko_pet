@@ -65,7 +65,9 @@ export default {
       justify-content: space-between;
       align-items: center;
       height: 70px;    
-      background-image: linear-gradient(to right, #acb6e5 , #86fde8 );
+      color: #000;
+      /* background-image: linear-gradient(to right, #acb6e5 , #86fde8 ); */
+      background-color: whitesmoke;
     }
 
      .hbox {
@@ -98,8 +100,9 @@ export default {
       display: inline-block;
       line-height: 70px;
       white-space: nowrap;
-      color: white;
+      color: black;
       margin-left: 80px;
+
     }
    
 </style>

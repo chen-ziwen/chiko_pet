@@ -4,25 +4,25 @@
 
     <el-table-column type="expand">
 
-      <template slot-scope="props">
+      <template v-slot:default="{row}">
         <el-form label-position="left" inline class="demo-table-expand">
           <el-form-item label="宠物品种">
-            <span>{{ props.row.id }}</span>
+            <span>{{ row.id }}</span>
           </el-form-item>
           <el-form-item label="主人姓名">
-            <span>{{ props.row.ownerName }}</span>
+            <span>{{ row.ownerName }}</span>
           </el-form-item>
           <el-form-item label="宠物名称">
-            <span>{{ props.row.name }}</span>
+            <span>{{ row.name }}</span>
           </el-form-item>
           <el-form-item label="联系电话">
-            <span>{{ props.row.number }}</span>
+            <span>{{ row.number }}</span>
           </el-form-item>
           <el-form-item label="宠物描述">
-            <span>{{ props.row.describe }}</span>
+            <span>{{ row.describe }}</span>
           </el-form-item>
           <el-form-item label="家庭住址">
-            <span>{{ props.row.address }}</span>
+            <span>{{ row.address }}</span>
           </el-form-item>
 
         </el-form>
@@ -42,6 +42,7 @@
 
     <el-table-column>
       <template slot-scope="scope"> 
+        <!-- 信息编辑 -->
         <el-dialog title="信息修改" :visible.sync="handle" width="40%">
           <el-form :inline="true" class="demo-form-inline">
             <el-form-item label="宠物品种">
@@ -113,11 +114,8 @@
     // scope.$row→ 拿到每一行的数据
     methods: {
       handleEdit(index, row) {
-        // console.log(index, row);
+        // console.log('hahahhaa',index, row);
         this.petindex = index
-        // Object.keys(row).forEach((index) => {
-        //   console.log(row[index])
-        // })
         this.petObj.address= row.address
         this.petObj.describe= row.describe
         this.petObj.number= row.number
@@ -177,7 +175,8 @@
                         showClose: true,
                     });
       }
-    }
+    },
+    
 
   }
 </script>
@@ -203,8 +202,9 @@
   }
   .demo-table-expand span {
     display: inline-block;
-    color: blue;
+    /* color: blue; */
   }
+  
   .movebtn {
     transform: translateX(80px);
   }

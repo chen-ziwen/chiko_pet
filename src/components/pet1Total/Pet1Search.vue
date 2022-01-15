@@ -8,7 +8,7 @@
         <li>联系电话：<input type="number" placeholder="请输入联系电话" v-model="shuju.number"> </li>
         <li>家庭住址：<input type="text" placeholder="请输入家庭住址" v-model="shuju.address"> </li>
         <li>宠物描述：<input type="text" placeholder="请添加宠物描述" v-model="shuju.describe"> </li>
-        <button type="button" @click="submit">保 存 宠 物 信 息</button>
+        <button :style='{border: `3px solid ${changeColor}`}' type="button" @click="submit">保 存 宠 物 信 息</button>
         <!-- 在表单form中设置button 要给button标签设置type，不然会默认为submit，会刷新页面 -->
       </ul>
     </form>
@@ -81,6 +81,11 @@
 
       }
 
+    },
+    computed: {
+       changeColor() {
+        return this.$store.state.color
+      }
     }
   }
 </script>
@@ -123,7 +128,6 @@
     font-size: 30px;
     font-weight: 700;
     outline: none;
-    border: 2px solid red;
     cursor: pointer;
     transition: all 0.8s;
   }

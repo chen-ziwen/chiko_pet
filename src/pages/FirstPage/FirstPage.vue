@@ -1,6 +1,6 @@
 <template>
   <div class="pet">
-     <ul class="uls">
+     <ul class="uls" :style='{borderRight:`2px solid ${changeColor}`}'>
          <!-- 命名路由非常的简洁，适合多重路由使用  eg.  to="{name:'czw'}"-->
          <li><router-link active-class="active" to="/FirstPage/pet1">信息登记</router-link></li>
           <!-- 跳转的同时，通过params把信息传到$route中，通过this.$route.params即可拿到 -->
@@ -33,6 +33,12 @@ export default {
 					{id:'003',title:'消息003'}
 				]
         }
+        
+    },
+    computed: {
+       changeColor() {
+        return this.$store.state.color
+      }
     }
 }
 </script>
