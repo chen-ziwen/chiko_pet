@@ -17,16 +17,8 @@ li {
 }
 
 .pet {
-    margin: 0 auto;
-    width: 1150px;
-    height: 80vh;
-    background-color: rgb(179,215,239,0.9);     
-}
-
-.pit {
-    background: no-repeat url(../../assets/back.jpg);
-    background-size: 100% 100%;
-    background-position: 0 80px;
+    width: 100vw;
+    height: 82vh;
 }
 ::-webkit-scrollbar {
     width: 9px;
@@ -53,9 +45,15 @@ li {
     background: transparent;
   }
 
-  
+  /* First子路由 */
   .active { 
-    /* background: rgba(0,0,0,0.2); */
-    background-color: pink;
-    border-radius: 8px;
+    background-color: rgba(128,128,128,0.4);
+    font-weight: 700 !important;
+    font-size: 24px;
   }
+/* Nav自路由 */
+.nav-active {
+  border-bottom: 2px solid blue;
+  font-weight: 700 !important;
+  font-size: 24px;
+}

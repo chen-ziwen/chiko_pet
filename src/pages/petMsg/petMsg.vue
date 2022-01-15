@@ -1,11 +1,11 @@
 <template>
-  <div class="pet hello">
+  <div class="hello">
     <PmsgHeader/>
 
     <article class="pmsgart">
+      <h2>基本信息栏</h2>
       <div class="pmsbasic">
-        <h2>基本信息栏</h2>
-
+        
         <ul class="ul1">
           <li><span>种类:</span>{{Tnewslist.name}}</li>
           <li><span>寿命:</span>{{Tnewslist.life}}</li>
@@ -18,7 +18,7 @@
           <li><span>性格:</span>{{Tnewslist.characters}}</li>
         </ul>
 
-        <img :src="Tnewslist.coverURL" alt="图片加载失败" id="pitshow">
+        <img :src="Tnewslist.coverURL" alt="图片加载失败" class="petshow">
 
       </div>
 
@@ -94,74 +94,62 @@
 </script>
 
 <style scoped>
-  /* .petMsg {
-    width: 800px;
-    height: 500px;
-    } */
     
   .pmsgart {
-    height: calc(80vh - 70px);
-    background-color: white;
+    height: calc(82vh - 70px);
+    background-color: whitesmoke;
     overflow: auto;
   }
 
   .pmsgart .pmsbasic {
     height: 290px;
-    background-color: rgb(179,215,239,0.5);
-  }
 
+  }
+ .pmsgart .ul2 {
+   transform: translateX(-140px);
+ }
   .pmsgart .pmsbasic ul li {
     font: normal 400 20px "微软雅黑";
-    color: rgba(100, 100, 100, 1);
+    color: rgba(100, 100, 100);
     width: 300px;
     margin-bottom: 30px;
   }
 
   .pmsgart .pmsbasic ul li span {
-    
     font: normal 700 25px "黑体";
     color: black;
   }
 
-  h2 {
+  .pmsgart h2 {
     text-align: center;
     margin-bottom: 15px;
     color: mediumblue;
     padding-top: 8px;
+    background-color: white;
+    letter-spacing: 5px;
+    line-height: 55px;
+    margin: 0px;
+    padding: 0px;
 
   }
-
-  .pmsgart .pmsbasic .ul1 {
-    float: left;
-    margin-left: 120px;
-    margin-right: 80px;
+  .pmsbasic {
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+    flex-wrap: nowrap;
   }
-
-  .pmsgart .pmsbasic .ul2 {
-    float: left;
-  }
-
-  #pitshow {
-    float: left;
-    width: 270px;
-    height: 180px;
-    margin-left: 50px;
-    transform: translate(0, -20px);
-  }
-
-  #pitshow::after {
-    content: '';
-    display: block;
-    height: 0px;
-    visibility: hidden;
-    clear: both;
+  .petshow {
+    width: 400px;
+    height: 250px;
   }
 
   .ps p {
+    display: block;
     padding: 25px;
     line-height: 35px;
-    color: rgba(100, 100, 100, 1);
+    color: rgba(0, 0, 0);
     text-align: start;
+    font: 700 24px '黑体' ;
     margin-left: 50px;
   }
 </style>

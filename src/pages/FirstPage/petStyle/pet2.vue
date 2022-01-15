@@ -4,7 +4,11 @@
 
   <el-tabs type="border-card">
     <el-tab-pane class="eltab">
-      <span slot="label" class="dontclick"><i class="el-icon-circle-plus"></i> 记录你的故事</span>
+      <!-- 这个插槽写法为新的写法 -->
+      <template v-slot:label>
+      <span class="dontclick"><i class="el-icon-circle-plus"></i> 记录你的故事</span>
+      </template>
+
       <div class="record">
         <quill-editor class="editor" ref="myQuillEditor" v-model="content.story" :options="editorOption"
           @focus.once="onEditorFocus($event)" />
@@ -31,7 +35,7 @@
           </el-empty>
              
              <!-- 轮播图 -->
-            <el-carousel :interval="2000"  trigger="click" height="200px" v-show="this.petStory!=''">
+            <el-carousel :interval="2000"  trigger="click" height="300px" v-show="this.petStory!=''">
               <el-carousel-item v-for="(img, index) in imgList" :key="index">
                 <img :src="img.url" alt=" 图片已丢失" class="imglist" />
               </el-carousel-item>
@@ -39,7 +43,7 @@
          
           <li class="petshowlis" v-for="(petS, index) in this.petStory" :key="index" @click="showStory(index)">
             {{ value[index] }}
-            <el-button size="small" type="danger" icon="el-icon-delete" id="delbtn" @click="delStory(index)"></el-button>
+            <el-button size="small" type="danger" icon="el-icon-delete" id="delbtn" @click.stop="delStory(index)"></el-button>
           </li>
         </ul>
       </div>
@@ -57,7 +61,6 @@
 </template>
 
 <script>
-  // import GoDB from 'godb';
   import "quill/dist/quill.core.css"; // import styles
   import "quill/dist/quill.snow.css"; // for snow theme
   import "quill/dist/quill.bubble.css"; // for bubble theme

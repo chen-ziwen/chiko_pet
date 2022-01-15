@@ -88,50 +88,47 @@
 <style scoped>
   .petform {
     position: relative;
-    height: 350px;
-    border: 2px solid red;
-    
+    height: 348px;
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
   }
 
   .petform input {
-
     line-height: 35px;
     height: 35px;
-    /* outline: none; */
     padding-left: 15px;
-    /* background: none; */
+    width: 200px;
 
   }
-
   .petform ul li {
-    float: left;
-    margin-left: 50px;
-    margin-top: 60px;
+    display: inline-block;
+    transform: translate(50px,10px);
+    width: 30%;
+    /* white-space: nowrap; */
     font-weight: 700;
     user-select: none;
   }
- 
+ .petform ul li:nth-of-type(n+3) {
+   margin-top: 40px;
+ }
   .petform button {
     position: absolute ;
     left: 50%;
-    bottom: 18px;
+    bottom: 25px;
     transform: translateX(-50%);
-    /* margin-left: 70px;
-    bottom: -35px; */
     outline: none;
     background: none;
-    width: 900px;
+    width: 80vw;
     height: 85px;
     font-size: 30px;
     font-weight: 700;
     outline: none;
-    border: 5px solid whitesmoke;
+    border: 2px solid red;
     cursor: pointer;
     transition: all 0.8s;
   }
   .petform button:hover {
    box-shadow: 8px 8px 10px rgba(100,100,100,0.7) ;
    color: #c93756;
-   
   } 
 </style>

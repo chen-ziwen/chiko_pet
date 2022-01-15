@@ -1,5 +1,5 @@
 <template>
-  <div class="pet side">
+  <div class="pet">
      <ul class="uls">
          <!-- 命名路由非常的简洁，适合多重路由使用  eg.  to="{name:'czw'}"-->
          <li><router-link active-class="active" to="/FirstPage/pet1">信息登记</router-link></li>
@@ -42,25 +42,33 @@ export default {
     .uls {
         float: left;
         list-style: none;
+        width: calc(13vw - 4px);
+        height: 82vh;
+        border-right :2px solid red;
+        overflow: auto;
         
     }
     .uls li {
-        padding: 45px 30px ;
+        width: calc(12vw - 14px);
+        padding: 30px 0px;
     }
     .uls li a {
-        padding: 5px;
+        display: inline-block;
+        /* text-align: center; */
+        transform: translateX(1vw);
+        padding: 10px 0px 10px 10px;
+        width: 100%;
         font-size: 20px;
-        font-weight: 700;
+        font-weight: 400;
+        color: black !important;
+        text-decoration: none;
     }
-    a {
-      text-decoration: none;
-    } 
     
     .poistion {
        float: left;
-       width: 1000px;
-       height: 80vh;
-       background-color:rgba(255,192,203,0.55); 
+       width: 87vw;
+       height: 82vh;
+       background-color:whitesmoke; 
        overflow: auto; 
     }
     .poistion::after {
@@ -73,6 +81,6 @@ export default {
      color: black;
     }
     .pet .uls li a:hover {
-     color: rgba(255,0,0,0.7);
+     color: rgba(255,0,0,0.7) !important;
     }
 </style>

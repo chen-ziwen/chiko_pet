@@ -3,7 +3,7 @@
     <nav class="nav">
       <!-- 导航栏第一块 -->
       <div class="navF">
-        <img src="../assets/dog.jpg" alt="图片已丢失">
+        <img src="../assets/rb.png" alt="图片已丢失">
         <span>宠物服务管理系统</span>
       </div>
       <!-- 导航栏第二块 -->
@@ -11,16 +11,17 @@
         <ul>
           <!-- 这些到时候都改成路由形式,先写下来占个位置 -->
           <li>
-            <router-link active-class="active" to="/FirstPage/pet1">首页</router-link>
+            <!-- active-class 用来给路由设置选中时的样式 -->
+            <router-link active-class="nav-active" to="/FirstPage/pet1" >首页</router-link>
           </li>
           <li>
-            <router-link active-class="active" to="/petMsg">宠物查询</router-link>
+            <router-link active-class="nav-active" to="/petMsg" >宠物查询</router-link>
           </li>
           <li>
-            <router-link active-class="active" to="/petBeaty">宠物美容</router-link>
+            <router-link active-class="nav-active" to="/petBeaty" >宠物美容</router-link>
           </li>
           <li>
-            <router-link active-class="active" to="/petTreatment">宠物医疗</router-link>
+            <router-link active-class="nav-active" to="/petTreatment" >宠物医疗</router-link>
           </li>
 
           <!-- <li><router-link active-class="active" to="/petTools">宠物工具</router-link></li> -->
@@ -29,7 +30,7 @@
       </div>
       <!-- 导航栏第三块 -->
       <div class="navT">
-        <router-link active-class="active" to="/petRecord">后台数据</router-link>
+        <router-link active-class="nav-active" to="/petRecord">后台数据</router-link>
 
         <el-dropdown>
           <a class="el-icon-arrow-down el-icon--right">设置</a>
@@ -76,7 +77,7 @@
           });
         });
       },
-      change() {}
+
     }
   }
 </script>
@@ -106,7 +107,7 @@
 
   .navT a {
     display: inline-block;
-    font: normal 700 20px "微软雅黑";
+    font: normal 400 20px "黑体";
     cursor: pointer;
     text-align: center;
     color: #1E90FF;
@@ -124,27 +125,30 @@
 
   .nav {
     display: flex;
-    height: 11vh;
+    height: 10vh;
     justify-content: space-between;
-    background-color: #FFFFFF;
+    background-color: #FDCED7;
     overflow: hidden;
 
   }
-
+  .nav .navF {
+    height: 10vh;
+  }
   .nav img {
-    height: 11vh;
+    height:10vh;
     vertical-align: middle;
 
   }
-
+ 
   .nav ul {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 
   }
 
   .navS ul li {
-    font: normal 700 20px "微软雅黑";
+    font: normal 400 20px "黑体";
     border-bottom: 4px solid rgba(100, 100, 100, 0);
     margin-left: 25px;
   }
@@ -175,11 +179,18 @@
   .navF span {
     display: inline-block;
     color: black;
+    width: 250px;
+    white-space: nowrap;
     font: italic 700 30px "黑体";
     text-shadow: 3px 3px 3px rgba(100, 100, 100, 1);
   }
 
-  .nav li:hover {
+  /* .nav li:hover {
     border-bottom: 4px solid skyblue;
+  } */
+  .router-link-active{
+    background: rgba(255,255,255,0.8);
+    color: gray;
+    font-size: 50px;
   }
 </style>

@@ -1,10 +1,12 @@
 <template>
   <header id="head">
     <h1>宠物查询</h1>
+
     <div class="hbox">
      <input type="text" placeholder="请输入宠物的全名"  v-model="Msgs"  @keydown.enter="search">
      <button @click="search">搜索</button>
      </div>
+
   </header>
 </template>
 
@@ -59,36 +61,45 @@ export default {
 
 <style scoped>
     #head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       height: 70px;    
-      /* 高等于70px */
-      background-color: cornflowerblue;
+      background-image: linear-gradient(to right, #acb6e5 , #86fde8 );
+    }
+
+     .hbox {
+       display: flex;
+       margin-right: 55px;
+       justify-content: center;
+       align-items: center;
+       height: 40px;
+       width: 414px;
     }
     button {
-      display: block;
-      float: left;
+      display: inline-block;
       height: 40px;
-      width: 90px;
+      width: 150px;
+      font-size: 20px;
+      font-weight: 700;
+      cursor: pointer;
     }
 
     input {
-      display: block;
-      float: left;
+      display: inline-block;
       padding-left: 10px;
       height: 36px;
-      width: 200px;
+      width: 250px;
       outline: none;
+      font-weight: 700;
     }
     
-    h1 {
+    #head h1 {
       display: inline-block;
       line-height: 70px;
-      transform: translate(40px,0);
-      color: whitesmoke;
+      white-space: nowrap;
+      color: white;
+      margin-left: 80px;
     }
-    .hbox {
-      float: right;
-      transform: translate(-100px,15px);
-      height: 40px;
-      width: 310px;
-    }
+   
 </style>

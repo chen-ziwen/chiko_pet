@@ -23,7 +23,7 @@ Vue.use(VueRouter)
 
 
 export default new VueRouter({
-    linkActiveClass : 'active',  //当路由被选中时，标签的样式
+    // linkActiveClass : 'active',  //当路由被选中时，标签的样式
     routes: [ 
         {
             path: '/',
