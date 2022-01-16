@@ -184,7 +184,7 @@
   }
 </script>
 
-<style >
+<style scoped>
   .demo-table-expand {
     font-size: 0;
     margin-left: 50px;

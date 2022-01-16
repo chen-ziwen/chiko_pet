@@ -2,12 +2,12 @@
   <div>
     <form class="petform">
       <ul>
-        <li>宠物品种：<input type="text" placeholder="请输入宠物名称" v-model="shuju.id"> </li>
-        <li>宠物名称：<input type="text" placeholder="请输入宠物名称" v-model="shuju.name"> </li>
-        <li>主人姓名：<input type="text" placeholder="请输入主人姓名" v-model="shuju.ownerName"> </li>
-        <li>联系电话：<input type="number" placeholder="请输入联系电话" v-model="shuju.number"> </li>
-        <li>家庭住址：<input type="text" placeholder="请输入家庭住址" v-model="shuju.address"> </li>
-        <li>宠物描述：<input type="text" placeholder="请添加宠物描述" v-model="shuju.describe"> </li>
+        <li>宠物品种：<input type="text" placeholder="请输入宠物名称" v-model="shuju.id" :style='{border: `2px solid ${changeColor}`}'> </li>
+        <li>宠物名称：<input type="text" placeholder="请输入宠物名称" v-model="shuju.name" :style='{border: `2px solid ${changeColor}`}'> </li>
+        <li>主人姓名：<input type="text" placeholder="请输入主人姓名" v-model="shuju.ownerName" :style='{border: `2px solid ${changeColor}`}'> </li>
+        <li>联系电话：<input type="number" placeholder="请输入联系电话" v-model="shuju.number" :style='{border: `2px solid ${changeColor}`}'> </li>
+        <li>家庭住址：<input type="text" placeholder="请输入家庭住址" v-model="shuju.address" :style='{border: `2px solid ${changeColor}`}'> </li>
+        <li>宠物描述：<input type="text" placeholder="请添加宠物描述" v-model="shuju.describe" :style='{border: `2px solid ${changeColor}`}'> </li>
         <button :style='{border: `3px solid ${changeColor}`}' type="button" @click="submit">保 存 宠 物 信 息</button>
         <!-- 在表单form中设置button 要给button标签设置type，不然会默认为submit，会刷新页面 -->
       </ul>
@@ -82,11 +82,6 @@
       }
 
     },
-    computed: {
-       changeColor() {
-        return this.$store.state.color
-      }
-    }
   }
 </script>
 
@@ -95,7 +90,7 @@
     position: relative;
     height: 348px;
     border-bottom: 1px solid black;
-    border-top: 1px solid black;
+    border-top: 1px dashed black;
   }
 
   .petform input {
@@ -103,6 +98,7 @@
     height: 35px;
     padding-left: 15px;
     width: 200px;
+    outline: none;
 
   }
   .petform ul li {

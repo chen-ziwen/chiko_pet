@@ -6,13 +6,14 @@
     <el-tab-pane class="eltab">
       <!-- 这个插槽写法为新的写法 -->
       <template v-slot:label>
-      <span class="dontclick"><i class="el-icon-circle-plus"></i> 记录你的故事</span>
+        <span class="dontclick"><i class="el-icon-circle-plus"></i> 记录你的故事</span>
       </template>
 
       <div class="record">
         <quill-editor class="editor" ref="myQuillEditor" v-model="content.story" :options="editorOption"
           @focus.once="onEditorFocus($event)" />
-          <el-button :style='{borderColor:changeColor}' type="text" @click="appear($event)" id="tijao">保 存 你 与 宠 物 的 故 事</el-button>
+        <el-button :style='{borderColor:changeColor}' type="text" @click="appear($event)" id="tijao">保 存 你 与 宠 物 的 故 事
+        </el-button>
       </div>
     </el-tab-pane>
 
@@ -23,28 +24,30 @@
         <div class="petContent" v-if="panduan">
           <el-button size="small" icon="el-icon-arrow-left" @click="prev()">
             返回上一级</el-button>
-          <div class="petContentSide" ref="petCheck"></div>
+          <div class="ql-snow">
+            <div class="ql-editor">
+              <div class="petContentSide" ref="petCheck"></div>
+            </div>
+          </div>
         </div>
         <ul class="petshowul" v-else>
           <!-- 通过v-for来渲染页面，绑定点击事件，同时把index索引值作为参数传过去 -->
           <!-- 如果故事为空的话显示下面的内容 -->
-          <el-empty 
-          description="还 未 添 加 故 事 , 请 添 加 故 事 后 再 来 查 看 !" 
-          v-show="this.petStory == ''" 
-          :image-size="300">
+          <el-empty description="还 未 添 加 故 事 , 请 添 加 故 事 后 再 来 查 看 !" v-show="this.petStory == ''" :image-size="300">
           </el-empty>
-             
-             <!-- 轮播图 -->
-            <el-carousel :interval="2000"  trigger="click" height="280px" v-show="this.petStory!=''">
-              <el-carousel-item v-for="(img, index) in imgList" :key="index">
-                <img :src="img.url" alt=" 图片已丢失" class="imglist" />
-              </el-carousel-item>
-            </el-carousel>
-         
-          <li class="petshowlis" v-for="(petS, index) in this.petStory" :key="index" @click="showStory(index)"
-          :style="{border:`2px solid ${changeColor}`}">
-            {{ value[index] }}
-            <el-button  size="small" type="danger" icon="el-icon-delete" id="delbtn" @click.stop="delStory(index)"></el-button>
+
+          <!-- 轮播图 -->
+          <el-carousel :interval="2000" trigger="click" height="280px" v-show="this.petStory!=''">
+            <el-carousel-item v-for="(img, index) in imgList" :key="index">
+              <img :src="img.url" alt=" 图片已丢失" class="imglist" />
+            </el-carousel-item>
+          </el-carousel>
+
+          <li class="petshowlis" v-for="(petV,index) in this.petValue" :key="petV.pkey" @click="showStory(index)"
+            :style="{border:`2px solid ${changeColor}`}">
+            {{ petV.value }}
+            <el-button size="small" type="danger" icon="el-icon-delete" id="delbtn" @click.stop="delStory(index)">
+            </el-button>
           </li>
         </ul>
       </div>
@@ -67,6 +70,7 @@
   import "quill/dist/quill.snow.css"; // for snow theme
   import "quill/dist/quill.bubble.css"; // for bubble theme
   import quillEditor from "vue-quill-editor";
+
 
   const toolbarOptions = [
     ["bold", "italic", "underline", "strike"], // 加粗 斜体 下划线 删除线 -----['bold', 'italic', 'underline', 'strike']
@@ -133,8 +137,12 @@
         uniqueId: "uniqueId",
         // 富文本编辑器默认内容
         petStory: [],
+        petValue: [],
+        petMsg: {
+          value: '',
+          pkey: '',
+        },
         panduan: false,
-        value: "",
         content: {
           story: "",
         },
@@ -144,7 +152,7 @@
           modules: {
             toolbar: toolbarOptions,
           },
-          theme: "snow", 
+          theme: "snow",
           placeholder: "书 写 您 与 宠 物 的 故 事，保 存 的 故 事 可 在 “查看你的故事” 中 查 看",
         },
         imgList: [{
@@ -156,20 +164,19 @@
           {
             url: require("../../../assets/c.jpg")
           },
-           {
+          {
             url: require("../../../assets/e.jpg")
           },
-           {
+          {
             url: require("../../../assets/f.jpg")
           },
-  
+
         ],
       };
     },
     methods: {
       //获得焦点
-      onEditorFocus(quill) {
-        console.log("文本获得焦点!", quill);
+      onEditorFocus() {
         this.content.story = "";
       },
 
@@ -179,36 +186,40 @@
             confirmButtonText: "确定",
             cancelButtonText: "取消",
           })
-          .then(({value}) => {
-            let valuechange = value.replace(/\s+/,'')
-            if(value =='') {
+          .then(({
+            value
+          }) => {
+            let valuechange = value.replace(/\s+/, '')
+            if (value == '') {
               this.$message({
-              type: "error",
-              message: "故事名不能为空白!",
-              duration: 2500,
-              showClose: true,
-            })
-            }
-            else {
-            this.$message({
-              type: "success",
-              message: "保存成功!",
-              duration: 2500,
-              showClose: true,
-            });
+                type: "error",
+                message: "故事名不能为空白!",
+                duration: 2500,
+                showClose: true,
+              })
+            } else {
+              this.$message({
+                type: "success",
+                message: "保存成功!",
+                duration: 2500,
+                showClose: true,
+              });
             }
 
             let petStory = JSON.parse(localStorage.getItem("petStory") || "[]");
             let petValue = JSON.parse(localStorage.getItem("petValue") || "[]");
-            petValue.push(valuechange);
-            
+            this.petMsg.value = valuechange;
+            this.petMsg.pkey = new Date().getTime();
+            petValue.push({
+              ...this.petMsg
+            });
             petStory.push(this.content.story);
             this.petStory = petStory;
-            this.value = petValue;
+            this.petValue = petValue;
             localStorage.setItem("petStory", JSON.stringify(petStory));
             localStorage.setItem("petValue", JSON.stringify(petValue));
             this.content.story = '';
-              "<h3>请书写你的故事，记录下那些你与动物的难忘时光!<h3>";
+            "<h1>请书写你的故事，记录下那些你与动物的难忘时光!<h1>";
           })
           .catch(() => {
             this.$message({
@@ -245,6 +256,7 @@
           })
           .then(() => {
             this.petStory.splice(index, 1);
+            this.petValue.splice(index, 1);
             //index为当前的数组下标
             // 删除时，把localStorage中的缓存一起删除
             let petStory = JSON.parse(localStorage.getItem("petStory"));
@@ -268,39 +280,31 @@
               showClose: true,
             });
           });
-        console.log(index);
-        console.log(this.petStory);
-        
       },
     },
     computed: {
       move() {
         return this.$route.params
       },
-      changeColor() {
-        return this.$store.state.color
-      }
-    
+
     },
     mounted() {
       let petStory = JSON.parse(localStorage.getItem("petStory"));
-      console.log('我是route',this.$route)
       this.petStory = petStory;
       let petValue = JSON.parse(localStorage.getItem("petValue"));
-      this.value = petValue;
+      this.petValue = petValue;
     },
   };
 </script>
 
-<style >
+<style>
   .record,
-   .check,
-  .share
-  {
-   height: calc(78vh - 41px);
+  .check,
+  .share {
+    height: calc(78vh - 41px);
     background-color: whitesmoke;
   }
- 
+
   .petshowul {
     width: 100%;
     /* margin: 0 auto; */
@@ -323,15 +327,18 @@
     text-align: justify;
     overflow: auto;
   }
+
   span .dontclick {
     user-select: none;
   }
+
   /* 让标题居中显示 */
-  .petContentSide h1,
-  h2,
-  h3,
-  h4,
-  h5,
+  .petContentSide 
+  h1:first-of-type,
+  h2:first-of-type,
+  h3:first-of-type,
+  h4:first-of-type,
+  h5:first-of-type,
   h6:first-of-type {
     text-align: center;
     padding-right: 50px;
@@ -341,30 +348,32 @@
   .petContentSide p {
     padding-bottom: 20px;
     padding-right: 50px;
-    
-    }
+  }
 
   /* 固定图片的大小 */
   .petContentSide img {
     float: left;
     width: 150px;
-    height: 95px;
+    height: 100px;
   }
 
   #delbtn {
     color: #fff;
     background-color: rgba(245, 108, 108, 0.8);
-    
+
     float: right;
     transform: translate(-25px, 8px);
     /* 左右，上下 */
   }
+
   .dontclick {
     user-select: none;
   }
- .eltab {
-   position: relative;
- }
+
+  .eltab {
+    position: relative;
+  }
+
   #tijao {
     /* margin-left: 70px; */
     position: absolute;
@@ -377,7 +386,6 @@
     font-weight: 700;
     outline: none;
     color: #000;
-    /* background-color: rgba(245, 222, 179, 0.5); */
     border: 3px solid;
     cursor: pointer;
     transition: all 0.8s;
@@ -387,6 +395,10 @@
     transform: translate(0, -2.5px);
     box-shadow: 8px 8px 10px rgba(100, 100, 100, 0.7);
     color: #c93756;
+  }
+
+  .ql-size-huge {
+    font-size: 32px;
   }
 
   .petshowlis {
@@ -413,9 +425,9 @@
     background-color: rgba(245, 222, 179, 0.6);
   }
 
-  .text {
+  /* .text {
     font-size: 14px;
-  }
+  } */
 
   .item {
     margin-bottom: 18px;

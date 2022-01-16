@@ -104,11 +104,6 @@
         });
       }
     },
-    computed: {
-      changeColor() {
-        return this.$store.state.color
-      }
-    },
     //当颜色改变时，改变state
     watch: {
         color() {

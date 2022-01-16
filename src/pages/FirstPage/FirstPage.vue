@@ -35,11 +35,6 @@ export default {
         }
         
     },
-    computed: {
-       changeColor() {
-        return this.$store.state.color
-      }
-    }
 }
 </script>
 

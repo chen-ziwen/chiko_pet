@@ -48,11 +48,7 @@ export default {
   //  action 行为
   //  mutation 转变
   //  state 状态
-   computed: {
-      changeColor() {
-        return this.$store.state.color
-      }
-    },
+  
    mounted () {
      this.$store.dispatch('jiagon',this.love)
    }

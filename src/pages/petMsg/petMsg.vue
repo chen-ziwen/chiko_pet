@@ -85,11 +85,7 @@
         Tlt.feature = resnew.feature
       })
     },
-    computed: {
-      changeColor() {
-        return this.$store.state.color
-      }
-    },
+    
     beforeDestroy() {
       this.$bus.$off('sendMsgs')
       console.log('sendMsgs被销毁了')
@@ -144,7 +140,7 @@
     flex-wrap: nowrap;
   }
   .petshow {
-    width: 400px;
+    width: 370px;
     height: 250px;
   }
 
