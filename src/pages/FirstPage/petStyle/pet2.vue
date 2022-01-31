@@ -21,6 +21,7 @@
       <span slot="label" class="dontclick"><i class="el-icon-star-on"></i> 查看你的故事</span>
 
       <div class="check">
+        <!-- 显示查看故事模块的内容 -->
         <div class="petContent" v-if="panduan">
           <el-button size="small" icon="el-icon-arrow-left" @click="prev()">
             返回上一级</el-button>
@@ -30,14 +31,16 @@
             </div>
           </div>
         </div>
+   
         <ul class="petshowul" v-else>
           <!-- 通过v-for来渲染页面，绑定点击事件，同时把index索引值作为参数传过去 -->
+
           <!-- 如果故事为空的话显示下面的内容 -->
-          <el-empty description="还 未 添 加 故 事 , 请 添 加 故 事 后 再 来 查 看 !" v-show="this.petStory == ''" :image-size="300">
+          <el-empty description="还 未 添 加 故 事 , 请 添 加 故 事 后 再 来 查 看 !" v-if="empty" :image-size="300">
           </el-empty>
 
-          <!-- 轮播图 -->
-          <el-carousel :interval="2000" trigger="click" height="280px" v-show="this.petStory!=''">
+          <!-- 如果不为空显示轮播图 -->
+          <el-carousel :interval="2000" trigger="click" height="280px" v-else>
             <el-carousel-item v-for="(img, index) in imgList" :key="index">
               <img :src="img.url" alt=" 图片已丢失" class="imglist" />
             </el-carousel-item>
@@ -143,6 +146,7 @@
           pkey: '',
         },
         panduan: false,
+        empty : false,
         content: {
           story: "",
         },
@@ -294,6 +298,22 @@
       let petValue = JSON.parse(localStorage.getItem("petValue"));
       this.petValue = petValue;
     },
+  
+    watch: {
+       'petValue': {
+        deep:true,
+        handler(){
+           if(this.petValue.length===0) {
+             this.empty = true
+           }
+           else {
+              this.empty = false
+           }
+      }
+        }
+       
+    }
+    
   };
 </script>
 

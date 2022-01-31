@@ -4,7 +4,7 @@ import VueRouter from 'vue-router'
 //这种引入方式叫做路由的懒加载，这样定义能够被 Webpack自动代码分割的异步组件。
 //当路由组件多的时候，不会一次性去加载，导致页面出现空白卡顿，原理是promise异步操作
 const petMsg = () => import(/* webpackChunkName: "group-foo" */ '../pages/petMsg/petMsg')
-const petBeaty = () => import ('../pages/petBeaty/petBeaty')
+const petMovie = () => import ('../pages/petMovie/petMovie')
 const petTreatment = () => import ('../pages/petTreatment/petTreatment')
 const petRecord = () => import ('../pages/petRecord/petRecord')
 const petTools = () => import ( '../pages/petTools/petTools')
@@ -77,9 +77,9 @@ export default new VueRouter({
                     // children: [path:'/petMsg/pet1',component]
                 },
                 {   
-                    name : 'petBeaty',
-                    path: '/petBeaty',
-                    component: petBeaty
+                    name : 'petMovie',
+                    path: '/petMovie',
+                    component: petMovie
                 },
                 {   
                     name : 'petTreatment',

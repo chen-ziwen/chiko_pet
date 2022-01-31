@@ -1,6 +1,6 @@
 <template>
-  <div class="hello">
-    <PmsgHeader/>
+  <div class="petMsg">
+    <PmsgHeader title="宠物信息" place='请输入宠物全名'></PmsgHeader>
 
     <article class="pmsgart">
       <h2 :style="{border:`3px dotted ${changeColor}`}">基本信息栏</h2>
@@ -37,9 +37,11 @@
 
 <script>
   import PmsgHeader from '@/components/petMsgTotal/PmsgHeader.vue'
-
   export default {
     name: 'petMsg',
+    components: {
+      PmsgHeader,
+    },
     data() {
       return {
         show: '我是宠物信息',
@@ -59,9 +61,7 @@
       }
     },
 
-    components: {
-      PmsgHeader,
-    },
+    
     mounted() {
       this.$bus.$on('sendMsgs', (msg) => {
         // let resnew = response.data.newslist[0]
@@ -148,6 +148,8 @@
     display: block;
     padding: 25px;
     line-height: 35px;
+    letter-spacing: 2px;
+    /* text-indent: 2em; */
     color: rgba(0, 0, 0);
     text-align: start;
     font:  22px '黑体' ;

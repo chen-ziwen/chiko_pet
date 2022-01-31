@@ -3,8 +3,8 @@
     <nav class="nav" :style='{backgroundColor:changeColor}'>
       <!-- 导航栏第一块 -->
       <div class="navF">
-        <img src="../assets/rb.png" alt="图片已丢失">
-        <span>宠物服务管理系统</span>
+        <img src="../assets/dog.png" alt="图片已丢失">
+        <span>爱宠物服务系统</span>
       </div>
       <!-- 导航栏第二块 -->
       <div class="navS">
@@ -18,7 +18,7 @@
             <router-link active-class="nav-active" to="/petMsg">宠物查询</router-link>
           </li>
           <li>
-            <router-link active-class="nav-active" to="/petBeaty">宠物美容</router-link>
+            <router-link active-class="nav-active" to="/petMovie">宠物电影</router-link>
           </li>
           <li>
             <router-link active-class="nav-active" to="/petTreatment">宠物医疗</router-link>
@@ -176,6 +176,7 @@
   .nav img {
     height: 10vh;
     vertical-align: middle;
+    transform: translateX(20px);
 
   }
 
@@ -219,6 +220,7 @@
     display: inline-block;
     color: black;
     width: 250px;
+    transform: translateX(35px);
     white-space: nowrap;
     font: italic 700 30px "黑体";
     text-shadow: 3px 3px 3px rgba(100, 100, 100, 1);

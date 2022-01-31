@@ -8,6 +8,7 @@ export const store = new Vuex.Store({
         czwname : 'chenziwen',
         age : +18,
         color: 'rgba(30, 144, 255, 0.59)',
+        dataR : []
         
     },
     actions: {
@@ -38,6 +39,9 @@ export const store = new Vuex.Store({
             // console.log('stateColor',state.color)
             state.color = value
             // console.log(value)
+        },
+        dataR(state,value){
+        state.dataR = value
         },
        duo(state,value) {
         console.log('duo在Mutation中被调用了')
