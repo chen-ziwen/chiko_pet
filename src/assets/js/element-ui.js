@@ -21,7 +21,10 @@ import {
     Dialog,
     ButtonGroup,
     Empty,
-    Loading
+    Loading,
+    Slider,
+    Switch,
+    Rate
 }  from 'element-ui'
 
 Vue.component(Table.name, Table) //配置全局组件
@@ -46,6 +49,9 @@ Vue.use(Dialog)
 Vue.use(ButtonGroup)
 Vue.use(Empty)
 Vue.use(Loading)
+Vue.use(Slider)
+Vue.use(Switch)
+Vue.use(Rate)
 
 Vue.prototype.$message = Message;
 Vue.prototype.$confirm = MessageBox.confirm;
@@ -56,7 +62,7 @@ Vue.prototype.openLoading = function() {
       lock: true,                             // 是否锁屏
       text: '正在加载...',                     // 加载动画的文字
       spinner: 'el-icon-loading',             // 引入的loading图标
-      background: 'rgba(0, 0, 0, 0.9)',       // 背景颜色
+      background: 'rgba(0, 0, 0, 0.5)',       // 背景颜色
       target: '.movie-total',                    // 需要遮罩的区域
       body: true,                                              
     })

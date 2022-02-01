@@ -2,31 +2,64 @@
   <div class="movie">
     <meta name="referrer" content="no-referrer" />
     <!-- 显示https图片加上上面一行 -->
-    <PmsgHeader title="宠物电影" place="搜索宠物电影"></PmsgHeader>
+    <pet-movie-head></pet-movie-head>
+    <!-- 获取评分区间 -->
 
     <div class="movie-total">
-      <el-tabs type="border-card" v-model="activeName" 
-    v-loading="loading"
-    element-loading-text="拼命加载中"
-    element-loading-spinner="el-icon-loading"
-    element-loading-background="rgba(0, 0, 0, 0.8)">
+      <el-tabs type="border-card" v-model="activeName">
         <el-tab-pane name="hot">
           <span slot="label" class="dontclick">
             <i class="el-icon-sunny"></i> 近期热门宠物电影
           </span>
 
-          <div class="hot-movie">
-            <!-- <h1>我是近期热门宠物电影</h1> -->
+          <div class="hot-movie" v-show="!ViewChange">
             <ul class="movie-uls">
               <li v-for="(hot, index) in hotmovie" :key="index" class="movie-lis">
-                <img :src="hot.cover" alt="图片丢失" />
-                <span class="span-title">
-                  {{ hot.title }}
-                  <span class="span-rate">{{ hot.rate }}</span>
-                </span>
+                <a :href="hot.url" target="_blank">
+                  <div class="colum-box">
+                    <img :src="hot.cover" alt="图片丢失" />
+                    <span class="span-title">
+                      {{ hot.title }}
+                      <span class="span-rate">{{ hot.rate }}</span>
+                    </span>
+                  </div>
+                </a>
               </li>
             </ul>
-            <a href="javascript:;" class="more" @click.prevent="onload" >加载更多</a>
+            <a href="javascript:;" class="more" @click.prevent="onload" v-show="change">加载更多</a>
+          </div>
+
+          <div class="hot-movie" v-show="ViewChange">
+            <ul class="movie-uls-2">
+              <li v-for="(hot, index) in hotmovie" :key="index" class="movie-lis-2">
+                <a :href="hot.url" target="_blank">
+                  <div class="row-box">
+                    <img :src="hot.cover" alt="图片丢失" />
+                    <div class="text-total">
+                      <span class="span-title">{{ hot.title }}</span>
+                      <div class="rate">
+                        <span class="Allstar">
+                         
+                            <el-rate
+                              v-show="hot.rate"
+                              :value ="Number((hot.rate/2).toFixed(1))"
+                              disabled
+                              text-color="#ff9900"
+                            ></el-rate>
+                     
+                          <span class="rating">{{ hot.rate }}</span>
+                        </span>
+                      </div>
+                      <p class="cast">
+                        <span>导演 : {{ hot.directors.join(' /') }}</span>
+                        <span>演员 : {{ hot.casts.join(' /') }}</span>
+                      </p>
+                    </div>
+                  </div>
+                </a>
+              </li>
+            </ul>
+            <a href="javascript:;" class="more" @click.prevent="onload" v-show="change">加载更多</a>
           </div>
         </el-tab-pane>
 
@@ -34,18 +67,55 @@
           <span slot="label" class="dontclick">
             <i class="el-icon-star-on"></i> 标记最多宠物电影
           </span>
-          <div class="sign-movie">
-            <!-- <h1>我是标记最多宠物电影</h1> -->
+
+          <div class="sign-movie" v-show="!ViewChange">
             <ul class="movie-uls">
               <li v-for="(sign, index) in signmovie" :key="index" class="movie-lis">
-                <img :src="sign.cover" alt="图片丢失" />
-                <span class="span-title">
-                  {{ sign.title }}
-                  <span class="span-rate">{{ sign.rate }}</span>
-                </span>
+                <a :href="sign.url" target="_blank">
+                  <div class="colum-box">
+                    <img :src="sign.cover" alt="图片丢失" />
+                    <span class="span-title">
+                      {{ sign.title }}
+                      <span class="span-rate">{{ sign.rate }}</span>
+                    </span>
+                  </div>
+                </a>
               </li>
             </ul>
-            <a href="javascript:;" class="more" @click.prevent="onload">加载更多</a>
+            <a href="javascript:;" class="more" @click.prevent="onload" v-show="change">加载更多</a>
+          </div>
+
+          <div class="sign-movie" v-show="ViewChange">
+            <ul class="movie-uls-2">
+              <li v-for="(sign, index) in signmovie" :key="index" class="movie-lis-2">
+                <a :href="sign.url" target="_blank">
+                  <div class="row-box">
+                    <img :src="sign.cover" alt="图片丢失" />
+                    <div class="text-total">
+                      <span class="span-title">{{ sign.title }}</span>
+                      <div class="rate">
+                        <span class="Allstar">
+                          
+                            <el-rate
+                              v-show="sign.rate"
+                              :value ="Number((sign.rate/2).toFixed(1))"
+                              disabled
+                              text-color="#ff9900"
+                            ></el-rate>
+                        
+                          <span class="rating">{{ sign.rate }}</span>
+                        </span>
+                      </div>
+                      <p class="cast">
+                        <span>导演 : {{ sign.directors.join(' /') }}</span>
+                        <span>演员 : {{ sign.casts.join(' /') }}</span>
+                      </p>
+                    </div>
+                  </div>
+                </a>
+              </li>
+            </ul>
+            <a href="javascript:;" class="more" @click.prevent="onload" v-show="change">加载更多</a>
           </div>
         </el-tab-pane>
 
@@ -53,18 +123,55 @@
           <span slot="label" class="dontclick">
             <i class="el-icon-medal-1"></i> 评分最高宠物电影
           </span>
-          <div class="score-movie">
-            <!-- <h1>我是评分最高宠物电影</h1> -->
+
+          <div class="score-movie" v-show="!ViewChange">
             <ul class="movie-uls">
               <li v-for="(score, index) in scoremovie" :key="index" class="movie-lis">
-                <img :src="score.cover" alt="图片丢失" />
-                <span class="span-title">
-                  {{ score.title }}
-                  <span class="span-rate">{{ score.rate }}</span>
-                </span>
+                <a :href="score.url" target="_blank">
+                  <div class="colum-box">
+                    <img :src="score.cover" alt="图片丢失" />
+                    <span class="span-title">
+                      {{ score.title }}
+                      <span class="span-rate">{{ score.rate }}</span>
+                    </span>
+                  </div>
+                </a>
               </li>
             </ul>
-            <a href="javascript:;" class="more" @click.prevent="onload">加载更多</a>
+            <a href="javascript:;" class="more" @click.prevent="onload" v-show="change">加载更多</a>
+          </div>
+
+          <div class="score-movie" v-show="ViewChange">
+            <ul class="movie-uls-2">
+              <li v-for="(score, index) in scoremovie" :key="index" class="movie-lis-2">
+                <a :href="score.url" target="_blank">
+                  <div class="row-box">
+                    <img :src="score.cover" alt="图片丢失" />
+                    <div class="text-total">
+                      <span class="span-title">{{ score.title }}</span>
+                      <div class="rate">
+                        <span class="Allstar">
+                         
+                            <el-rate
+                             v-show="score.rate"
+                              :value="Number((score.rate/2).toFixed(1))"
+                              disabled
+                              text-color="#ff9900"
+                            ></el-rate>
+                        
+                          <span class="rating">{{ score.rate }}</span>
+                        </span>
+                      </div>
+                      <p class="cast">
+                        <span>导演 : {{ score.directors.join(' /') }}</span>
+                        <span>演员 : {{ score.casts.join(' /') }}</span>
+                      </p>
+                    </div>
+                  </div>
+                </a>
+              </li>
+            </ul>
+            <a href="javascript:;" class="more" @click.prevent="onload" v-show="change">加载更多</a>
           </div>
         </el-tab-pane>
 
@@ -72,18 +179,55 @@
           <span slot="label" class="dontclick">
             <i class="el-icon-upload"></i> 近期上映宠物电影
           </span>
-          <div class="recent-movie">
-            <!-- <h1>我是近期上映宠物电影</h1> -->
+
+          <div class="recent-movie" v-show="!ViewChange">
             <ul class="movie-uls">
               <li v-for="(recent, index) in recentmovie" :key="index" class="movie-lis">
-                <img :src="recent.cover" alt="图片丢失" />
-                <span class="span-title">
-                  {{ recent.title }}
-                  <span class="span-rate">{{ recent.rate }}</span>
-                </span>
+                <a :href="recent.url" target="_blank">
+                  <div class="colum-box">
+                    <img :src="recent.cover" alt="图片丢失" />
+                    <span class="span-title">
+                      {{ recent.title }}
+                      <span class="span-rate">{{ recent.rate }}</span>
+                    </span>
+                  </div>
+                </a>
               </li>
             </ul>
-            <a href="javascript:;" class="more" @click.prevent="onload">加载更多</a>
+            <a href="javascript:;" class="more" @click.prevent="onload" v-show="change">加载更多</a>
+          </div>
+
+          <div class="recent-movie" v-show="ViewChange">
+            <ul class="movie-uls-2">
+              <li v-for="(recent, index) in recentmovie" :key="index" class="movie-lis-2">
+                <a :href="recent.url" target="_blank">
+                  <div class="row-box">
+                    <img :src="recent.cover" alt="图片丢失" />
+                    <div class="text-total">
+                      <span class="span-title">{{ recent.title }}</span>
+                      <div class="rate">
+                        <span class="Allstar">
+                      
+                             <el-rate
+                             v-show="recent.rate"
+                              :value="Number((recent.rate/2).toFixed(1))"
+                              disabled
+                              text-color="#ff9900"
+                            ></el-rate>
+                      
+                          <span class="rating">{{ recent.rate }}</span>
+                        </span>
+                      </div>
+                      <p class="cast">
+                        <span>导演 : {{ recent.directors.join(' /') }}</span>
+                        <span>演员 : {{ recent.casts.join(' /') }}</span>
+                      </p>
+                    </div>
+                  </div>
+                </a>
+              </li>
+            </ul>
+            <a href="javascript:;" class="more" @click.prevent="onload" v-show="change">加载更多</a>
           </div>
         </el-tab-pane>
       </el-tabs>
@@ -92,11 +236,11 @@
 </template>
 
 <script>
-import PmsgHeader from "@/components/petMsgTotal/PmsgHeader.vue";
+import PetMovieHead from "@/components/petMovieTotal/PetMovieHead.vue";
 import axios from "axios";
 export default {
   name: "petMovie",
-  components: { PmsgHeader },
+  components: { PetMovieHead },
   data() {
     return {
       dataR: [],
@@ -105,30 +249,32 @@ export default {
       scoremovie: [],
       signmovie: [],
       activeName: "hot",
-      range: "0,10", //电影评分
+      // range: "0,10", //电影评分
       start: { hot: 0, recent: 0, sign: 0, score: 0 }, //展示电影数量
-      rLoading : ''
+      rLoading: '',
+      change: true,
     };
   },
   methods: {
     movie(movie, range, start) {
       return axios.get("/j/new_search_subjects", {
-          params: {
-            tags: "宠物",
-            sort: movie,
-            range: range,
-            start: start,
-          },
-          
+        params: {
+          tags: "宠物",
+          sort: movie,
+          range: range,
+          start: start,
         },
+
+      },
+        this.change = false,
         this.rLoading = this.openLoading())
         //请求数据时打开遮罩
         .then(
-        
           (response) => {
-            console.log("movie接口请求成功", response.data.data);
+            console.log("movie接口请求成功", response);
             this.dataR = response.data.data;
             this.rLoading.close()
+            this.change = true
             if (response == undefined) {
               this.$message({
                 // showClose: true,
@@ -147,8 +293,6 @@ export default {
                 showClose: true,
               });
             }
-            //杜宾、贵宾、哈士奇、苏格兰折耳猫、卡斯罗犬、大丹犬、暹罗猫、阿拉斯加雪橇犬、美国可卡犬、金毛犬、布偶猫
-            //请求成功后更新List的数据
           },
           (error) => {
             console.log("请求失败了", error.response);
@@ -156,32 +300,26 @@ export default {
           }
         );
     },
-
-    //加载更多按钮
-
-    //先触发再接收 明天改一下 每个判断里都得拿到最新的数据
+    // 写成同步的axiso请求
+    //每点击一次 多加载20条电影数据
     async onload() {
       if (this.activeName == "hot") {
         this.start.hot += 20;
-        await this.movie("U", this.range, this.start.hot);
+        await this.movie("U", this.changeRange, this.start.hot);
         this.hotmovie.push(...this.dataR);
       } else if (this.activeName == "sign") {
         this.start.sign += 20;
-        await this.movie("T", this.range, this.start.sign);
+        await this.movie("T", this.changeRange, this.start.sign);
         this.signmovie.push(...this.dataR);
-        // this.movie(this.range)
       } else if (this.activeName == "score") {
         this.start.score += 20;
-        await this.movie("S", this.range, this.start.score);
+        await this.movie("S", this.changeRange, this.start.score);
         this.scoremovie.push(...this.dataR);
-        // this.movie(this.range)
       } else if (this.activeName == "recent") {
         this.start.recent += 20;
-        await this.movie("R", this.range, this.start.recent);
+        await this.movie("R", this.changeRange, this.start.recent);
         this.recentmovie.push(...this.dataR);
-        // this.movie(this.range)
       }
-      // });
     },
   },
   watch: {
@@ -190,29 +328,63 @@ export default {
       async handler() {
         if (this.activeName == "hot") {
           this.start.hot = 0;
-          await this.movie("U", this.range, this.start.hot);
+          await this.movie("U", this.changeRange, this.start.hot);
           this.hotmovie = this.dataR;
           console.log("hot触发", this.hotmovie);
         } else if (this.activeName == "sign") {
           this.start.sign = 0;
-          await this.movie("T", this.range, this.start.sign);
+          await this.movie("T", this.changeRange, this.start.sign);
           this.signmovie = this.dataR;
           console.log("sign触发", this.signmovie);
         } else if (this.activeName == "score") {
           this.start.score = 0;
-          await this.movie("S", this.range, this.start.score);
+          await this.movie("S", this.changeRange, this.start.score);
           this.scoremovie = this.dataR;
           console.log("score触发", this.scoremovie);
         } else if (this.activeName == "recent") {
           this.start.recent = 0;
-          await this.movie("R", this.range, this.start.recent);
+          await this.movie("R", this.changeRange, this.start.recent);
           this.recentmovie = this.dataR;
           console.log("recent触发", this.recentmovie);
         }
       },
       immediate: true,
     },
+
+    //当评分改变时
+    async changeRange() {
+      if (this.activeName == "hot") {
+        this.start.hot = 0;
+        await this.movie("U", this.changeRange, this.start.hot);
+        this.hotmovie = this.dataR;
+        console.log("hot触发", this.hotmovie);
+      } else if (this.activeName == "sign") {
+        this.start.sign = 0;
+        await this.movie("T", this.changeRange, this.start.sign);
+        this.signmovie = this.dataR;
+        console.log("sign触发", this.signmovie);
+      } else if (this.activeName == "score") {
+        this.start.score = 0;
+        await this.movie("S", this.changeRange, this.start.score);
+        this.scoremovie = this.dataR;
+        console.log("score触发", this.scoremovie);
+      } else if (this.activeName == "recent") {
+        this.start.recent = 0;
+        await this.movie("R", this.changeRange, this.start.recent);
+        this.recentmovie = this.dataR;
+        console.log("recent触发", this.recentmovie);
+      }
+    }
+
   },
+  computed: {
+    changeRange() {
+      return this.$store.state.mrange
+    },
+    ViewChange() {
+      return this.$store.state.valueView
+    }
+  }
 };
 </script>
 
@@ -227,34 +399,91 @@ export default {
   height: calc(70vh - 41px);
   overflow: auto;
 }
+.movie-uls .movie-lis a,
+.movie-lis-2 .movie-lis-2 a {
+  color: black;
+}
+/* 适配缩小 但是会让居中失效 */
+/* .colum-box {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+} */
+.row-box {
+  display: flex;
+  justify-content: flex-start;
+  align-content: center;
+}
+.row-box .cast {
+  display: flex;
+  flex-direction: column;
+  color: rgba(153, 153, 153);
+}
+.row-box .cast span {
+  margin-bottom: 5px;
+  margin-top: 15px;
+}
+.row-box .text-total {
+  margin-left: 25px;
+  margin-top: 25px;
+}
 .movie-lis {
   display: inline-block;
   text-align: center;
-  vertical-align: top; 
-   /* 图片向上对齐 */
+  vertical-align: top;
+  /* 图片向上对齐 */
   width: 25%;
+}
+.movie-lis:nth-of-type(-n + 4) {
+  padding-top: 30px;
+}
+.movie-lis-2 {
+  display: flex;
+  /* border: 1px solid black; */
+  margin: 30px 0;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+.movie-uls-2 .movie-lis-2 .span-title {
+  color: black;
 }
 .movie-lis img {
   display: inline-block;
-  width: 220px;
+  width: 200px;
   height: 280px;
 }
+.movie-lis-2 img {
+  display: inline-block;
+  width: 140px;
+  height: 200px;
+}
+
 .span-title {
   display: inline-block;
+  /* text-align: center; */
   width: 220px;
-  text-align: center;
   line-height: 25px;
-  margin-bottom: 15px;
+  padding-bottom: 15px;
 }
 .span-rate {
   display: inline-block;
   color: rgba(255, 172, 45);
   transform: translateX(8px);
 }
+.rating {
+  color: rgba(255, 172, 45);
+}
+.rate .Allstar {
+  display: flex;
+  align-items: center;
+}
 .more {
   position: relative;
   left: 50%;
   transform: translateX(-50%);
+  margin-top: 20px;
   display: flex;
   justify-content: center;
   align-content: center;

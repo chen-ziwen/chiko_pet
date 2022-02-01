@@ -8,7 +8,8 @@ export const store = new Vuex.Store({
         czwname : 'chenziwen',
         age : +18,
         color: 'rgba(30, 144, 255, 0.59)',
-        dataR : []
+        mrange : '0,10',
+        valueView : false
         
     },
     actions: {
@@ -40,8 +41,11 @@ export const store = new Vuex.Store({
             state.color = value
             // console.log(value)
         },
-        dataR(state,value){
-        state.dataR = value
+        mrange(state,value) {
+        state.mrange = value
+        },
+        valueView(state,value){
+            state.valueView = value
         },
        duo(state,value) {
         console.log('duo在Mutation中被调用了')
