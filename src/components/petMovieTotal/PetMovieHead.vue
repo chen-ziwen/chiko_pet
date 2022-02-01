@@ -19,7 +19,7 @@
                 </el-dropdown-menu>
             </el-dropdown>
 
-            <el-switch v-model="valueView" class="switch" inactive-color="blue"  active-color="green"></el-switch>
+            <el-switch v-model="valueView" class="switch" inactive-color="rgb(92,176,255)"  active-color="rgb(255,172,99)"></el-switch>
             <span class="aSize">切换视图</span>
         </div>
     </header>
@@ -77,6 +77,7 @@ button {
 .aSize {
     font-size: 20px;
     font-weight: 700;
+    color: rgba(153, 153, 153);
 }
 .switch {
     margin-left: 40px;

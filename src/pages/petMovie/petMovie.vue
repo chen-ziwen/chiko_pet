@@ -387,13 +387,6 @@ export default {
 </script>
 
 <style scoped>
-/* .movie {
-  height: 82vh;
-  
-} */
-/* .eltabs {
-  height: 72.5vh;
-} */
 .hot-movie,
 .recent-movie,
 .score-movie,
@@ -425,6 +418,7 @@ export default {
   display: flex;
   flex-direction: column;
   color: rgba(153, 153, 153);
+  font-size: 20px;
 }
 .row-box .cast span {
   margin-bottom: 5px;
@@ -440,48 +434,65 @@ export default {
   vertical-align: top;
   /* 图片向上对齐 */
   width: 25%;
+  margin-bottom: 15px;
 }
 .movie-lis:nth-of-type(-n + 4) {
-  padding-top: 30px;
+  margin-top: 30px;
 }
 .movie-lis-2 {
   display: flex;
-  /* border: 1px solid black; */
   margin: 30px 0;
   flex-direction: column;
   justify-content: center;
   align-content: center;
 }
 .movie-uls-2 .movie-lis-2 .span-title {
+  display: inline-block;
+  padding-bottom: 15px;
   color: black;
+  font-size: 22px;
+  font-weight: 700;
+}
+.movie-uls-2 .movie-lis-2 .span-title:hover {
+  text-decoration: underline;
+}
+.movie-uls .movie-lis .span-title {
+  display: inline-block;
+  width: 220px;
+  line-height: 25px;
+  padding-bottom: 15px;
+  font-weight: 700;
+}
+.movie-uls .movie-lis .span-title:hover {
+  text-decoration: underline;
 }
 .movie-lis img {
   display: inline-block;
-  width: 200px;
+  width: 210px;
   height: 280px;
 }
 .movie-lis-2 img {
   display: inline-block;
-  width: 140px;
-  height: 200px;
+  width: 170px;
+  height: 210px;
 }
 
-.span-title {
-  display: inline-block;
-  /* text-align: center; */
-  width: 220px;
-  line-height: 25px;
-  padding-bottom: 15px;
-}
 .span-rate {
   display: inline-block;
   color: rgba(255, 172, 45);
+  font-weight: 700;
   transform: translateX(8px);
 }
 .rating {
   color: rgba(255, 172, 45);
+  font-weight: 700;
   padding-left: 5px;
 }
+/* 样式穿透 */
+ ::v-deep .el-rate__icon{
+  font-size: 20px;
+}
+
 .rate .Allstar {
   display: flex;
   align-items: center;

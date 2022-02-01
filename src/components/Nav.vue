@@ -30,17 +30,18 @@
       </div>
       <!-- 导航栏第三块 -->
       <div class="navT">
-        <router-link active-class="nav-active" to="/petRecord">后台数据</router-link>
-
+        <span >背景选择</span>
+        <el-color-picker v-model="color" show-alpha :predefine="predefineColors" size='small' class="color"
+           ></el-color-picker>
+           
         <el-dropdown>
           <a class="el-icon-arrow-down el-icon--right">设置</a>
           <el-dropdown-menu slot="dropdown">
             <el-dropdown-item>更换头像</el-dropdown-item>
             <el-dropdown-item @click.native='exit()'>退出登陆</el-dropdown-item>
-            <el-dropdown-item>背景选择
-           <el-color-picker v-model="color" show-alpha :predefine="predefineColors" size='medium' class="color"
-           ></el-color-picker>
-            </el-dropdown-item>
+            <!-- <el-dropdown-item>背景选择
+           
+            </el-dropdown-item> -->
           </el-dropdown-menu>
         </el-dropdown>
 
@@ -118,17 +119,14 @@
     font-size: 12px;
   }
  
-  .color {
-    transform: translateY(10px);
-    /* display: none; */
-    opacity: 0.9;
-  }
-
   .navF,
   .navT {
     flex-grow: 1;
   }
-
+.navT span:nth-of-type(1) {
+  font-size: 20px;
+  font-weight: 700;
+}
   .navS {
     flex-grow: 2;
     display: flex;
