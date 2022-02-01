@@ -5,8 +5,7 @@
     <pet-movie-head></pet-movie-head>
     <!-- 获取评分区间 -->
 
-    <div class="movie-total">
-      <el-tabs type="border-card" v-model="activeName">
+      <el-tabs type="border-card" v-model="activeName" class="eltabs">
         <el-tab-pane name="hot">
           <span slot="label" class="dontclick">
             <i class="el-icon-sunny"></i> 近期热门宠物电影
@@ -51,8 +50,8 @@
                         </span>
                       </div>
                       <p class="cast">
-                        <span>导演 : {{ hot.directors.join(' /') }}</span>
-                        <span>演员 : {{ hot.casts.join(' /') }}</span>
+                        <span>导演 : {{ hot.directors.join(' / ') }}</span>
+                        <span>演员 : {{ hot.casts.join(' / ') }}</span>
                       </p>
                     </div>
                   </div>
@@ -107,8 +106,8 @@
                         </span>
                       </div>
                       <p class="cast">
-                        <span>导演 : {{ sign.directors.join(' /') }}</span>
-                        <span>演员 : {{ sign.casts.join(' /') }}</span>
+                        <span>导演 : {{ sign.directors.join(' / ') }}</span>
+                        <span>演员 : {{ sign.casts.join(' / ') }}</span>
                       </p>
                     </div>
                   </div>
@@ -163,8 +162,8 @@
                         </span>
                       </div>
                       <p class="cast">
-                        <span>导演 : {{ score.directors.join(' /') }}</span>
-                        <span>演员 : {{ score.casts.join(' /') }}</span>
+                        <span>导演 : {{ score.directors.join(' / ') }}</span>
+                        <span>演员 : {{ score.casts.join(' / ') }}</span>
                       </p>
                     </div>
                   </div>
@@ -219,8 +218,8 @@
                         </span>
                       </div>
                       <p class="cast">
-                        <span>导演 : {{ recent.directors.join(' /') }}</span>
-                        <span>演员 : {{ recent.casts.join(' /') }}</span>
+                        <span>导演 : {{ recent.directors.join(' / ') }}</span>
+                        <span>演员 : {{ recent.casts.join(' / ') }}</span>
                       </p>
                     </div>
                   </div>
@@ -232,7 +231,6 @@
         </el-tab-pane>
       </el-tabs>
     </div>
-  </div>
 </template>
 
 <script>
@@ -389,19 +387,27 @@ export default {
 </script>
 
 <style scoped>
-.movie-total {
-  height: calc(82vh - 70px);
-}
+/* .movie {
+  height: 82vh;
+  
+} */
+/* .eltabs {
+  height: 72.5vh;
+} */
 .hot-movie,
 .recent-movie,
 .score-movie,
 .sign-movie {
-  height: calc(70vh - 41px);
+  height: calc(82vh - 141px);
   overflow: auto;
 }
 .movie-uls .movie-lis a,
 .movie-lis-2 .movie-lis-2 a {
   color: black;
+}
+.movie-uls-2 {
+  width: 92%;
+  transform: translateX(8%);
 }
 /* 适配缩小 但是会让居中失效 */
 /* .colum-box {
@@ -425,7 +431,7 @@ export default {
   margin-top: 15px;
 }
 .row-box .text-total {
-  margin-left: 25px;
+  margin-left: 50px;
   margin-top: 25px;
 }
 .movie-lis {
@@ -474,6 +480,7 @@ export default {
 }
 .rating {
   color: rgba(255, 172, 45);
+  padding-left: 5px;
 }
 .rate .Allstar {
   display: flex;

@@ -321,7 +321,7 @@
   .record,
   .check,
   .share {
-    height: calc(78vh - 41px);
+    height: calc(82vh - 72px);
     background-color: whitesmoke;
   }
 

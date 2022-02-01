@@ -59,6 +59,7 @@ export default {
    .foots {
      text-align: center;
      height:8vh;
+     
      /* background-color: #FDCED7; */
    }
    .foots h3 {

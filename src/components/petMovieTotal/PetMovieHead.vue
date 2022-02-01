@@ -19,7 +19,8 @@
                 </el-dropdown-menu>
             </el-dropdown>
 
-            <el-switch v-model="valueView" class="switch"></el-switch>
+            <el-switch v-model="valueView" class="switch" inactive-color="blue"  active-color="green"></el-switch>
+            <span class="aSize">切换视图</span>
         </div>
     </header>
 </template>
