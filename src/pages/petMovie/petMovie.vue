@@ -399,8 +399,8 @@ export default {
   color: black;
 }
 .movie-uls-2 {
-  width: 92%;
-  transform: translateX(8%);
+  width: 95%;
+  transform: translateX(5%);
 }
 /* 适配缩小 但是会让居中失效 */
 /* .colum-box {

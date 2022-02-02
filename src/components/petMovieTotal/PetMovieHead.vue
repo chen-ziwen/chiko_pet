@@ -42,7 +42,6 @@ export default {
     watch : {
         valueView() {
             this.$store.commit('valueView', this.valueView)
-            console.log('View',this.valueView)
         }
     } 
 }

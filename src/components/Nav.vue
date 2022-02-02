@@ -39,9 +39,6 @@
           <el-dropdown-menu slot="dropdown">
             <el-dropdown-item>更换头像</el-dropdown-item>
             <el-dropdown-item @click.native='exit()'>退出登陆</el-dropdown-item>
-            <!-- <el-dropdown-item>背景选择
-           
-            </el-dropdown-item> -->
           </el-dropdown-menu>
         </el-dropdown>
 
@@ -125,7 +122,8 @@
   }
 .navT span:nth-of-type(1) {
   font-size: 20px;
-  font-weight: 700;
+  display: inline-block;
+  white-space: nowrap;
 }
   .navS {
     flex-grow: 2;
