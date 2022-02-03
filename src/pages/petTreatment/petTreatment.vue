@@ -1,7 +1,7 @@
 <template>
   <div class="pet">
-      <h1>我是宠物医疗</h1>
-      llllllllllllllllllllllllllllllllllllllllllllllllllaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+      <h1>我是宠物零食</h1>
+      
   </div>
 </template>
 

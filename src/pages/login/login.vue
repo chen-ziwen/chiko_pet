@@ -1,7 +1,7 @@
 <template>
     <div class="login-wrap">
         <div class="ms-login">
-            <div class="ms-title">宠物服务管理系统</div>
+            <div class="ms-title">Chiko千子宠物</div>
             <el-form ref="login" class="ms-content">
                 <el-form-item prop="number">
                     <el-input placeholder="请输入账号" v-model="num">

@@ -99,5 +99,6 @@ input {
 }
 .sliderWidth {
     width: 350px;
+    
 }
 </style>

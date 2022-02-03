@@ -3,8 +3,8 @@
     <nav class="nav" :style='{backgroundColor:changeColor}'>
       <!-- 导航栏第一块 -->
       <div class="navF">
-        <img src="../assets/dog.png" alt="图片已丢失">
-        <span>爱宠物服务系统</span>
+        <img src="../assets/lin.png" alt="图片已丢失">
+        <span>Chiko千子宠物</span>
       </div>
       <!-- 导航栏第二块 -->
       <div class="navS">
@@ -170,9 +170,9 @@
   }
 
   .nav img {
-    height: 10vh;
+    height: 8vh;
     vertical-align: middle;
-    transform: translateX(20px);
+    transform: translate(20px,1vh);
 
   }
 
@@ -216,7 +216,7 @@
     display: inline-block;
     color: black;
     width: 250px;
-    transform: translateX(35px);
+    transform: translate(35px,1.6vh);
     white-space: nowrap;
     font: italic 700 30px "黑体";
     text-shadow: 3px 3px 3px rgba(100, 100, 100, 1);
