@@ -1,5 +1,5 @@
 <template>
- <div class="serch">
+ <aside class="serch">
   <el-table :data="petData" style="width: 100%">
 
     <el-table-column type="expand">
@@ -79,7 +79,7 @@
 
     </el-table-column>
   </el-table>
-  </div>
+  </aside>
 </template>
 
 <script>

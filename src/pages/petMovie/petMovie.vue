@@ -1,5 +1,5 @@
 <template>
-  <div class="movie">
+  <article class="movie">
     <meta name="referrer" content="no-referrer" />
     <!-- 显示https图片加上上面一行 -->
     <pet-movie-head></pet-movie-head>
@@ -230,7 +230,7 @@
           </div>
         </el-tab-pane>
       </el-tabs>
-    </div>
+    </article>
 </template>
 
 <script>
@@ -322,7 +322,8 @@ export default {
   },
   watch: {
     //因为同步操作先执行 这样永远只能拿到上一次的操作 只能拿到上一次的数据 处理完问题就解决
-    activeName: {
+    
+    activeName: {    
       async handler() {
         if (this.activeName == "hot") {
           this.start.hot = 0;
@@ -382,7 +383,12 @@ export default {
     ViewChange() {
       return this.$store.state.valueView
     }
-  }
+  },
+  beforeRouteEnter(to,from,next){
+     axios.defaults.baseURL = '/api',
+     console.log('movie路由触发了')
+     next() 
+   }
 };
 </script>
 

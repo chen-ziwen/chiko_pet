@@ -24,7 +24,8 @@ import {
     Loading,
     Slider,
     Switch,
-    Rate
+    Rate,
+    Pagination
 }  from 'element-ui'
 
 Vue.component(Table.name, Table) //配置全局组件
@@ -52,7 +53,7 @@ Vue.use(Loading)
 Vue.use(Slider)
 Vue.use(Switch)
 Vue.use(Rate)
-
+Vue.use(Pagination)
 Vue.prototype.$message = Message;
 Vue.prototype.$confirm = MessageBox.confirm;
 Vue.prototype.$prompt = MessageBox.prompt;
@@ -66,8 +67,8 @@ Vue.prototype.openLoading = function() {
       target: '.eltabs',                    // 需要遮罩的区域
       body: true,                                              
     })
-    // setTimeout(function () {                  // 设定定时器，超时5S后自动关闭遮罩层，避免请求失败时，遮罩层一直存在的问题
-    //   loading.close();                        // 关闭遮罩层
-    // },5000)
+    setTimeout(function () {                  // 设定定时器，超时5S后自动关闭遮罩层，避免请求失败时，遮罩层一直存在的问题
+      loading.close();                        // 关闭遮罩层
+    },5000)
     return loading;
   }

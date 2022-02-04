@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <header>
     <form class="petform">
       <ul>
         <li>宠物品种：<input type="text" placeholder="请输入宠物名称" v-model="shuju.id" :style='{border: `2px solid ${changeColor}`}'> </li>
@@ -12,7 +12,7 @@
         <!-- 在表单form中设置button 要给button标签设置type，不然会默认为submit，会刷新页面 -->
       </ul>
     </form>
-  </div>
+  </header>
 </template>
 
 <script>

@@ -5,7 +5,7 @@ import VueRouter from 'vue-router'
 //当路由组件多的时候，不会一次性去加载，导致页面出现空白卡顿，原理是promise异步操作
 const petMsg = () => import(/* webpackChunkName: "group-foo" */ '../pages/petMsg/petMsg')
 const petMovie = () => import ('../pages/petMovie/petMovie')
-const petTreatment = () => import ('../pages/petTreatment/petTreatment')
+const petInfo = () => import ('../pages/petInfo/petInfo')
 const petRecord = () => import ('../pages/petRecord/petRecord')
 const petTools = () => import ( '../pages/petTools/petTools')
 const FirstPage = () => import('../pages/FirstPage/FirstPage')
@@ -82,9 +82,9 @@ export default new VueRouter({
                     component: petMovie
                 },
                 {   
-                    name : 'petTreatment',
-                    path: '/petTreatment',
-                    component: petTreatment
+                    name : 'petInfo',
+                    path: '/petInfo',
+                    component: petInfo
                 },
                 {   
                     name : 'petRecord',

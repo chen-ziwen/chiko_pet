@@ -1,7 +1,7 @@
 <template>
-    <div class="login-wrap">
+    <main class="login-wrap">
         <div class="ms-login">
-            <div class="ms-title">Chiko千子宠物</div>
+            <div class="ms-title"><span>Chiko 千子宠物</span></div>
             <el-form ref="login" class="ms-content">
                 <el-form-item prop="number">
                     <el-input placeholder="请输入账号" v-model="num">
@@ -18,7 +18,7 @@
                 </div>
             </el-form>
         </div>
-    </div>
+    </main>
 </template>
 
 <script>
@@ -93,7 +93,11 @@
         color: black;
         border-bottom: 1px solid #ddd;
     }
-
+   .ms-title span {
+       font-weight: 600;
+       text-shadow: 3px 3px 3px rgba(100, 100, 100, 1);
+       letter-spacing: 1px;
+   }
     .ms-login {
         width: 500px;
         border-radius: 5px;

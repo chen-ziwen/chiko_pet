@@ -110,6 +110,7 @@ export default {
       display: inline-block;
       line-height: 70px;
       white-space: nowrap;
+      font-size: 24px;
       color: black;
       margin-left: 80px;
 

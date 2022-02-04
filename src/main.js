@@ -5,7 +5,7 @@ import './assets/js/element-ui'
 import {store} from './store/store'
 import axios from 'axios'
 import {changeColor} from './assets/js/mixin'
-axios.defaults.baseURL = '/api'
+// axios.defaults.baseURL = '/api'
 //全局混合颜色方法
 Vue.mixin(changeColor)
 

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <header>
     <nav class="nav" :style='{backgroundColor:changeColor}'>
       <!-- 导航栏第一块 -->
       <div class="navF">
@@ -21,7 +21,7 @@
             <router-link active-class="nav-active" to="/petMovie">宠物电影</router-link>
           </li>
           <li>
-            <router-link active-class="nav-active" to="/petTreatment">宠物医疗</router-link>
+            <router-link active-class="nav-active" to="/petInfo">宠物资讯</router-link>
           </li>
 
           <!-- <li><router-link active-class="active" to="/petTools">宠物工具</router-link></li> -->
@@ -49,7 +49,7 @@
       <router-view></router-view>
     </keep-alive>
 
-  </div>
+  </header>
 </template>
 
 <script>
@@ -58,8 +58,15 @@
     data() {
       return {
         visible: false,
-        color: 'rgba(30, 144, 255, 0.59)',
+        color: 'rgba(197, 36, 137, 0.38)',
         predefineColors: [
+          //前面这几个颜色是我比较喜欢的颜色
+          'rgba(197, 36, 137, 0.38)',
+          'rgba(241, 205, 1, 0.46)',
+          'rgba(0, 186, 189, 0.49)',
+          'hsla(209, 100%, 56%, 0.73)',
+          'rgba(255, 69, 0, 0.5)',
+          'hsva(120, 40, 94, 0.5)',
           'rgb(253,84,78)',
           '#ff8c00',
           '#ffd700',
@@ -67,13 +74,7 @@
           '#00ced1',
           '#1e90ff',
           '#c71585',
-          'rgba(255, 69, 0, 0.68)',
           'rgb(255, 120, 0)',
-          'hsv(51, 100, 98)',
-          'hsva(120, 40, 94, 0.5)',
-          'rgba(0, 186, 189, 0.55)',
-          'hsla(209, 100%, 56%, 0.73)',
-          'rgba(197, 36, 137, 0.38)'
         ]
       }
     },

@@ -3,7 +3,7 @@
     <PmsgHeader title="宠物信息" place='请输入宠物全名'></PmsgHeader>
 
     <article class="pmsgart">
-      <h2 :style="{border:`3px dotted ${changeColor}`}">基本信息栏</h2>
+      <h2 :style="{border:`4px dotted ${changeColor}`}">基本信息栏</h2>
       <div class="pmsbasic">
         
         <ul class="ul1">
@@ -23,7 +23,7 @@
       </div>
 
       <div class="pmsintroduce">
-        <h2 :style="{border:`3px dotted ${changeColor}`}">特征介绍</h2>
+        <h2 :style="{border:`4px dotted ${changeColor}`}">特征介绍</h2>
         <div class="ps">
           <p>{{Tnewslist.feature}}</p>
           <p>{{Tnewslist.characterFeature}}</p>
@@ -88,7 +88,6 @@
     
     beforeDestroy() {
       this.$bus.$off('sendMsgs')
-      console.log('sendMsgs被销毁了')
     }
 
   }
@@ -98,7 +97,7 @@
     
   .pmsgart {
     height: calc(82vh - 70px);
-    background-color: whitesmoke;
+    background-color: white;
     overflow: auto;
   }
 
@@ -125,7 +124,7 @@
     text-align: center;
     margin-bottom: 15px;
     color: mediumblue;
-    background-color: whitesmoke;
+    background-color: white;
     padding-top: 8px;
     letter-spacing: 5px;
     line-height: 55px;
@@ -152,7 +151,7 @@
     /* text-indent: 2em; */
     color: rgba(0, 0, 0);
     text-align: start;
-    font:  22px '黑体' ;
+    font:22px '黑体' ;
     margin-left: 50px;
   }
 </style>
