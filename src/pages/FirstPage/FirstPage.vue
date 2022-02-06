@@ -12,7 +12,7 @@
             title: msg[0].title
             }
         }">故事记录</router-link></li>
-         <li><router-link active-class="active" to="/FirstPage/pet3">图片上传</router-link></li>
+         <li><router-link active-class="active" to="/FirstPage/pet3">图片展示</router-link></li>
           <li><router-link active-class="active" to="/FirstPage/pet4">驯养情况</router-link></li>
      </ul>
      

@@ -422,7 +422,7 @@ article .secPic-2 img {
 article .secPic-2 {
   position: relative;
   width: 100%;
-  height: 200px;
+  height: 180px;
   overflow: hidden;
   border-radius: 3%;
 }
@@ -470,8 +470,8 @@ article .secPic-2 {
   font-size: 31px;
   line-height: 30px;
   color: gray;
-  opacity: 0.85;
-  background-color: rgb(200, 205, 209);
+  /* opacity: 0.85; */
+  background-color: rgb(200, 205, 209,0.7);
   border-radius: 20px;
   z-index: 10;
   bottom: 5px;
@@ -489,7 +489,7 @@ article .secPic-2 {
   background-color: rgb(246,238,235);
   color: rgb(216,169,153) !important;
   padding: 5px 15px;
-  margin: 0px 10px;
+  margin: 0px 10px 0 5px;
 }
 .storyTags {
   margin-top: 15px;

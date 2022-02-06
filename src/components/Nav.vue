@@ -30,7 +30,7 @@
       </div>
       <!-- 导航栏第三块 -->
       <div class="navT">
-        <span >背景选择</span>
+        <span >背景颜色</span>
         <el-color-picker v-model="color" show-alpha :predefine="predefineColors" size='small' class="color"
            ></el-color-picker>
            
