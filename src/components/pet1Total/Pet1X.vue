@@ -49,7 +49,7 @@
         <el-dialog title="信息修改" :visible.sync="handle" width="40%">
           <el-form :inline="true" class="demo-form-inline">
             <el-form-item label="宠物品种">
-              <el-input placeholder="请输入宠物名称" v-model="petObj.id"></el-input>
+              <el-input placeholder="请输入宠物品种" v-model="petObj.id"></el-input>
             </el-form-item>
             <el-form-item label="宠物名称">
               <el-input placeholder="请输入宠物名称" v-model="petObj.name"></el-input>

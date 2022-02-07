@@ -2,7 +2,7 @@
   <header>
     <form class="petform">
       <ul>
-        <li>宠物品种：<input type="text" placeholder="请输入宠物名称" v-model="shuju.id" :style='{border: `2px solid ${changeColor}`}'> </li>
+        <li>宠物品种：<input type="text" placeholder="请输入宠物品种" v-model="shuju.id" :style='{border: `2px solid ${changeColor}`}'> </li>
         <li>宠物名称：<input type="text" placeholder="请输入宠物名称" v-model="shuju.name" :style='{border: `2px solid ${changeColor}`}'> </li>
         <li>主人姓名：<input type="text" placeholder="请输入主人姓名" v-model="shuju.ownerName" :style='{border: `2px solid ${changeColor}`}'> </li>
         <li>联系电话：<input type="number" placeholder="请输入联系电话" v-model="shuju.number" :style='{border: `2px solid ${changeColor}`}'> </li>
@@ -74,8 +74,6 @@
             this.shuju.id = ''
           },200)  
           }
-
-          
         // 将对象转换成JSON格式存入localStorage
         // 从localstorage中取出数据转换成对象格式
 

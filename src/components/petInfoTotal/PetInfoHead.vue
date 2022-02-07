@@ -1,26 +1,28 @@
 <template>
     <header id="head">
         <h1>宠物资讯</h1>
+        <!-- 媒体选择 -->
         <div class="moviebox">
-            <!-- <el-dropdown trigger="click">
-                <a class="el-icon-arrow-down el-icon--right aSize">评分区间筛选</a>
-                <el-dropdown-menu slot="dropdown">
-                    <el-dropdown-item>
-                        <el-slider
-                            v-model="rangevalue"
-                            range
-                            show-stops
-                            :min="0"
-                            :max="10"
-                            class="sliderWidth"
-                            @change="RangeValue"
-                        ></el-slider>
-                    </el-dropdown-item>
-                </el-dropdown-menu>
-            </el-dropdown>
+            <el-select v-model="value" placeholder="请选择" v-show="this.$store.state.showMenu">
+                <el-option
+                    v-for="item in infoMsg"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value" 
+                    @click.native="$emit('receiveMsg', item.fnc)"
+                ></el-option>
+            </el-select>
 
-            <el-switch v-model="valueView" class="switch" inactive-color="rgb(92,176,255)"  active-color="rgb(255,172,99)"></el-switch>
-            <span class="aSize">切换视图</span> -->
+            <!-- 时间选择 -->
+            <el-select v-model="value2" placeholder="请选择" v-show="this.$store.state.showMenu2">
+                <el-option
+                    v-for="item in infoTime"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value" 
+                    @click.native="$emit('receiveTime', item.fnc)"
+                ></el-option>
+            </el-select>
         </div>
     </header>
 </template>
@@ -30,20 +32,61 @@ export default {
     data() {
         return {
             rangevalue: [0, 10],
-            valueView : false
+            valueView: false,
+            infoMsg: [{
+                value: '选项1',
+                label: '全部来源',
+                fnc : ''
+            }, {
+                value: '选项2',
+                label: '中央媒体',
+                fnc :'CENTRAL'
+            }, {
+                value: '选项3',
+                label: '地方媒体',
+                fnc: 'LOCAL'
+            }, {
+                value: '选项4',
+                label: '商业媒体',
+                fnc : 'BUSINESS'
+            }],
+            value: '选项1',
+
+            infoTime: [{
+                value: '选项1',
+                label: '时间不限',
+                fnc : ''
+            }, {
+                value: '选项2',
+                label: '一天内',
+                fnc :'24h'
+            }, {
+                value: '选项3',
+                label: '一周内',
+                fnc: '1w'
+            }, {
+                value: '选项4',
+                label: '一个月内',
+                fnc : '1m'
+            }, {
+                value: '选项5',
+                label: '一年内',
+                fnc : '1y'
+            }],
+            value2: '选项1'
         }
     },
     methods: {
         RangeValue(val) {
             let Mrange = val.join(',')
             this.$store.commit('mrange', Mrange)
-        }
+        },
     },
-    watch : {
+    watch: {
         valueView() {
             this.$store.commit('valueView', this.valueView)
         }
-    } 
+    }
 }
 </script>
 <style scoped>
@@ -99,6 +142,8 @@ input {
 }
 .sliderWidth {
     width: 350px;
-    
+}
+.move-ju {
+    margin-left: 20px;
 }
 </style>

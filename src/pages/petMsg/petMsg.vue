@@ -1,6 +1,6 @@
 <template>
   <div class="petMsg">
-    <PmsgHeader title="宠物信息" place='请输入宠物全名'></PmsgHeader>
+    <PmsgHeader title="宠物查询" place='请输入宠物全名'></PmsgHeader>
 
     <article class="pmsgart">
       <h2 :style="{border:`4px dotted ${changeColor}`}">基本信息栏</h2>

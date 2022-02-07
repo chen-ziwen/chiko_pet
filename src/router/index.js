@@ -54,7 +54,6 @@ export default new VueRouter({
                         name : 'pet2',
                         path: 'pet2/:id/:title',
                         component: pet2,
-                        // meta:{keepAlive:true}
                        },
         
                        {

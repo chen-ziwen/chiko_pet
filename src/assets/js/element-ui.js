@@ -25,7 +25,9 @@ import {
     Slider,
     Switch,
     Rate,
-    Pagination
+    Pagination,
+    Select,
+    Option
 }  from 'element-ui'
 
 Vue.component(Table.name, Table) //配置全局组件
@@ -54,6 +56,9 @@ Vue.use(Slider)
 Vue.use(Switch)
 Vue.use(Rate)
 Vue.use(Pagination)
+Vue.use(Select)
+Vue.use(Option)
+
 Vue.prototype.$message = Message;
 Vue.prototype.$confirm = MessageBox.confirm;
 Vue.prototype.$prompt = MessageBox.prompt;

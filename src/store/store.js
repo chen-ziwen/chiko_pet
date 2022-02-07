@@ -9,7 +9,9 @@ export const store = new Vuex.Store({
         age : +18,
         color: 'rgba(197, 36, 137, 0.38)',
         mrange : '0,10',
-        valueView : false
+        valueView : false,
+        showMenu: true,
+        showMenu2:true,
         
     },
     actions: {

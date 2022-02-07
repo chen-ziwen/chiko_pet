@@ -1,7 +1,7 @@
 <template>
   <article class="pet pet-info-total">
     <meta name="referrer" content="no-referrer" />
-    <pet-info-head></pet-info-head>
+    <pet-info-head @receiveMsg="receiveMsg" @receiveTime="receiveTime"></pet-info-head>
     <el-tabs type="border-card" v-model="activeName" class="eltabs">
       <el-tab-pane name="news">
         <span slot="label">
@@ -17,45 +17,49 @@
             >
               <a :href="info.url" target="_blank">
                 <span v-html="info.title"></span>
-                <article class="news-style">
-                  <section
-                    v-for="(imgL, index) in info.image_list.slice(0, 3)"
-                    :key="index"
-                    class="secPic"
-                  >
+              </a>
+              <article class="news-style">
+                <section
+                  v-for="(imgL, index) in info.image_list.slice(0, 3)"
+                  :key="index"
+                  class="secPic"
+                >
+                  <a :href="info.url" target="_blank">
                     <div
                       class="opc-zhao"
                       :style="{ backgroundImage: `url(${imgL})`, filter: `blur(6px)` }"
                     ></div>
                     <img :src="imgL" alt="~~亲亲,图片找不到啦~~" />
-                  </section>
-                  <section class="section-src-sour">
-                    <div class="srcdiv">
-                      <span
-                        v-html="info.snippet"
-                        v-show="info.image_list.length < 3"
-                        class="src-span"
-                      ></span>
-                    </div>
-                    <!-- 当图片低于三张时的显示 -->
-                    <div class="new-source" v-show="info.image_list.length < 3">
-                      <span>{{ info.source }}</span>
-                      <span>{{ new Date(info.timestamp * 1000).toString().replace(/GMT\+0800 \(中国标准时间\)/, '') }}</span>
-                    </div>
-                  </section>
-                </article>
-                <!-- 当图片大于等于三张时显示 -->
-                <div v-show="info.image_list.length >= 3" class="new-source">
-                  <span>{{ info.source }}</span>
-                  <span>{{ new Date(info.timestamp * 1000).toString().replace(/GMT\+0800 \(中国标准时间\)/, '') }}</span>
-                </div>
-              </a>
+                  </a>
+                </section>
+
+                <section class="section-src-sour">
+                  <div class="srcdiv">
+                    <span
+                      v-html="info.snippet"
+                      v-show="info.image_list.length < 3"
+                      class="src-span"
+                    ></span>
+                  </div>
+                  <!-- 当图片低于三张时的显示 -->
+                  <div class="new-source" v-show="info.image_list.length < 3">
+                    <span>{{ info.source }}</span>
+                    <span>{{ changeDate(info.timestamp) }}</span>
+                  </div>
+                </section>
+              </article>
+              <!-- 当图片大于等于三张时显示 -->
+              <div v-show="info.image_list.length >= 3" class="new-source">
+                <span>{{ info.source }}</span>
+                <span>{{ changeDate(info.timestamp) }}</span>
+              </div>
             </li>
           </ul>
           <div class="pagina-block">
             <el-pagination
               layout="prev, pager, next"
-              :total="160"
+              :page-size="15"
+              :total="infoTotal.newslength"
               background
               @current-change="chooseYe"
               v-show="this.InfoData"
@@ -73,20 +77,22 @@
             <li v-for="(video, index) in VideoList" :key="index" class="pet-info-video-lis">
               <a :href="video.url" target="_blank">
                 <section class="secPic-2">
-
-                  <div class="opc-zhao" :style="{ backgroundImage: `url(${video.image_src})`, filter: `blur(6px)` }"></div>
+                  <div
+                    class="opc-zhao"
+                    :style="{ backgroundImage: `url(${video.image_src})`, filter: `blur(6px)` }"
+                  ></div>
 
                   <i class="el-icon-video-play fangxing" v-show="video.duration">
                     <span class="fontsize-span">{{ video.duration }}</span>
                   </i>
-                  <img :src="video.image_src" alt="~~亲亲,图片找不到啦~~" />
+                  <img :src="video.image_src" alt="~~亲亲,图片找不到啦~~" class="video-image" />
                 </section>
 
                 <span v-html="video.title" class="video-span"></span>
 
                 <section class="video-source">
                   <span>{{ video.site_name }}</span>
-                  <span>{{ new Date(video.VideoPubDate * 1000).toString().replace(/GMT\+0800 \(中国标准时间\)/, '') }}</span>
+                  <span>{{ changeDate(video.VideoPubDate) }}</span>
                 </section>
               </a>
             </li>
@@ -94,7 +100,8 @@
           <div class="pagina-block">
             <el-pagination
               layout="prev, pager, next"
-              :total="190"
+              :page-size="20"
+              :total="infoTotal.videolength"
               background
               @current-change="chooseVideoYe"
               v-show="this.VideoList"
@@ -117,36 +124,42 @@
             >
               <a :href="story.url" target="_blank">
                 <span v-html="story.title"></span>
-                <article class="news-style">
-                  <section v-for="(imgS, index) in story.image_list" :key="index" class="secPic">
+              </a>
+              <article class="news-style">
+                <section v-for="(imgS, index) in story.image_list" :key="index" class="secPic">
+                  <a :href="story.url" target="_blank">
                     <div
                       class="opc-zhao"
                       :style="{ backgroundImage: `url(${imgS})`, filter: `blur(6px)` }"
                     ></div>
                     <img :src="imgS" alt="~~亲亲,图片找不到啦~~" />
-                  </section>
-                  <section class="section-src-sour">
-                    <div class="srcdiv">
-                      <span v-html="story.snippet" class="src-span"></span>
-                    </div>
-                    <div class="new-source">
-                      <span>{{ story.source }}</span>
-                      <span>{{ new Date(story.timestamp * 1000).toString().replace(/GMT\+0800 \(中国标准时间\)/, '') }}</span>
-                    </div>
-                  </section>
-                </article>
-                <div class="storyTags">
-                <span v-for="(str,index) in JSON.parse(story.extend).tags" :key="index" class="storyt">
-                {{str}}
-                </span>
-                </div>
-              </a>
+                  </a>
+                </section>
+                <section class="section-src-sour">
+                  <div class="srcdiv">
+                    <span v-html="story.snippet" class="src-span"></span>
+                  </div>
+                  <div class="new-source">
+                    <span>{{ story.source }}</span>
+                    <!-- 把v-for的数据传给函数进行处理后返回 -->
+                    <span>{{ changeDate(story.timestamp) }}</span>
+                  </div>
+                </section>
+              </article>
+              <div class="storyTags">
+                <span
+                  v-for="(str, index) in JSON.parse(story.extend).tags"
+                  :key="index"
+                  class="storyt"
+                >{{ str }}</span>
+              </div>
             </li>
           </ul>
           <div class="pagina-block">
             <el-pagination
               layout="prev, pager, next"
-              :total="90"
+              :page-size="15"
+              :total="infoTotal.storylength"
               background
               @current-change="chooseStory"
               v-show="this.StoryList"
@@ -172,17 +185,27 @@ export default {
       VideoList: '',
       StoryList: '',
       activeName: 'news',
+      infoTotal: {
+        newslength: 0,
+        videolength: 0,
+        storylength: 0,
+      },
+      meiti: '',
+      recentTime: '',
     }
 
   },
   methods: {
-    datalist(pn, ps, force) {
+    newslist(pn, ps, force, cate, stime) {
       return axios.get("/v5/general/v1/web/search", {
         params: {
           q: "宠物",
           pn: pn,
           ps: ps,
           force: force,
+          cate: cate,
+          stime: stime, //限制时间
+          etime: 'now'
         },
 
       },
@@ -193,6 +216,7 @@ export default {
           (response) => {
             console.log("datalist接口请求成功", response);
             this.InfoData = response.data.data.data;
+            this.infoTotal.newslength = response.data.data.total
             this.rLoading.close()
             this.change = true
             if (response == undefined) {
@@ -220,13 +244,15 @@ export default {
           }
         );
     },
-    videolist(start_index) {
+    videolist(start_index, stime) {
       return axios.get("v5/general/v1/search/video", {
         params: {
           q: "宠物",
           start_index: start_index,
           rn: 20,
-          cate: 'video'
+          cate: 'video',
+          stime: stime, //限制时间
+          etime: 'now'
         },
       },
         this.change = false,
@@ -234,8 +260,9 @@ export default {
         //请求数据时打开遮罩
         .then(
           (response) => {
-            console.log("video接口请求成功", response.data.data.arrRes);
+            console.log("video接口请求成功", response);
             this.VideoList = response.data.data.arrRes;
+            this.infoTotal.videolength = response.data.data.total
             this.rLoading.close()
             this.change = true
             if (response == undefined) {
@@ -277,8 +304,9 @@ export default {
         //请求数据时打开遮罩
         .then(
           (response) => {
-            console.log("story接口请求成功", response.data.data.data);
+            console.log("story接口请求成功", response);
             this.StoryList = response.data.data.data;
+            this.infoTotal.storylength = response.data.data.total
             this.rLoading.close()
             this.change = true
             if (response == undefined) {
@@ -308,26 +336,127 @@ export default {
 
     //把异步函数变为同步不=函数 但api接口获取到数据后，再进行下一步的操作
     chooseYe(val) {
-      this.datalist(val, 15, 0)
+      this.newslist(val, 15, 0, this.meiti, this.recentTime)
       if (this.$refs.infoNews) {
         // 点击跳页时，滚动条回到顶部
         this.$refs.infoNews.scrollTop = '0px'
       }
     },
     chooseVideoYe(val) {
-      this.videolist((val - 1) * 20)
+      this.videolist((val - 1) * 20, this.recentTime)
       if (this.$refs.infoVideo) {
         // 点击跳页时，滚动条回到顶部
         this.$refs.infoVideo.scrollTop = '0px'
       }
     },
     chooseStory(val) {
-      this.storylist((val-1)*15,val)
-      if(this.$refs.infoStory) {
+      this.storylist((val - 1) * 15, val)
+      if (this.$refs.infoStory) {
         this.$refs.infoStory.scrollTop = '0px'
       }
-    }
+    },
+    //将秒转换为具体时间的函数
+    changeDate(dateTimeStamp) {
+      let result;
+      const second = 1000;
+      const minute = second * 60;
+      const hour = minute * 60;
+      const day = hour * 24;
+      const month = day * 30;
+      const now = new Date().getTime();
+      const diffValue = now - dateTimeStamp * 1000;
+      if (diffValue < 0) { return; }
+      const monthC = diffValue / month;
+      const weekC = diffValue / (7 * day);
+      const dayC = diffValue / day;
+      const hourC = diffValue / hour;
+      const minC = diffValue / minute;
+      const senC = diffValue / second;
+      if (monthC >= 1) {
+        result = "" + parseInt(monthC) + "月前";
+      }
+      else if (weekC >= 1) {
+        result = "" + parseInt(weekC) + "周前";
+      }
+      else if (dayC >= 1) {
+        result = "" + parseInt(dayC) + "天前";
+      }
+      else if (hourC >= 1) {
+        result = "" + parseInt(hourC) + "小时前";
+      }
+      else if (minC >= 1) {
+        result = "" + parseInt(minC) + "分钟前";
+      }
+      else if (senC >= 1) {
+        result = "" + parseInt(senC) + "秒前";
+      }
+      return result;
+    },
+    //接收四个不同的参数s
+     receiveMsg(msg) {
+      this.meiti = msg
+      if (this.meiti == 'CENTRAL') {
+         this.newslist(1, 15, 0, 'CENTRAL', this.recentTime) 
+      }
+      else if (this.meiti == 'LOCAL') {
+         this.newslist(1, 15, 0, 'LOCAL', this.recentTime) 
+      }
+      else if (this.meiti == 'BUSINESS') {
+         this.newslist(1, 15, 0, 'BUSINESS', this.recentTime)
+      }
+      else {
+        this.newslist(1, 15, 0, '', this.recentTime)
+      }
+      this.$refs.infoNews.scrollTop = '0px'
+    },
 
+    receiveTime(msg) {
+      this.recentTime = msg
+      if (this.recentTime == '24h') {
+        if (this.activeName == 'news') {
+          this.newslist(1, 15, 0, this.meiti, '24h')
+        }
+        else if (this.activeName == 'video') {
+          this.videolist(0, '24h')
+        }
+      }
+      else if (this.recentTime == '1w') {
+        if (this.activeName == 'news') {
+          this.newslist(1, 15, 0, this.meiti, '1w')
+        }
+        else if (this.activeName == 'video') {
+          this.videolist(0, '1w')
+        }
+
+      }
+      else if (this.recentTime == '1m') {
+        if (this.activeName == 'news') {
+          this.newslist(1, 15, 0, this.meiti, '1m')
+        }
+        else if (this.activeName == 'video') {
+          this.videolist(0, '1m')
+        }
+
+      }
+      else if (this.recentTime == '1y') {
+        if (this.activeName == 'news') {
+          this.newslist(1, 15, 0, this.meiti, '1y')
+        }
+        else if (this.activeName == 'video') {
+          this.videolist(0, '1y')
+        }
+      }
+      else {
+        if (this.activeName == 'news') {
+          this.newslist(1, 15, 0, this.meiti)
+        }
+        else if (this.activeName == 'video') {
+          this.videolist(0)
+        }
+      }
+       this.$refs.infoNews.scrollTop = '0px'
+       this.$refs.infoVideo.scrollTop = '0px'
+    }
   },
   //再进入路由之前修改baseurl的值
   beforeRouteEnter(to, from, next) {
@@ -339,13 +468,20 @@ export default {
     activeName: {
       handler() {
         if (this.activeName == 'news') {
-          this.datalist(1, 15, 0)
+          this.newslist(1, 15, 0)
+          this.$store.state.showMenu = true
+          this.$store.state.showMenu2 = true
+
         }
         else if (this.activeName == 'video') {
           this.videolist(0)
+          this.$store.state.showMenu = false
+          this.$store.state.showMenu2 = true
         }
         else if (this.activeName == 'goodstory') {
           this.storylist(0, 1)
+          this.$store.state.showMenu = false
+          this.$store.state.showMenu2 = false
         }
       },
       immediate: true,
@@ -376,6 +512,9 @@ export default {
   color: black;
   line-height: 50px;
   transform: translateX(30px);
+}
+.pet-info-news-uls .pet-info-news-lis a > span:hover {
+  text-decoration: underline;
 }
 .pet-info-news-uls .pet-info-news-lis .news-style {
   display: flex;
@@ -446,13 +585,16 @@ article .secPic-2 {
   color: rgb(132, 169, 207);
 }
 .new-source span:nth-child(2) {
-  margin-left: 30px;
+  margin-left: 50px;
 }
 .video-span {
   display: inline-block;
   font-size: 20px;
   font-weight: 700;
   color: #000;
+}
+.video-span:hover {
+  text-decoration: underline;
 }
 .video-source span {
   color: rgb(132, 169, 207);
@@ -471,7 +613,7 @@ article .secPic-2 {
   line-height: 30px;
   color: gray;
   /* opacity: 0.85; */
-  background-color: rgb(200, 205, 209,0.7);
+  background-color: rgb(200, 205, 209, 0.7);
   border-radius: 20px;
   z-index: 10;
   bottom: 5px;
@@ -485,14 +627,17 @@ article .secPic-2 {
 }
 .storyTags .storyt {
   display: inline-block;
-  border: 1px solid rgb(216,169,153);
-  background-color: rgb(246,238,235);
-  color: rgb(216,169,153) !important;
+  border: 1px solid rgb(216, 169, 153);
+  background-color: rgb(246, 238, 235);
+  color: rgb(216, 169, 153) !important;
   padding: 5px 15px;
   margin: 0px 10px 0 5px;
 }
 .storyTags {
   margin-top: 15px;
   margin-left: 20px;
+}
+.video-image:hover {
+  transform: scale(1.15);
 }
 </style>

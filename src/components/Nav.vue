@@ -37,7 +37,7 @@
         <el-dropdown>
           <a class="el-icon-arrow-down el-icon--right">设置</a>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item>更换头像</el-dropdown-item>
+            <!-- <el-dropdown-item>更换头像</el-dropdown-item> -->
             <el-dropdown-item @click.native='exit()'>退出登陆</el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
