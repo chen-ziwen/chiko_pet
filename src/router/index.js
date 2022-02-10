@@ -40,9 +40,13 @@ export default new VueRouter({
                 {   name : 'FirstPage',
                     path: '/FirstPage',
                     component: FirstPage,
-                    meta:{keepAlive:true},
+                    // meta:{keepAlive:true},
                     children: [
-        
+                        //跳转FirstPage时重定向到pet1，解决父路由选中无高亮问题
+                        {
+                            path: '/FirstPage',
+                            redirect:'/FirstPage/pet1'
+                           },
                         {
                         name : 'pet1',
                         path: 'pet1',

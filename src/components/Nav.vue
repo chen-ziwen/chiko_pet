@@ -12,7 +12,7 @@
           <!-- 这些到时候都改成路由形式,先写下来占个位置 -->
           <li>
             <!-- active-class 用来给路由设置选中时的样式 -->
-            <router-link active-class="nav-active" to="/FirstPage/pet1">首页</router-link>
+            <router-link active-class="nav-active" to="/FirstPage">首页</router-link>
           </li>
           <li>
             <router-link active-class="nav-active" to="/petMsg">宠物查询</router-link>
@@ -219,7 +219,7 @@
     width: 250px;
     transform: translate(35px,1.6vh);
     white-space: nowrap;
-    font: italic 700 30px "黑体";
+    font: italic 700 1.8em "黑体";
     text-shadow: 3px 3px 3px rgba(100, 100, 100, 1);
   }
 

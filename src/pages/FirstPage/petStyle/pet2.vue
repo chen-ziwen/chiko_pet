@@ -242,10 +242,6 @@
         this.$nextTick(() => {
           this.$refs.petCheck.innerHTML = this.petStory[index];
         });
-        // 用定时器也可以实现这个效果
-        // setTimeout(()=>{
-        // this.$refs.petCheck.innerHTML = this.petStory[index]
-        // },100)
       },
       prev() {
         this.panduan = !this.panduan;

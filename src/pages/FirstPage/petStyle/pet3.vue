@@ -61,7 +61,6 @@ export default {
         perspective: 1000px;
         
     } 
-   
      .xuan-zhuan {
          position: relative;
          width: 200px;

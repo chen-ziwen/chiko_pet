@@ -4,241 +4,314 @@
     <!-- 显示https图片加上上面一行 -->
     <pet-movie-head></pet-movie-head>
     <!-- 获取评分区间 -->
+     <pet-movie-dital></pet-movie-dital>
+    <el-tabs type="border-card" v-model="activeName" class="eltabs" v-show="this.$store.state.details">
+      <el-tab-pane name="hot">
+        <span slot="label" class="dontclick">
+          <i class="el-icon-sunny"></i> 近期热门宠物电影
+        </span>
 
-      <el-tabs type="border-card" v-model="activeName" class="eltabs">
-        <el-tab-pane name="hot">
-          <span slot="label" class="dontclick">
-            <i class="el-icon-sunny"></i> 近期热门宠物电影
-          </span>
+        <div class="hot-movie" v-show="!ViewChange">
+          <ul class="movie-uls">
+            <li v-for="(hot, index) in hotmovie" :key="index" class="movie-lis">
+              <!-- <a :href="hot.url" target="_blank"> -->
+                <div class="colum-box" @click="getId(hot.id)">
+                  <img :src="hot.cover" alt="图片丢失" />
+                  <span class="span-title">
+                    {{ hot.title }}
+                    <span class="span-rate">{{ hot.rate }}</span>
+                  </span>
+                </div>
+              <!-- </a> -->
+            </li>
+          </ul>
+          <a
+            href="javascript:;"
+            class="more"
+            @click.prevent="onload"
+            v-show="change"
+            >加载更多</a
+          >
+        </div>
 
-          <div class="hot-movie" v-show="!ViewChange">
-            <ul class="movie-uls">
-              <li v-for="(hot, index) in hotmovie" :key="index" class="movie-lis">
-                <a :href="hot.url" target="_blank">
-                  <div class="colum-box">
-                    <img :src="hot.cover" alt="图片丢失" />
-                    <span class="span-title">
-                      {{ hot.title }}
-                      <span class="span-rate">{{ hot.rate }}</span>
-                    </span>
-                  </div>
-                </a>
-              </li>
-            </ul>
-            <a href="javascript:;" class="more" @click.prevent="onload" v-show="change">加载更多</a>
-          </div>
+        <div class="hot-movie" v-show="ViewChange">
+          <ul class="movie-uls-2">
+            <li
+              v-for="(hot, index) in hotmovie"
+              :key="index"
+              class="movie-lis-2"
+            >
+              <a :href="hot.url" target="_blank">
+                <div class="row-box">
+                  <img :src="hot.cover" alt="图片丢失" />
+                  <div class="text-total">
+                    <span class="span-title">{{ hot.title }}</span>
+                    <div class="rate">
+                      <span class="Allstar">
+                        <el-rate
+                          v-show="hot.rate"
+                          :value="Number((hot.rate / 2).toFixed(1))"
+                          disabled
+                          text-color="#ff9900"
+                        ></el-rate>
 
-          <div class="hot-movie" v-show="ViewChange">
-            <ul class="movie-uls-2">
-              <li v-for="(hot, index) in hotmovie" :key="index" class="movie-lis-2">
-                <a :href="hot.url" target="_blank">
-                  <div class="row-box">
-                    <img :src="hot.cover" alt="图片丢失" />
-                    <div class="text-total">
-                      <span class="span-title">{{ hot.title }}</span>
-                      <div class="rate">
-                        <span class="Allstar">
-                         
-                            <el-rate
-                              v-show="hot.rate"
-                              :value ="Number((hot.rate/2).toFixed(1))"
-                              disabled
-                              text-color="#ff9900"
-                            ></el-rate>
-                     
-                          <span class="rating">{{ hot.rate }}</span>
-                        </span>
-                      </div>
-                      <p class="cast">
-                        <span>导演 : {{ hot.directors.join(' / ') }}</span>
-                        <span>演员 : {{ hot.casts.join(' / ') }}</span>
-                      </p>
+                        <span class="rating">{{ hot.rate }}</span>
+                      </span>
                     </div>
+                    <p class="cast">
+                      <span>导演 : {{ hot.directors.join(" / ") }}</span>
+                      <span>演员 : {{ hot.casts.join(" / ") }}</span>
+                    </p>
                   </div>
-                </a>
-              </li>
-            </ul>
-            <a href="javascript:;" class="more" @click.prevent="onload" v-show="change">加载更多</a>
-          </div>
-        </el-tab-pane>
+                </div>
+              </a>
+            </li>
+          </ul>
+          <a
+            href="javascript:;"
+            class="more"
+            @click.prevent="onload"
+            v-show="change"
+            >加载更多</a
+          >
+        </div>
+      </el-tab-pane>
 
-        <el-tab-pane name="sign">
-          <span slot="label" class="dontclick">
-            <i class="el-icon-star-on"></i> 标记最多宠物电影
-          </span>
+      <el-tab-pane name="sign">
+        <span slot="label" class="dontclick">
+          <i class="el-icon-star-on"></i> 标记最多宠物电影
+        </span>
 
-          <div class="sign-movie" v-show="!ViewChange">
-            <ul class="movie-uls">
-              <li v-for="(sign, index) in signmovie" :key="index" class="movie-lis">
-                <a :href="sign.url" target="_blank">
-                  <div class="colum-box">
-                    <img :src="sign.cover" alt="图片丢失" />
-                    <span class="span-title">
-                      {{ sign.title }}
-                      <span class="span-rate">{{ sign.rate }}</span>
-                    </span>
-                  </div>
-                </a>
-              </li>
-            </ul>
-            <a href="javascript:;" class="more" @click.prevent="onload" v-show="change">加载更多</a>
-          </div>
+        <div class="sign-movie" v-show="!ViewChange">
+          <ul class="movie-uls">
+            <li
+              v-for="(sign, index) in signmovie"
+              :key="index"
+              class="movie-lis"
+            >
+              <a :href="sign.url" target="_blank">
+                <div class="colum-box">
+                  <img :src="sign.cover" alt="图片丢失" />
+                  <span class="span-title">
+                    {{ sign.title }}
+                    <span class="span-rate">{{ sign.rate }}</span>
+                  </span>
+                </div>
+              </a>
+            </li>
+          </ul>
+          <a
+            href="javascript:;"
+            class="more"
+            @click.prevent="onload"
+            v-show="change"
+            >加载更多</a
+          >
+        </div>
 
-          <div class="sign-movie" v-show="ViewChange">
-            <ul class="movie-uls-2">
-              <li v-for="(sign, index) in signmovie" :key="index" class="movie-lis-2">
-                <a :href="sign.url" target="_blank">
-                  <div class="row-box">
-                    <img :src="sign.cover" alt="图片丢失" />
-                    <div class="text-total">
-                      <span class="span-title">{{ sign.title }}</span>
-                      <div class="rate">
-                        <span class="Allstar">
-                          
-                            <el-rate
-                              v-show="sign.rate"
-                              :value ="Number((sign.rate/2).toFixed(1))"
-                              disabled
-                              text-color="#ff9900"
-                            ></el-rate>
-                        
-                          <span class="rating">{{ sign.rate }}</span>
-                        </span>
-                      </div>
-                      <p class="cast">
-                        <span>导演 : {{ sign.directors.join(' / ') }}</span>
-                        <span>演员 : {{ sign.casts.join(' / ') }}</span>
-                      </p>
+        <div class="sign-movie" v-show="ViewChange">
+          <ul class="movie-uls-2">
+            <li
+              v-for="(sign, index) in signmovie"
+              :key="index"
+              class="movie-lis-2"
+            >
+              <a :href="sign.url" target="_blank">
+                <div class="row-box">
+                  <img :src="sign.cover" alt="图片丢失" />
+                  <div class="text-total">
+                    <span class="span-title">{{ sign.title }}</span>
+                    <div class="rate">
+                      <span class="Allstar">
+                        <el-rate
+                          v-show="sign.rate"
+                          :value="Number((sign.rate / 2).toFixed(1))"
+                          disabled
+                          text-color="#ff9900"
+                        ></el-rate>
+
+                        <span class="rating">{{ sign.rate }}</span>
+                      </span>
                     </div>
+                    <p class="cast">
+                      <span>导演 : {{ sign.directors.join(" / ") }}</span>
+                      <span>演员 : {{ sign.casts.join(" / ") }}</span>
+                    </p>
                   </div>
-                </a>
-              </li>
-            </ul>
-            <a href="javascript:;" class="more" @click.prevent="onload" v-show="change">加载更多</a>
-          </div>
-        </el-tab-pane>
+                </div>
+              </a>
+            </li>
+          </ul>
+          <a
+            href="javascript:;"
+            class="more"
+            @click.prevent="onload"
+            v-show="change"
+            >加载更多</a
+          >
+        </div>
+      </el-tab-pane>
 
-        <el-tab-pane name="score">
-          <span slot="label" class="dontclick">
-            <i class="el-icon-medal-1"></i> 评分最高宠物电影
-          </span>
+      <el-tab-pane name="score">
+        <span slot="label" class="dontclick">
+          <i class="el-icon-medal-1"></i> 评分最高宠物电影
+        </span>
 
-          <div class="score-movie" v-show="!ViewChange">
-            <ul class="movie-uls">
-              <li v-for="(score, index) in scoremovie" :key="index" class="movie-lis">
-                <a :href="score.url" target="_blank">
-                  <div class="colum-box">
-                    <img :src="score.cover" alt="图片丢失" />
-                    <span class="span-title">
-                      {{ score.title }}
-                      <span class="span-rate">{{ score.rate }}</span>
-                    </span>
-                  </div>
-                </a>
-              </li>
-            </ul>
-            <a href="javascript:;" class="more" @click.prevent="onload" v-show="change">加载更多</a>
-          </div>
+        <div class="score-movie" v-show="!ViewChange">
+          <ul class="movie-uls">
+            <li
+              v-for="(score, index) in scoremovie"
+              :key="index"
+              class="movie-lis"
+            >
+              <a :href="score.url" target="_blank">
+                <div class="colum-box">
+                  <img :src="score.cover" alt="图片丢失" />
+                  <span class="span-title">
+                    {{ score.title }}
+                    <span class="span-rate">{{ score.rate }}</span>
+                  </span>
+                </div>
+              </a>
+            </li>
+          </ul>
+          <a
+            href="javascript:;"
+            class="more"
+            @click.prevent="onload"
+            v-show="change"
+            >加载更多</a
+          >
+        </div>
 
-          <div class="score-movie" v-show="ViewChange">
-            <ul class="movie-uls-2">
-              <li v-for="(score, index) in scoremovie" :key="index" class="movie-lis-2">
-                <a :href="score.url" target="_blank">
-                  <div class="row-box">
-                    <img :src="score.cover" alt="图片丢失" />
-                    <div class="text-total">
-                      <span class="span-title">{{ score.title }}</span>
-                      <div class="rate">
-                        <span class="Allstar">
-                         
-                            <el-rate
-                             v-show="score.rate"
-                              :value="Number((score.rate/2).toFixed(1))"
-                              disabled
-                              text-color="#ff9900"
-                            ></el-rate>
-                        
-                          <span class="rating">{{ score.rate }}</span>
-                        </span>
-                      </div>
-                      <p class="cast">
-                        <span>导演 : {{ score.directors.join(' / ') }}</span>
-                        <span>演员 : {{ score.casts.join(' / ') }}</span>
-                      </p>
+        <div class="score-movie" v-show="ViewChange">
+          <ul class="movie-uls-2">
+            <li
+              v-for="(score, index) in scoremovie"
+              :key="index"
+              class="movie-lis-2"
+            >
+              <a :href="score.url" target="_blank">
+                <div class="row-box">
+                  <img :src="score.cover" alt="图片丢失" />
+                  <div class="text-total">
+                    <span class="span-title">{{ score.title }}</span>
+                    <div class="rate">
+                      <span class="Allstar">
+                        <el-rate
+                          v-show="score.rate"
+                          :value="Number((score.rate / 2).toFixed(1))"
+                          disabled
+                          text-color="#ff9900"
+                        ></el-rate>
+
+                        <span class="rating">{{ score.rate }}</span>
+                      </span>
                     </div>
+                    <p class="cast">
+                      <span>导演 : {{ score.directors.join(" / ") }}</span>
+                      <span>演员 : {{ score.casts.join(" / ") }}</span>
+                    </p>
                   </div>
-                </a>
-              </li>
-            </ul>
-            <a href="javascript:;" class="more" @click.prevent="onload" v-show="change">加载更多</a>
-          </div>
-        </el-tab-pane>
+                </div>
+              </a>
+            </li>
+          </ul>
+          <a
+            href="javascript:;"
+            class="more"
+            @click.prevent="onload"
+            v-show="change"
+            >加载更多</a
+          >
+        </div>
+      </el-tab-pane>
 
-        <el-tab-pane name="recent">
-          <span slot="label" class="dontclick">
-            <i class="el-icon-upload"></i> 近期上映宠物电影
-          </span>
+      <el-tab-pane name="recent">
+        <span slot="label" class="dontclick">
+          <i class="el-icon-upload"></i> 近期上映宠物电影
+        </span>
 
-          <div class="recent-movie" v-show="!ViewChange">
-            <ul class="movie-uls">
-              <li v-for="(recent, index) in recentmovie" :key="index" class="movie-lis">
-                <a :href="recent.url" target="_blank">
-                  <div class="colum-box">
-                    <img :src="recent.cover" alt="图片丢失" />
-                    <span class="span-title">
-                      {{ recent.title }}
-                      <span class="span-rate">{{ recent.rate }}</span>
-                    </span>
-                  </div>
-                </a>
-              </li>
-            </ul>
-            <a href="javascript:;" class="more" @click.prevent="onload" v-show="change">加载更多</a>
-          </div>
+        <div class="recent-movie" v-show="!ViewChange">
+          <ul class="movie-uls">
+            <li
+              v-for="(recent, index) in recentmovie"
+              :key="index"
+              class="movie-lis"
+            >
+              <a :href="recent.url" target="_blank">
+                <div class="colum-box">
+                  <img :src="recent.cover" alt="图片丢失" />
+                  <span class="span-title">
+                    {{ recent.title }}
+                    <span class="span-rate">{{ recent.rate }}</span>
+                  </span>
+                </div>
+              </a>
+            </li>
+          </ul>
+          <a
+            href="javascript:;"
+            class="more"
+            @click.prevent="onload"
+            v-show="change"
+            >加载更多</a
+          >
+        </div>
 
-          <div class="recent-movie" v-show="ViewChange">
-            <ul class="movie-uls-2">
-              <li v-for="(recent, index) in recentmovie" :key="index" class="movie-lis-2">
-                <a :href="recent.url" target="_blank">
-                  <div class="row-box">
-                    <img :src="recent.cover" alt="图片丢失" />
-                    <div class="text-total">
-                      <span class="span-title">{{ recent.title }}</span>
-                      <div class="rate">
-                        <span class="Allstar">
-                      
-                             <el-rate
-                             v-show="recent.rate"
-                              :value="Number((recent.rate/2).toFixed(1))"
-                              disabled
-                              text-color="#ff9900"
-                            ></el-rate>
-                      
-                          <span class="rating">{{ recent.rate }}</span>
-                        </span>
-                      </div>
-                      <p class="cast">
-                        <span>导演 : {{ recent.directors.join(' / ') }}</span>
-                        <span>演员 : {{ recent.casts.join(' / ') }}</span>
-                      </p>
+        <div class="recent-movie" v-show="ViewChange">
+          <ul class="movie-uls-2">
+            <li
+              v-for="(recent, index) in recentmovie"
+              :key="index"
+              class="movie-lis-2"
+            >
+              <a :href="recent.url" target="_blank">
+                <div class="row-box">
+                  <img :src="recent.cover" alt="图片丢失" />
+                  <div class="text-total">
+                    <span class="span-title">{{ recent.title }}</span>
+                    <div class="rate">
+                      <span class="Allstar">
+                        <el-rate
+                          v-show="recent.rate"
+                          :value="Number((recent.rate / 2).toFixed(1))"
+                          disabled
+                          text-color="#ff9900"
+                        ></el-rate>
+
+                        <span class="rating">{{ recent.rate }}</span>
+                      </span>
                     </div>
+                    <p class="cast">
+                      <span>导演 : {{ recent.directors.join(" / ") }}</span>
+                      <span>演员 : {{ recent.casts.join(" / ") }}</span>
+                    </p>
                   </div>
-                </a>
-              </li>
-            </ul>
-            <a href="javascript:;" class="more" @click.prevent="onload" v-show="change">加载更多</a>
-          </div>
-        </el-tab-pane>
-      </el-tabs>
-    </article>
+                </div>
+              </a>
+            </li>
+          </ul>
+          <a
+            href="javascript:;"
+            class="more"
+            @click.prevent="onload"
+            v-show="change"
+            >加载更多</a
+          >
+        </div>
+      </el-tab-pane>
+    </el-tabs>
+  </article>
 </template>
 
 <script>
 import PetMovieHead from "@/components/petMovieTotal/PetMovieHead.vue";
+import PetMovieDital from "@/components/petMovieTotal/PetMovieDital.vue";
 import axios from "axios";
 export default {
   name: "petMovie",
-  components: { PetMovieHead },
+  components: { PetMovieHead,PetMovieDital },
   data() {
     return {
       dataR: [],
@@ -249,54 +322,62 @@ export default {
       activeName: "hot",
       // range: "0,10", //电影评分
       start: { hot: 0, recent: 0, sign: 0, score: 0 }, //展示电影数量
-      rLoading: '',
+      rLoading: "",
       change: true,
     };
   },
   methods: {
     movie(movie, range, start) {
-      return axios.get("/j/new_search_subjects", {
-        params: {
-          tags: "宠物",
-          sort: movie,
-          range: range,
-          start: start,
-        },
-
-      },
-        this.change = false,
-        this.rLoading = this.openLoading())
-        //请求数据时打开遮罩
-        .then(
-          (response) => {
-            console.log("movie接口请求成功", response);
-            this.dataR = response.data.data;
-            this.rLoading.close()
-            this.change = true
-            if (response == undefined) {
-              this.$message({
-                // showClose: true,
-                message:
-                  " 抱歉，请求超时！",
-                type: "warning",
-                duration: 3000,
-                showClose: true,
-              });
-            } else {
-              this.$message({
-                // showClose: true,
-                message: " 已为您找到如下信息！",
-                type: "success",
-                duration: 2000,
-                showClose: true,
-              });
+      return (
+        axios.get(
+            "/j/new_search_subjects",
+            {
+              params: {
+                tags: "宠物",
+                sort: movie,
+                range: range,
+                start: start,
+              },
+            },
+            (this.change = false),
+            (this.rLoading = this.openLoading())
+          )
+          //请求数据时打开遮罩
+          .then(
+            (response) => {
+              console.log("movie接口请求成功", response);
+              this.dataR = response.data.data;
+              this.rLoading.close();
+              this.change = true;
+              if (response == undefined) {
+                this.$message({
+                  // showClose: true,
+                  message: " 抱歉，请求超时！",
+                  type: "warning",
+                  duration: 3000,
+                  showClose: true,
+                });
+              } else {
+                this.$message({
+                  // showClose: true,
+                  message: " 已为您找到如下信息！",
+                  type: "success",
+                  duration: 2000,
+                  showClose: true,
+                });
+              }
+            },
+            (error) => {
+              console.log("请求失败了", error.response);
+              //请求后更新List的数据
             }
-          },
-          (error) => {
-            console.log("请求失败了", error.response);
-            //请求后更新List的数据
-          }
-        );
+          )
+      );
+    },
+    
+    getId(id){
+      this.$store.state.id = id
+      console.log('我是电影id',id)
     },
     // 写成同步的axiso请求
     //每点击一次 多加载20条电影数据
@@ -322,8 +403,7 @@ export default {
   },
   watch: {
     //因为同步操作先执行 这样永远只能拿到上一次的操作 只能拿到上一次的数据 处理完问题就解决
-    
-    activeName: {    
+    activeName: {
       async handler() {
         if (this.activeName == "hot") {
           this.start.hot = 0;
@@ -373,22 +453,25 @@ export default {
         this.recentmovie = this.dataR;
         console.log("recent触发", this.recentmovie);
       }
-    }
-
+    },
   },
   computed: {
     changeRange() {
-      return this.$store.state.mrange
+      return this.$store.state.mrange;
     },
     ViewChange() {
-      return this.$store.state.valueView
-    }
+      return this.$store.state.valueView;
+    },
   },
-  beforeRouteEnter(to,from,next){
-     axios.defaults.baseURL = '/api',
-     console.log('movie路由触发了')
-     next() 
-   }
+  beforeRouteEnter(to, from, next) {
+    axios.defaults.baseURL = "/api",
+    console.log("movie路由触发了");
+    next();
+  },
+  // mounted(){
+  //   console.log('hahha')
+  //   this.test('6873143')
+  // }
 };
 </script>
 
@@ -480,7 +563,7 @@ export default {
 .movie-lis-2 img {
   display: inline-block;
   width: 170px;
-  height: 210px;
+  height: 230px;
 }
 
 .span-rate {
@@ -495,7 +578,7 @@ export default {
   padding-left: 5px;
 }
 /* 样式穿透 */
- ::v-deep .el-rate__icon{
+::v-deep .el-rate__icon {
   font-size: 20px;
 }
 

@@ -11,7 +11,7 @@
           <ul class="pet-info-news-uls">
             <li
               v-for="(info, index) in InfoData"
-              :key="index"
+              :key="index+info.timestamp"
               class="pet-info-news-lis"
               :style="{ borderBottom: `3px solid ${changeColor}` }"
             >
@@ -44,6 +44,7 @@
                   <!-- 当图片低于三张时的显示 -->
                   <div class="new-source" v-show="info.image_list.length < 3">
                     <span>{{ info.source }}</span>
+                  <!-- 把v-for中的值传给changeDate函数使用 -->
                     <span>{{ changeDate(info.timestamp) }}</span>
                   </div>
                 </section>
@@ -58,7 +59,7 @@
           <div class="pagina-block">
             <el-pagination
               layout="prev, pager, next"
-              :page-size="15"
+              :page-size="10"
               :total="infoTotal.newslength"
               background
               @current-change="chooseYe"
@@ -74,7 +75,7 @@
         </span>
         <article class="pet-info-video" ref="infoVideo">
           <ul class="pet-info-video-uls">
-            <li v-for="(video, index) in VideoList" :key="index" class="pet-info-video-lis">
+            <li v-for="(video, index) in VideoList" :key="index+video.VideoPubDate" class="pet-info-video-lis">
               <a :href="video.url" target="_blank">
                 <section class="secPic-2">
                   <div
@@ -118,7 +119,7 @@
           <ul class="pet-info-news-uls">
             <li
               v-for="(story, index) in StoryList"
-              :key="index"
+              :key="index+story.timestamp"
               class="pet-info-news-lis"
               :style="{ borderBottom: `3px solid ${changeColor}` }"
             >
@@ -149,7 +150,7 @@
               <div class="storyTags">
                 <span
                   v-for="(str, index) in JSON.parse(story.extend).tags"
-                  :key="index"
+                  :key="index+story.timestamp"
                   class="storyt"
                 >{{ str }}</span>
               </div>
@@ -219,27 +220,26 @@ export default {
             this.infoTotal.newslength = response.data.data.total
             this.rLoading.close()
             this.change = true
-            if (response == undefined) {
-              this.$message({
-                // showClose: true,
-                message:
-                  " 抱歉，请求超时！",
-                type: "warning",
-                duration: 3000,
-                showClose: true,
-              });
-            } else {
-              this.$message({
+            if (response != undefined) {
+               this.$message({
                 // showClose: true,
                 message: " 已为您找到如下信息！",
                 type: "success",
                 duration: 2000,
                 showClose: true,
               });
-            }
+            } 
           },
           (error) => {
             console.log("请求失败了", error.response);
+             this.$message({
+                // showClose: true,
+                message:
+                  " 抱歉,请求失败！",
+                type: "warning",
+                duration: 3000,
+                showClose: true,
+              });
             //请求后更新List的数据
           }
         );
@@ -265,26 +265,26 @@ export default {
             this.infoTotal.videolength = response.data.data.total
             this.rLoading.close()
             this.change = true
-            if (response == undefined) {
-              this.$message({
-                message:
-                  " 抱歉，请求超时！",
-                type: "warning",
-                duration: 3000,
-                showClose: true,
-              });
-            } else {
-              this.$message({
+            if (response != undefined) {
+               this.$message({
                 // showClose: true,
                 message: " 已为您找到如下信息！",
                 type: "success",
                 duration: 2000,
                 showClose: true,
               });
-            }
+            } 
           },
           (error) => {
             console.log("请求失败了", error.response);
+             this.$message({
+                // showClose: true,
+                message:
+                  " 抱歉,请求失败！",
+                type: "warning",
+                duration: 3000,
+                showClose: true,
+              });
             //请求后更新List的数据
           }
         );
@@ -309,26 +309,26 @@ export default {
             this.infoTotal.storylength = response.data.data.total
             this.rLoading.close()
             this.change = true
-            if (response == undefined) {
-              this.$message({
-                message:
-                  " 抱歉，请求超时！",
-                type: "warning",
-                duration: 3000,
-                showClose: true,
-              });
-            } else {
-              this.$message({
+           if (response != undefined) {
+               this.$message({
                 // showClose: true,
                 message: " 已为您找到如下信息！",
                 type: "success",
                 duration: 2000,
                 showClose: true,
               });
-            }
+            } 
           },
           (error) => {
             console.log("请求失败了", error.response);
+             this.$message({
+                // showClose: true,
+                message:
+                  " 抱歉,请求失败！",
+                type: "warning",
+                duration: 3000,
+                showClose: true,
+              });
             //请求后更新List的数据
           }
         );
@@ -336,7 +336,7 @@ export default {
 
     //把异步函数变为同步不=函数 但api接口获取到数据后，再进行下一步的操作
     chooseYe(val) {
-      this.newslist(val, 15, 0, this.meiti, this.recentTime)
+      this.newslist(val, 10, 0, this.meiti, this.recentTime)
       if (this.$refs.infoNews) {
         // 点击跳页时，滚动条回到顶部
         this.$refs.infoNews.scrollTop = '0px'
@@ -345,7 +345,6 @@ export default {
     chooseVideoYe(val) {
       this.videolist((val - 1) * 20, this.recentTime)
       if (this.$refs.infoVideo) {
-        // 点击跳页时，滚动条回到顶部
         this.$refs.infoVideo.scrollTop = '0px'
       }
     },
@@ -373,22 +372,22 @@ export default {
       const minC = diffValue / minute;
       const senC = diffValue / second;
       if (monthC >= 1) {
-        result = "" + parseInt(monthC) + "月前";
+        result =  parseInt(monthC) + "月前";
       }
       else if (weekC >= 1) {
-        result = "" + parseInt(weekC) + "周前";
+        result =  parseInt(weekC) + "周前";
       }
       else if (dayC >= 1) {
-        result = "" + parseInt(dayC) + "天前";
+        result =  parseInt(dayC) + "天前";
       }
       else if (hourC >= 1) {
-        result = "" + parseInt(hourC) + "小时前";
+        result =  parseInt(hourC) + "小时前";
       }
       else if (minC >= 1) {
-        result = "" + parseInt(minC) + "分钟前";
+        result =  parseInt(minC) + "分钟前";
       }
       else if (senC >= 1) {
-        result = "" + parseInt(senC) + "秒前";
+        result =  parseInt(senC) + "秒前";
       }
       return result;
     },
@@ -396,16 +395,16 @@ export default {
      receiveMsg(msg) {
       this.meiti = msg
       if (this.meiti == 'CENTRAL') {
-         this.newslist(1, 15, 0, 'CENTRAL', this.recentTime) 
+         this.newslist(1, 10, 0, 'CENTRAL', this.recentTime) 
       }
       else if (this.meiti == 'LOCAL') {
-         this.newslist(1, 15, 0, 'LOCAL', this.recentTime) 
+         this.newslist(1, 10, 0, 'LOCAL', this.recentTime) 
       }
       else if (this.meiti == 'BUSINESS') {
-         this.newslist(1, 15, 0, 'BUSINESS', this.recentTime)
+         this.newslist(1, 10, 0, 'BUSINESS', this.recentTime)
       }
       else {
-        this.newslist(1, 15, 0, '', this.recentTime)
+        this.newslist(1, 10, 0, '', this.recentTime)
       }
       this.$refs.infoNews.scrollTop = '0px'
     },
@@ -414,7 +413,7 @@ export default {
       this.recentTime = msg
       if (this.recentTime == '24h') {
         if (this.activeName == 'news') {
-          this.newslist(1, 15, 0, this.meiti, '24h')
+          this.newslist(1, 10, 0, this.meiti, '24h')
         }
         else if (this.activeName == 'video') {
           this.videolist(0, '24h')
@@ -422,7 +421,7 @@ export default {
       }
       else if (this.recentTime == '1w') {
         if (this.activeName == 'news') {
-          this.newslist(1, 15, 0, this.meiti, '1w')
+          this.newslist(1, 10, 0, this.meiti, '1w')
         }
         else if (this.activeName == 'video') {
           this.videolist(0, '1w')
@@ -431,7 +430,7 @@ export default {
       }
       else if (this.recentTime == '1m') {
         if (this.activeName == 'news') {
-          this.newslist(1, 15, 0, this.meiti, '1m')
+          this.newslist(1, 10, 0, this.meiti, '1m')
         }
         else if (this.activeName == 'video') {
           this.videolist(0, '1m')
@@ -440,7 +439,7 @@ export default {
       }
       else if (this.recentTime == '1y') {
         if (this.activeName == 'news') {
-          this.newslist(1, 15, 0, this.meiti, '1y')
+          this.newslist(1, 10, 0, this.meiti, '1y')
         }
         else if (this.activeName == 'video') {
           this.videolist(0, '1y')
@@ -448,7 +447,7 @@ export default {
       }
       else {
         if (this.activeName == 'news') {
-          this.newslist(1, 15, 0, this.meiti)
+          this.newslist(1, 10, 0, this.meiti)
         }
         else if (this.activeName == 'video') {
           this.videolist(0)
@@ -461,14 +460,14 @@ export default {
   //再进入路由之前修改baseurl的值
   beforeRouteEnter(to, from, next) {
     axios.defaults.baseURL = '/info', //解决跨域问题
-      // console.log('info路由触发了')
+      console.log('info路由触发了')
       next() //必须写，不写跳转不了 ，可以重新在next()中重新指定跳转目的
   },
   watch: {
     activeName: {
       handler() {
         if (this.activeName == 'news') {
-          this.newslist(1, 15, 0)
+          this.newslist(1, 10, 0)
           this.$store.state.showMenu = true
           this.$store.state.showMenu2 = true
 

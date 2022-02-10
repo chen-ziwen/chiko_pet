@@ -72,7 +72,7 @@
             this.shuju.address = ''
             this.shuju.describe = ''
             this.shuju.id = ''
-          },200)  
+          },300)  
           }
         // 将对象转换成JSON格式存入localStorage
         // 从localstorage中取出数据转换成对象格式

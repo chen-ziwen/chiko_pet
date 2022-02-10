@@ -12,6 +12,8 @@ export const store = new Vuex.Store({
         valueView : false,
         showMenu: true,
         showMenu2:true,
+        id:'',
+        details:true
         
     },
     actions: {

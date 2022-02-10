@@ -36,16 +36,7 @@ export default {
 						//response.data 拿到接口里的所有内容
             console.log('请求成功了',response)
             this.$bus.$emit('sendMsgs',response.data.newslist)
-            if(response.data.newslist == undefined) {
-             this.$message({
-                        // showClose: true,
-                        message: ' 抱歉，没有找到该宠物的信息。请确认是否输入正确的宠物名称！',
-                        type: 'warning',
-                        duration : 3000,
-                        showClose: true,
-                    });
-            }
-            else {
+            if(response.data.newslist != undefined) {
               this.$message({
                         // showClose: true,
                         message: ' 已为您找到如下信息！',
@@ -53,7 +44,8 @@ export default {
                         duration : 2000,
                         showClose: true,
                     });
-            }
+                    }
+           
            //杜宾、贵宾、哈士奇、苏格兰折耳猫、卡斯罗犬、大丹犬、暹罗猫、阿拉斯加雪橇犬、美国可卡犬、金毛犬、布偶猫
 						//请求成功后更新List的数据
 						
@@ -61,6 +53,13 @@ export default {
 					},
 					error => {
             console.log('请求失败了',error.response)
+            this.$message({
+                        // showClose: true,
+                        message: ' 抱歉，没有找到该宠物的信息。请确认是否输入正确的宠物名称！',
+                        type: 'warning',
+                        duration : 3000,
+                        showClose: true,
+                    });
 						//请求后更新List的数据
 					}
 				)
