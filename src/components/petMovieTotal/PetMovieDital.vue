@@ -1,5 +1,10 @@
 <template>
-  <article class="movie-detail" v-show="!this.$store.state.details">
+<article v-show="!this.$store.state.details">
+<el-button size="small" icon="el-icon-arrow-left" @click="prev()">
+返回上一级</el-button>
+  <section class="movie-detail" >
+  <section class="movie-detai-section">
+    
     <h1 class="title-span">
       <span >{{ details.data[0].name }}</span>
       <span v-show="details.year">({{ details.year }})</span>
@@ -21,10 +26,17 @@
       </div>
     </section>
     <!-- 我是电影详情 -->
-     <footer>
-       {{ details.data[0].description }}
+     <footer class="footer">
+        <p>{{details.data[0].name}}剧情简介······</p>
+       <span>{{ details.data[0].description }}</span>
+        <a
+            :href="this.$store.state.url" target="_blank"
+            class="more"
+            >查看更多详细信息</a
+          >
      </footer>
-    
+    </section>
+  </section>
   </article>
 </template>
 
@@ -59,8 +71,9 @@ export default {
     test(id) {
       return (
         axios.get(
-          //这个接口来自github 可以请求 但是被限制 大概间隔20秒可以成功申请一次
-          'https://api.wmdb.tv/movie/api',
+          //这个接口来自github 可以请求 但是被限制 间隔30秒可以成功申请一次 一天限制100次
+          'https://movie.querydata.org/api',
+          // 'https://api.wmdb.tv/movie/api',
           {
             params: {
               id: id
@@ -90,7 +103,7 @@ export default {
             (error) => {
               console.log("请求失败了", error.response);
               this.$message({
-                  message: " 抱歉,今日接口请求次数已达上限！",
+                  message: " 抱歉,接口请求次数过于频繁,请稍候尝试！",
                   type: "warning",
                   duration: 3000,
                   showClose: true,
@@ -99,6 +112,21 @@ export default {
             }
           )
       );
+    },
+    img(doubanId){
+      return axios.get(
+         'https://api.wmdb.tv/movie/api/generateimage',
+         {
+           params:{
+             doubanId:doubanId,
+             lang :'Cn'
+           }
+         }).then((response)=>{
+            console.log("img接口请求成功", response);
+         })
+    },
+    prev(){
+      this.$store.state.details = true
     },
 
     //处理接口中导演,编剧,演员的数据
@@ -121,7 +149,7 @@ export default {
   watch: {
     '$store.state.id': {
       async handler() {
-        this.test(this.$store.state.id)
+        this.test(this.$store.state.id);
       }
     }
   }
@@ -132,9 +160,19 @@ export default {
 
 <style scoped>
 .movie-detail {
-  height: calc(82vh - 70px);
+  height: calc(82vh - 102px);
   background-color: white;
   overflow: auto;
+}
+.movie-detai-section{
+ font-size:18px;
+ font-weight:700;
+ position:relative;
+  left:50%;
+  display:block;
+  width:80%;
+  transform: translateX(-50%);
+  letter-spacing:2px;
 }
 .movie-img {
   display: inline-block;
@@ -150,11 +188,49 @@ export default {
 .movie-introdue ul li {
  padding-bottom: 15px;
 }
-span {
-  display:inline-block;
-}
+
 .title-span {
   font:normal  700 30px '黑体';
   text-align:center;
+}
+.footer p {
+  text-align: center;
+  margin:30px 0px;
+  color:rgba(0,119,34);
+  font-size: 28px;
+  font-weight:700;
+}
+.footer span {
+  padding-bottom: 50px;
+}
+
+.title-span:nth-child(1) {
+  margin:30px 0px;
+  font-size:30px;
+  color:rgba(73,73,73)
+}
+.title-span:nth-child(2) {
+  color:rgba(136,136,136)
+}
+ul li span:nth-child(1){
+  color:rgba(102,102,102)
+}
+.more {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 35px 0px 10px 0px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  width: 80%;
+  border-radius: 2px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 24px;
+  font-weight: 700;
+  background: #f7f7f7;
+  text-decoration: none;
+  color: #258dcd;
 }
 </style>

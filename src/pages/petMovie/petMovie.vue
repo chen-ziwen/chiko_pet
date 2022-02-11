@@ -10,12 +10,12 @@
         <span slot="label" class="dontclick">
           <i class="el-icon-sunny"></i> 近期热门宠物电影
         </span>
-
+         
         <div class="hot-movie" v-show="!ViewChange">
           <ul class="movie-uls">
             <li v-for="(hot, index) in hotmovie" :key="index" class="movie-lis">
               <!-- <a :href="hot.url" target="_blank"> -->
-                <div class="colum-box" @click="getId(hot.id)">
+                <div class="colum-box" @click="getId(hot.id), geturl(hot.url)">
                   <img :src="hot.cover" alt="图片丢失" />
                   <span class="span-title">
                     {{ hot.title }}
@@ -41,8 +41,8 @@
               :key="index"
               class="movie-lis-2"
             >
-              <a :href="hot.url" target="_blank">
-                <div class="row-box">
+              
+                <div class="row-box"  @click="getId(hot.id), geturl(hot.url)">
                   <img :src="hot.cover" alt="图片丢失" />
                   <div class="text-total">
                     <span class="span-title">{{ hot.title }}</span>
@@ -64,7 +64,7 @@
                     </p>
                   </div>
                 </div>
-              </a>
+
             </li>
           </ul>
           <a
@@ -82,22 +82,22 @@
           <i class="el-icon-star-on"></i> 标记最多宠物电影
         </span>
 
-        <div class="sign-movie" v-show="!ViewChange">
+        <div class="sign-movie" v-show="!ViewChange" >
           <ul class="movie-uls">
             <li
               v-for="(sign, index) in signmovie"
               :key="index"
               class="movie-lis"
             >
-              <a :href="sign.url" target="_blank">
-                <div class="colum-box">
+              <!-- <a :href="sign.url" target="_blank"> -->
+                <div class="colum-box" @click="getId(sign.id), geturl(sign.url)">
                   <img :src="sign.cover" alt="图片丢失" />
                   <span class="span-title">
                     {{ sign.title }}
                     <span class="span-rate">{{ sign.rate }}</span>
                   </span>
                 </div>
-              </a>
+              <!-- </a> -->
             </li>
           </ul>
           <a
@@ -116,8 +116,8 @@
               :key="index"
               class="movie-lis-2"
             >
-              <a :href="sign.url" target="_blank">
-                <div class="row-box">
+              <!-- <a :href="sign.url" target="_blank"> -->
+                <div class="row-box" @click="getId(sign.id), geturl(sign.url)">
                   <img :src="sign.cover" alt="图片丢失" />
                   <div class="text-total">
                     <span class="span-title">{{ sign.title }}</span>
@@ -139,7 +139,7 @@
                     </p>
                   </div>
                 </div>
-              </a>
+              <!-- </a> -->
             </li>
           </ul>
           <a
@@ -164,15 +164,15 @@
               :key="index"
               class="movie-lis"
             >
-              <a :href="score.url" target="_blank">
-                <div class="colum-box">
+              <!-- <a :href="score.url" target="_blank"> -->
+                <div class="colum-box" @click="getId(score.id), geturl(score.url)">
                   <img :src="score.cover" alt="图片丢失" />
                   <span class="span-title">
                     {{ score.title }}
                     <span class="span-rate">{{ score.rate }}</span>
                   </span>
                 </div>
-              </a>
+              <!-- </a> -->
             </li>
           </ul>
           <a
@@ -191,8 +191,8 @@
               :key="index"
               class="movie-lis-2"
             >
-              <a :href="score.url" target="_blank">
-                <div class="row-box">
+              <!-- <a :href="score.url" target="_blank"> -->
+                <div class="row-box" @click="getId(score.id), geturl(score.url)">
                   <img :src="score.cover" alt="图片丢失" />
                   <div class="text-total">
                     <span class="span-title">{{ score.title }}</span>
@@ -214,7 +214,7 @@
                     </p>
                   </div>
                 </div>
-              </a>
+              <!-- </a> -->
             </li>
           </ul>
           <a
@@ -239,15 +239,15 @@
               :key="index"
               class="movie-lis"
             >
-              <a :href="recent.url" target="_blank">
-                <div class="colum-box">
+              <!-- <a :href="recent.url" target="_blank"> -->
+                <div class="colum-box" @click="getId(recent.id), geturl(recent.url)">
                   <img :src="recent.cover" alt="图片丢失" />
                   <span class="span-title">
                     {{ recent.title }}
                     <span class="span-rate">{{ recent.rate }}</span>
                   </span>
                 </div>
-              </a>
+              <!-- </a> -->
             </li>
           </ul>
           <a
@@ -266,8 +266,8 @@
               :key="index"
               class="movie-lis-2"
             >
-              <a :href="recent.url" target="_blank">
-                <div class="row-box">
+              <!-- <a :href="recent.url" target="_blank"> -->
+                <div class="row-box" @click="getId(recent.id), geturl(recent.url)">
                   <img :src="recent.cover" alt="图片丢失" />
                   <div class="text-total">
                     <span class="span-title">{{ recent.title }}</span>
@@ -289,7 +289,7 @@
                     </p>
                   </div>
                 </div>
-              </a>
+              <!-- </a> -->
             </li>
           </ul>
           <a
@@ -378,6 +378,9 @@ export default {
     getId(id){
       this.$store.state.id = id
       console.log('我是电影id',id)
+    },
+    geturl(url) {
+      this.$store.state.url = url
     },
     // 写成同步的axiso请求
     //每点击一次 多加载20条电影数据
@@ -498,10 +501,14 @@ export default {
   align-content: center;
   flex-direction: column;
 } */
+.colum-box {
+  cursor:pointer;
+}
 .row-box {
   display: flex;
   justify-content: flex-start;
   align-content: center;
+  cursor: pointer;
 }
 .row-box .cast {
   display: flex;

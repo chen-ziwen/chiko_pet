@@ -13,7 +13,8 @@ export const store = new Vuex.Store({
         showMenu: true,
         showMenu2:true,
         id:'',
-        details:true
+        details:true,
+        url:''
         
     },
     actions: {
