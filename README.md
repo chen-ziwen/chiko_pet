@@ -37,7 +37,7 @@
 ![image](https://user-images.githubusercontent.com/85820568/153987400-ab3b645e-c34a-4f7b-9d02-1e4316413324.png)
 
 等等
-具体功能由你们自己去摸索
+还有蛮多功能就不一一展示了 由你们自己去摸索
 ## Project setup
 ```
 npm install
