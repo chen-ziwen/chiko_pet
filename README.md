@@ -18,6 +18,17 @@
 ![image](https://user-images.githubusercontent.com/85820568/153987093-036ff792-6194-4b0e-a785-d13a0d3e63b2.png)
 ![image](https://user-images.githubusercontent.com/85820568/153987146-9e84cd93-b3e5-4c24-a94c-131a9f318a28.png)
 
+宠物查询
+![image](https://user-images.githubusercontent.com/85820568/153987267-93b97338-2f4d-4921-8c1c-004c097e8711.png)
+宠物电影
+![image](https://user-images.githubusercontent.com/85820568/153987341-96ab056d-b4bc-4c68-92a5-ec55ea23d672.png)
+![image](https://user-images.githubusercontent.com/85820568/153987372-bfeb7942-949a-4dfa-8ec5-604d8c02a7ca.png)
+
+宠物讯息
+![image](https://user-images.githubusercontent.com/85820568/153987400-ab3b645e-c34a-4f7b-9d02-1e4316413324.png)
+
+等等等等
+具体功能由你们自己去摸索
 ## Project setup
 ```
 npm install
