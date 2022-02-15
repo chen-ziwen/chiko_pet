@@ -3,9 +3,20 @@
 这个系统正在努力制作中，很多功能也是还没来得及实现，未来会渐渐完善的！
 账号 : 123456 ,密码 : chenziwen
 
-系统介绍
+系统登录界面
 
 ![image](https://user-images.githubusercontent.com/85820568/153986769-897cc850-a4d1-4938-b776-f70ad91e298f.png)
+
+登录内部
+
+![image](https://user-images.githubusercontent.com/85820568/153986929-64eb6910-ebf6-47d5-82f5-320d55f336e2.png)
+
+各个模块
+故事记录
+![image](https://user-images.githubusercontent.com/85820568/153987001-34a6253c-1027-4876-ac84-a0b4dc409ca7.png)
+故事查看
+![image](https://user-images.githubusercontent.com/85820568/153987093-036ff792-6194-4b0e-a785-d13a0d3e63b2.png)
+![image](https://user-images.githubusercontent.com/85820568/153987146-9e84cd93-b3e5-4c24-a94c-131a9f318a28.png)
 
 ## Project setup
 ```
