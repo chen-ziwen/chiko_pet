@@ -188,6 +188,7 @@
   .demo-table-expand {
     font-size: 0;
     margin-left: 50px;
+   
   }
 
   .demo-table-expand label {
@@ -205,7 +206,10 @@
   }
   .demo-table-expand span {
     display: inline-block;
-    /* color: blue; */
+  }
+  ::v-deep .el-form-item__label {
+    color: black;
+    font-weight: 700;
   }
   
 </style>

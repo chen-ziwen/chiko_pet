@@ -5,7 +5,7 @@
   <section class="movie-detail" >
   <section class="movie-detai-section">
     
-    <h1 class="title-span">
+    <h1 class="title-span" :style="{color:changeColor}">
       <span >{{ details.data[0].name }}</span>
       <span v-show="details.year">({{ details.year }})</span>
     </h1>
@@ -21,14 +21,15 @@
                <li><span>语言: </span> <span>{{details.data[0].language}}</span></li>
                 <li><span>上映日期: </span> <span>{{details.dateReleased}}</span></li>
                 <li><span>片长: </span> <span>{{details.duration/60}}分钟</span></li>
-                 <li><span>又名: </span> <span>{{details.alias}}</span></li>
+                 <li v-show="details.alias"><span>又名: </span> <span>{{details.alias}}</span></li>
         </ul>
       </div>
     </section>
     <!-- 我是电影详情 -->
      <footer class="footer">
-        <p>{{details.data[0].name}}剧情简介······</p>
+        <p :style="{color:changeColor}">{{details.data[0].name}}剧情简介······</p>
        <span>{{ details.data[0].description }}</span>
+       <!-- <img src="details" alt="图片已丢失"> -->
         <a
             :href="this.$store.state.url" target="_blank"
             class="more"
@@ -64,7 +65,8 @@ export default {
         writer:[{data:[{name:'陈子文'}]}],
         actor:[{data:[{name:'陈子文'}]}],
         year:'2022'
-      }
+      },
+      dataimg:'',
     }
   },
   methods: {
@@ -113,8 +115,8 @@ export default {
           )
       );
     },
-    img(doubanId){
-      return axios.get(
+    imgeP(doubanId){
+      return (axios.get(
          'https://api.wmdb.tv/movie/api/generateimage',
          {
            params:{
@@ -123,7 +125,9 @@ export default {
            }
          }).then((response)=>{
             console.log("img接口请求成功", response);
+            this.dataimg = response.data.image
          })
+      )
     },
     prev(){
       this.$store.state.details = true
@@ -150,6 +154,7 @@ export default {
     '$store.state.id': {
       async handler() {
         this.test(this.$store.state.id);
+        // this.imgeP(this.$store.state.id)
       }
     }
   }
@@ -165,7 +170,7 @@ export default {
   overflow: auto;
 }
 .movie-detai-section{
- font-size:18px;
+ font-size:17px;
  font-weight:700;
  position:relative;
   left:50%;
@@ -176,8 +181,8 @@ export default {
 }
 .movie-img {
   display: inline-block;
-  width: 310px;
-  height: 400px;
+  width: 300px;
+  height: 420px;
 }
 .movie-detail-deep {
   display:flex;
@@ -196,24 +201,29 @@ export default {
 .footer p {
   text-align: center;
   margin:30px 0px;
-  color:rgba(0,119,34);
-  font-size: 28px;
+  /* color:rgba(0,119,34); */
+  font-size: 30px;
   font-weight:700;
 }
 .footer span {
+  font-size:22px;
+  letter-spacing:2px;
   padding-bottom: 50px;
 }
 
 .title-span:nth-child(1) {
   margin:30px 0px;
   font-size:30px;
-  color:rgba(73,73,73)
+  font-size:700;
+  /* color:rgba(73,73,73); */
+  /* color:rgba(0,119,34); */
 }
 .title-span:nth-child(2) {
   color:rgba(136,136,136)
 }
 ul li span:nth-child(1){
-  color:rgba(102,102,102)
+  color:rgba(102,102,102);
+  font-size:18px;
 }
 .more {
   position: relative;

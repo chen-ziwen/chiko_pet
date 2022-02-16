@@ -623,6 +623,7 @@ article .secPic-2 {
   font-size: 18px;
   color: rgba(220 220 220 0.8);
   transform: translate(2px, -4px);
+  /* font-weight:v-bind() */
 }
 .storyTags .storyt {
   display: inline-block;

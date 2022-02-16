@@ -554,7 +554,7 @@ export default {
 }
 .movie-uls .movie-lis .span-title {
   display: inline-block;
-  width: 180px;
+  width: 100%;
   line-height: 25px;
   padding-bottom: 15px;
   font-weight: 700;
