@@ -9,7 +9,7 @@
 
 登录内部
 
-![image](https://user-images.githubusercontent.com/85820568/153986929-64eb6910-ebf6-47d5-82f5-320d55f336e2.png)
+![image](https://user-images.githubusercontent.com/85820568/154181623-c6173a88-2356-4506-bf14-a4ee18a4a950.png)
 
 各个模块
 故事记录
