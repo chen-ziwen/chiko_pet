@@ -18,12 +18,12 @@
 
 故事查看
 
-![image](https://user-images.githubusercontent.com/85820568/153987093-036ff792-6194-4b0e-a785-d13a0d3e63b2.png)
+
 ![image](https://user-images.githubusercontent.com/85820568/153987146-9e84cd93-b3e5-4c24-a94c-131a9f318a28.png)
 
 宠物查询
 
-![image](https://user-images.githubusercontent.com/85820568/153987267-93b97338-2f4d-4921-8c1c-004c097e8711.png)
+![image](https://user-images.githubusercontent.com/85820568/154182040-9d8aae39-fee3-460f-a3be-57b47131843d.png)
 
 宠物电影
 
