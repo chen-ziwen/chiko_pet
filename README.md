@@ -36,6 +36,10 @@
 宠物讯息
 
 ![image](https://user-images.githubusercontent.com/85820568/153987400-ab3b645e-c34a-4f7b-9d02-1e4316413324.png)
+![image](https://user-images.githubusercontent.com/85820568/154181846-62f999dd-a6d7-4803-b3a8-23e4bfb212be.png)
+![image](https://user-images.githubusercontent.com/85820568/154181936-68e94b78-8814-45a1-88b4-28847b1c33d9.png)
+
+
 
 等等
 还有蛮多功能就不一一展示了 由你们自己去摸索
