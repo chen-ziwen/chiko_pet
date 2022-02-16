@@ -552,9 +552,12 @@ export default {
 .movie-uls-2 .movie-lis-2 .span-title:hover {
   text-decoration: underline;
 }
+
+/* 哈哈，我这边的宽度处理好完美 */
 .movie-uls .movie-lis .span-title {
   display: inline-block;
-  width: 100%;
+  width: 180px;
+  padding: 0px calc(50% - 90px);
   line-height: 25px;
   padding-bottom: 15px;
   font-weight: 700;
