@@ -299,7 +299,10 @@
        'petValue': {
         deep:true,
         handler(){
-           if(this.petValue.length==0) {
+          if(this.petValue==undefined) {
+            this.petValue= []
+          }
+          if(this.petValue.length==0) {
              this.empty = true
              console.log(this.petValue)
            }

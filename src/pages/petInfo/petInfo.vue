@@ -292,7 +292,9 @@ export default {
     storylist(start_index, pn) {
       return axios.get("v5/general/v1/web/search/story", {
         params: {
-          q: "宠物",
+          // 宠物链接挂掉了，先换成动物
+          q: "宠物",  
+          // q:'动物',
           ps: 15,
           start_index: start_index, //0 点击一次加十五
           pn: pn,  // 1 点击一次加一

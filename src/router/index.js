@@ -24,6 +24,8 @@ Vue.use(VueRouter)
 
 export default new VueRouter({
     // linkActiveClass : 'active',  //当路由被选中时，标签的样式
+    mode:'history',
+    base:'101.43.219.57',
     routes: [ 
         {
             path: '/',

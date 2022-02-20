@@ -30,7 +30,7 @@
       </div>
       <!-- 导航栏第三块 -->
       <div class="navT">
-        <span >背景颜色</span>
+        <span >主题色选择</span>
         <el-color-picker v-model="color" show-alpha :predefine="predefineColors" size='small' class="color"
            ></el-color-picker>
            
@@ -58,13 +58,13 @@
     data() {
       return {
         visible: false,
-        color: 'rgba(197, 36, 137, 0.38)',
+        color: 'rgba(31, 147, 255, 0.51)',
         predefineColors: [
           //前面这几个颜色是我比较喜欢的颜色
+          'rgba(31, 147, 255, 0.51)',
           'rgba(197, 36, 137, 0.38)',
           'rgba(241, 205, 1, 0.46)',
           'rgba(0, 186, 189, 0.49)',
-          'hsla(209, 100%, 56%, 0.73)',
           'rgba(255, 69, 0, 0.5)',
           'hsva(120, 40, 94, 0.5)',
           'rgb(253,84,78)',
