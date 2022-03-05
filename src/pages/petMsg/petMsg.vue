@@ -143,7 +143,7 @@
     display: block;
     padding: 25px;
     line-height: 35px;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
     text-indent: 2em;
     color: rgba(0, 0, 0);
     text-align: start;

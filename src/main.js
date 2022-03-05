@@ -13,6 +13,10 @@ Vue.config.productionTip = false
 
 //对路由的跳转进行验证
 router.beforeEach((to,from,next)=>{
+   //修改路由跳转信息
+   if (to.meta.title) {
+      document.title = to.meta.title
+   }
    //赋值一个对象 ，不然state会出错
    let Login = JSON.parse(sessionStorage.getItem('login'))|| {number:'',password:''};
    //模块化的VueX传值必须加上模块名

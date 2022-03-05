@@ -30,6 +30,7 @@ export default new VueRouter({
             path: '/',
             // redirect: '/FirstPage/pet1'
             redirect: '/login'
+            
            
         }, //设置默认跳转到home首页
         
@@ -37,6 +38,7 @@ export default new VueRouter({
              name : 'index',
              path : '/index',
              component : ()=> import('../view/index.vue'),
+            
              children: [
                 {   name : 'FirstPage',
                     path: '/FirstPage',
@@ -52,6 +54,9 @@ export default new VueRouter({
                         name : 'pet1',
                         path: 'pet1',
                         component: pet1,
+                        meta: {
+                            title: '信息记录'
+                        },
                        },
         
                        {
@@ -59,17 +64,26 @@ export default new VueRouter({
                         name : 'pet2',
                         path: 'pet2/:id/:title',
                         component: pet2,
+                        meta: {
+                            title: '故事记录'
+                        },
                        },
         
                        {
                         name : 'pet3',
                         path: 'pet3',
                         component: pet3,
+                        meta: {
+                            title: '图片展示'
+                        },
                        },
                        {
                         name : 'pet4',
                         path : 'pet4',
                         component : pet4,
+                        meta: {
+                            title: '项目总结'
+                        },
                        }
                 ]
                 },
@@ -78,17 +92,26 @@ export default new VueRouter({
                     name : 'petMsg',
                     path: '/petMsg',
                     component: petMsg,
+                    meta: {
+                        title: '宠物查询'
+                    },
                     // children: [path:'/petMsg/pet1',component]
                 },
                 {   
                     name : 'petMovie',
                     path: '/petMovie',
-                    component: petMovie
+                    component: petMovie,
+                    meta: {
+                        title: '宠物电影'
+                    },
                 },
                 {   
                     name : 'petInfo',
                     path: '/petInfo',
-                    component: petInfo
+                    component: petInfo,
+                    meta: {
+                        title: '宠物资讯'
+                    },
                 },
                 {   
                     name : 'petRecord',

@@ -222,8 +222,8 @@
             this.petValue = petValue;
             localStorage.setItem("petStory", JSON.stringify(petStory));
             localStorage.setItem("petValue", JSON.stringify(petValue));
-            this.content.story = '';
-            "<h1>请书写你的故事，记录下那些你与动物的难忘时光!<h1>";
+            this.content.story = "";
+            
           })
           .catch(() => {
             this.$message({

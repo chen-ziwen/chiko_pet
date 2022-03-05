@@ -15,9 +15,9 @@
           <ul class="movie-uls">
             <li v-for="(hot, index) in hotmovie" :key="index" class="movie-lis">
               <!-- <a :href="hot.url" target="_blank"> -->
-                <div class="colum-box" @click="getId(hot.id), geturl(hot.url)">
-                  <img :src="hot.cover" alt="图片丢失" />
-                  <span class="span-title">
+                <div class="colum-box" >
+                  <img :src="hot.cover" alt="图片丢失"  class="ponit" @click="getId(hot.id), geturl(hot.url)"/>
+                  <span class="span-title ponit" @click="getId(hot.id), geturl(hot.url)">
                     {{ hot.title }}
                     <span class="span-rate">{{ hot.rate }}</span>
                   </span>
@@ -90,9 +90,9 @@
               class="movie-lis"
             >
               <!-- <a :href="sign.url" target="_blank"> -->
-                <div class="colum-box" @click="getId(sign.id), geturl(sign.url)">
-                  <img :src="sign.cover" alt="图片丢失" />
-                  <span class="span-title">
+                <div class="colum-box">
+                  <img :src="sign.cover" alt="图片丢失" class="ponit"  @click="getId(sign.id), geturl(sign.url)" />
+                  <span class="span-title ponit"  @click="getId(sign.id), geturl(sign.url)">
                     {{ sign.title }}
                     <span class="span-rate">{{ sign.rate }}</span>
                   </span>
@@ -165,9 +165,9 @@
               class="movie-lis"
             >
               <!-- <a :href="score.url" target="_blank"> -->
-                <div class="colum-box" @click="getId(score.id), geturl(score.url)">
-                  <img :src="score.cover" alt="图片丢失" />
-                  <span class="span-title">
+                <div class="colum-box">
+                  <img :src="score.cover" alt="图片丢失"  class="ponit"  @click="getId(score.id), geturl(score.url)"/>
+                  <span class="span-title ponit"  @click="getId(score.id), geturl(score.url)">
                     {{ score.title }}
                     <span class="span-rate">{{ score.rate }}</span>
                   </span>
@@ -240,9 +240,9 @@
               class="movie-lis"
             >
               <!-- <a :href="recent.url" target="_blank"> -->
-                <div class="colum-box" @click="getId(recent.id), geturl(recent.url)">
-                  <img :src="recent.cover" alt="图片丢失" />
-                  <span class="span-title">
+                <div class="colum-box">
+                  <img :src="recent.cover" alt="图片丢失" class="ponit" @click="getId(recent.id), geturl(recent.url)" />
+                  <span class="span-title ponit" @click="getId(recent.id), geturl(recent.url)">
                     {{ recent.title }}
                     <span class="span-rate">{{ recent.rate }}</span>
                   </span>
@@ -501,7 +501,7 @@ export default {
   align-content: center;
   flex-direction: column;
 } */
-.colum-box {
+.ponit {
   cursor:pointer;
 }
 .row-box {
