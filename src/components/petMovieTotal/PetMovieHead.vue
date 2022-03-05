@@ -2,7 +2,7 @@
     <header id="head">
         <h1>宠物电影</h1>
         <div class="moviebox" v-show="this.$store.state.details">
-            <el-dropdown trigger="click">
+            <el-dropdown trigger="hover">
                 <a class="el-icon-arrow-down el-icon--right aSize">评分区间筛选</a>
                 <el-dropdown-menu slot="dropdown">
                     <el-dropdown-item>

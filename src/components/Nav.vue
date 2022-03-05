@@ -92,6 +92,10 @@
             showClose: true,
           });
           //跳转路由到login
+          let loginValue = JSON.parse(sessionStorage.getItem('login'))
+          loginValue.number = '',
+          loginValue.password = '',
+          sessionStorage.setItem('login',JSON.stringify(loginValue))
           this.$router.push('/login')
         }).catch(() => {
           this.$message({
@@ -116,11 +120,21 @@
   .el-icon-arrow-down {
     font-size: 12px;
   }
- 
+  .nav {
+    display: flex;
+    height: 10vh;
+    justify-content: space-evenly;
+    align-items: center;
+    overflow: hidden;
+
+  }
   .navF,
   .navT {
+    display: flex;
     flex-grow: 1;
+    
   }
+
 .navT span:nth-of-type(1) {
   font-size: 20px;
   display: inline-block;
@@ -157,25 +171,7 @@
     width: 50px;
   }
 
-  .nav {
-    display: flex;
-    height: 10vh;
-    justify-content: space-between;
-    /* background-color: #FDCED7; */
-    overflow: hidden;
-
-  }
-
-  .nav .navF {
-    height: 10vh;
-  }
-
-  .nav img {
-    height: 8vh;
-    vertical-align: middle;
-    transform: translate(20px,1vh);
-
-  }
+ 
 
   .nav ul {
     display: flex;
@@ -212,20 +208,22 @@
   .navS ul li a:hover {
     color: rgba(255, 0, 0, 0.5);
   }
+  
+   .nav .navF img {
+    height: 8vh;
 
+  }
   .navF span {
-    display: inline-block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: black;
     width: 250px;
-    transform: translate(35px,1.6vh);
     white-space: nowrap;
     font: italic 700 1.8em "黑体";
-    text-shadow: 3px 3px 3px rgba(100, 100, 100, 1);
+    text-shadow:  3px 3px 3px rgba(100, 100, 100, 1);
   }
 
-  /* .nav li:hover {
-    border-bottom: 4px solid skyblue;
-  } */
   .router-link-active {
     background: rgba(255, 255, 255, 0.8);
     color: gray;

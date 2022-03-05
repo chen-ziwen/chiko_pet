@@ -33,8 +33,11 @@
         },
         methods: {
             enter() {
-                if (this.num == '123456' && this.paw == 'chenziwen') {
+                if (this.num == 'chenziwen' && this.paw == '123456') {
                     // alert('登陆成功')
+                    let login = { number: this.num,password : this.paw}
+                    //将账号密码保存到localstorage中
+                    sessionStorage.setItem('login',JSON.stringify(login))
                     this.$message({
                         // showClose: true,
                         message: ' 恭喜您，登陆成功',

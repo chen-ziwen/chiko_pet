@@ -11,6 +11,26 @@ Vue.mixin(changeColor)
 
 Vue.config.productionTip = false
 
+//对路由的跳转进行验证
+router.beforeEach((to,from,next)=>{
+   //赋值一个对象 ，不然state会出错
+   let Login = JSON.parse(sessionStorage.getItem('login'))|| {number:'',password:''};
+   //模块化的VueX传值必须加上模块名
+   store.commit('userLogin/login',Login);
+   if (to.path === '/login') {
+      next();
+    } else {
+    if(store.state.userLogin.login.password) {
+      next();
+    }
+    else {
+       next({path:'/login'})
+    }
+   }
+   
+})
+
+
 new Vue({
   el:'#app',
   render: h => h(App),

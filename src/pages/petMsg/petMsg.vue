@@ -50,13 +50,13 @@
           name: '哈士奇',
           characters : '聪明机灵、极度热情、神经质',
           coverURL: "http://img.boqiicdn.com/Data/BK/P/imagick14371435571930.png", //需要用到require引入
-          careKnowledge: '　　哈士奇虽然看着一副冷漠无情的样子，事实上，哈士奇对人很友好、温柔、热情的。喜欢与人交往是哈士奇的典型性格。通常不表现出护卫犬强烈的领地占有欲，不对陌生人过多的怀疑，也不会攻击其他犬类。因此有很多人喜欢哈士奇。他对主人非常忠诚，一条忠诚的小狗有一个健康的身体是非常重要的。',
+          careKnowledge: '哈士奇虽然看着一副冷漠无情的样子，事实上，哈士奇对人很友好、温柔、热情的。喜欢与人交往是哈士奇的典型性格。通常不表现出护卫犬强烈的领地占有欲，不对陌生人过多的怀疑，也不会攻击其他犬类。因此有很多人喜欢哈士奇。他对主人非常忠诚，一条忠诚的小狗有一个健康的身体是非常重要的。',
           engName: 'Siberian Huskiy',
           life: '9-15年',
           price: '2000-4000元',
           nation: '俄罗斯',
-          characterFeature: '　　哈士奇的外表英俊潇洒，精致的五官和丰富的肢体语言充满了奇特的表现，无需复杂的交谈，就能轻易了解他的喜怒哀乐。哈士奇时常会有点神经质。',
-          feature : '　　西伯利亚雪橇犬是一种原始的古老犬种，因它的独特嘶哑的叫声被称之为当今的哈士奇。'
+          characterFeature: '哈士奇的外表英俊潇洒，精致的五官和丰富的肢体语言充满了奇特的表现，无需复杂的交谈，就能轻易了解他的喜怒哀乐。哈士奇时常会有点神经质。',
+          feature : '西伯利亚雪橇犬是一种原始的古老犬种，因它的独特嘶哑的叫声被称之为当今的哈士奇。'
         }
       }
     },
@@ -66,23 +66,19 @@
       this.$bus.$on('sendMsgs', (msg) => {
         // let resnew = response.data.newslist[0]
         let resnew = msg[0];
-        let Tlt = this.Tnewslist;
+        
         //遍历对象，如果对象中对应的值为空，则把空改为不详
         Object.keys(resnew).forEach(function (key) {
           if(resnew[key]=='') {
             resnew[key] = '不详'
           }
-        });  
-        Tlt.coverURL = resnew.coverURL //图片
-        Tlt.careKnowledge = resnew.careKnowledge //百科
-        Tlt.characterFeature = resnew.characterFeature
-        Tlt.engName = resnew.engName //英文名
-        Tlt.life = resnew.life //寿命
-        Tlt.name = resnew.name //名称
-        Tlt.price = resnew.price //价格
-        Tlt.nation = resnew.nation //国家
-        Tlt.characters = resnew.characters //性格
-        Tlt.feature = resnew.feature
+        });
+        resnew.careKnowledge = resnew.careKnowledge.replace(/\s*/g,'')
+        resnew.characterFeature = resnew.characterFeature.replace(/\s*/g,'')
+        resnew.feature = resnew.feature.replace(/\s*/g,'')
+         this.Tnewslist = resnew;
+        // coverURL 图片 careKnowledge 百科 characterFeature engName 
+        // 英文名 life 寿命 name 名称 price 价格 nation 国家 characters 性格 feature
       })
     },
     
@@ -148,7 +144,7 @@
     padding: 25px;
     line-height: 35px;
     letter-spacing: 2px;
-    /* text-indent: 2em; */
+    text-indent: 2em;
     color: rgba(0, 0, 0);
     text-align: start;
     font:22px '黑体' ;

@@ -1,8 +1,13 @@
 import Vue from "vue";
 import Vuex from 'vuex'
+import userLogin from './userLogin'
 Vue.use(Vuex)
 
 export const store = new Vuex.Store({
+    modules: {
+    //这个用来保存以及操作登陆验证的localStorage
+     userLogin
+    },
     state: {
         //可以在这里面设置全局的数据
         czwname : 'chenziwen',
