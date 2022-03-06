@@ -56,14 +56,14 @@
       </div>
     </el-tab-pane>
 
-    <el-tab-pane>
+    <!-- <el-tab-pane>
       <span slot="label" class="dontclick"><i class="el-icon-s-promotion"></i> 分享你的故事</span>
       <div class="share">
         <h1>分享你的故事，好呗</h1>
         {{move.id}}
         {{move.title}}
       </div>
-    </el-tab-pane>
+    </el-tab-pane> -->
   </el-tabs>
 
 </template>

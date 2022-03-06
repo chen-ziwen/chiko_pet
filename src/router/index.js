@@ -55,7 +55,7 @@ export default new VueRouter({
                         path: 'pet1',
                         component: pet1,
                         meta: {
-                            title: '信息记录'
+                            title: '信息登记'
                         },
                        },
         
@@ -82,7 +82,7 @@ export default new VueRouter({
                         path : 'pet4',
                         component : pet4,
                         meta: {
-                            title: '项目总结'
+                            title: '构思设计'
                         },
                        }
                 ]
@@ -130,6 +130,9 @@ export default new VueRouter({
          {   
              name : 'login',
              path: '/login' ,
+             meta: {
+                title: 'Chiko千子宠物'
+            },
              component: () => import('../pages/login/login.vue'),
          },
         ]

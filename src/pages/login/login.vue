@@ -5,12 +5,12 @@
             <el-form ref="login" class="ms-content">
                 <el-form-item prop="number">
                     <el-input placeholder="请输入账号" v-model="num">
-                        <el-button slot="prepend" icon="el-icon-user"></el-button>
+                        <el-button slot="prepend" disabled icon="el-icon-user"></el-button>
                     </el-input>
                 </el-form-item>
                 <el-form-item prop="password">
                     <el-input type="password" placeholder="请输入密码" v-model="paw">
-                        <el-button slot="prepend" icon="el-icon-view"></el-button>
+                        <el-button slot="prepend" disabled icon="el-icon-view"></el-button>
                     </el-input>
                 </el-form-item>
                 <div class="login-btn">
@@ -36,6 +36,7 @@
                 if (this.num == 'chenziwen' && this.paw == '123456') {
                     // alert('登陆成功')
                     let login = { number: this.num,password : this.paw}
+                    console.log(this.$refs.login)
                     //将账号密码保存到localstorage中
                     sessionStorage.setItem('login',JSON.stringify(login))
                     this.$message({
@@ -45,7 +46,7 @@
                         duration : 2000,
                         showClose: true,
                     });
-
+                     
                     this.$router.push('/FirstPage/pet1')
 
                 } else {
