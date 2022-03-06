@@ -57,12 +57,6 @@
 <script>
 export default {
   name: 'pet4',
-  data() {
-    return {
-
-    }
-  }
-
 }
 </script>
 
