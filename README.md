@@ -1,6 +1,6 @@
 
 # petsystem
-`` ** 账号 : chenziwen  密码 : 123456 **``
+ **``账号 : chenziwen  密码 : 123456`` **
 
 系统登录界面
 
@@ -48,7 +48,7 @@
 还有蛮多功能就不一一展示了 由你们自己去摸索
 
 ## 项目访问地址
-www.chiko.fit
+**www.chiko.fit**
 
 ## Project setup
 ```
