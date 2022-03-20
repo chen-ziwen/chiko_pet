@@ -189,6 +189,7 @@ export default {
 }
 .movie-introdue {
   margin-left:30px;
+  height: 420px;
 }
 .movie-introdue ul li {
  padding-bottom: 15px;

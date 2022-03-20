@@ -512,7 +512,7 @@ export default {
   display: inline-block;
   color: black;
   line-height: 50px;
-  transform: translateX(30px);
+  padding: 0px 30px;
 }
 .pet-info-news-uls .pet-info-news-lis a > span:hover {
   text-decoration: underline;

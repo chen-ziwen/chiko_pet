@@ -36,7 +36,7 @@ router.beforeEach((to,from,next)=>{
 
 
 new Vue({
-  el:'#app',
+//   el:'#app',
   render: h => h(App),
   router,
   store,
@@ -44,4 +44,5 @@ new Vue({
   beforeCreate(){
    Vue.prototype.$bus = this  //设置全局总线
   },
- })
+ }).$mount('#app')
+
